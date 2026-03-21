@@ -1,0 +1,1847 @@
+[
+  {
+    "name": "NVIDIA",
+    "industry": "Technology — Semiconductors",
+    "state": "CA",
+    "roles": "GPU Engineer, ML Engineer, ASIC Design, SW Dev",
+    "size": "10,001+",
+    "careersUrl": "https://www.nvidia.com/en-us/about-nvidia/careers/",
+    "slug": "nvidia"
+  },
+  {
+    "name": "Intel",
+    "industry": "Technology — Semiconductors",
+    "state": "CA",
+    "roles": "HW Engineer, Process Engineer, SW Engineer, Data Scientist",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.intel.com/",
+    "slug": "intel"
+  },
+  {
+    "name": "AMD",
+    "industry": "Technology — Semiconductors",
+    "state": "CA",
+    "roles": "Design Engineer, Verification Engineer, SW Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.amd.com/en/corporate/careers.html",
+    "slug": "amd"
+  },
+  {
+    "name": "Qualcomm",
+    "industry": "Technology — Semiconductors",
+    "state": "CA",
+    "roles": "Modem Engineer, ML Engineer, Embedded SW, RF Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.qualcomm.com/company/careers",
+    "slug": "qualcomm"
+  },
+  {
+    "name": "Broadcom",
+    "industry": "Technology — Semiconductors",
+    "state": "CA",
+    "roles": "ASIC Engineer, SW Engineer, Network Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.broadcom.com/company/careers",
+    "slug": "broadcom"
+  },
+  {
+    "name": "Tesla",
+    "industry": "Technology — EV & Robotics",
+    "state": "TX",
+    "roles": "Autopilot Engineer, Mfg Engineer, Battery Engineer, ML Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.tesla.com/careers",
+    "slug": "tesla"
+  },
+  {
+    "name": "Stripe",
+    "industry": "Technology — Fintech",
+    "state": "CA",
+    "roles": "SWE, Data Scientist, Infrastructure Engineer, Product Manager",
+    "size": "5,001–10,000",
+    "careersUrl": "https://stripe.com/jobs",
+    "slug": "stripe"
+  },
+  {
+    "name": "PayPal",
+    "industry": "Technology — Fintech",
+    "state": "CA",
+    "roles": "SWE, Data Engineer, Risk Analyst, Product Manager",
+    "size": "10,001+",
+    "careersUrl": "https://careers.pypl.com/home/",
+    "slug": "paypal"
+  },
+  {
+    "name": "Databricks",
+    "industry": "Technology — Data & AI",
+    "state": "CA",
+    "roles": "Data Engineer, ML Engineer, Solutions Architect, SWE",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.databricks.com/company/careers",
+    "slug": "databricks"
+  },
+  {
+    "name": "Palantir Technologies",
+    "industry": "Technology — Data Analytics",
+    "state": "CO",
+    "roles": "Forward Deployed Engineer, SWE, Data Analyst",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.palantir.com/careers/",
+    "slug": "palantir-technologies"
+  },
+  {
+    "name": "ServiceNow",
+    "industry": "Technology — Enterprise SaaS",
+    "state": "CA",
+    "roles": "SWE, DevOps, Cloud Engineer, Data Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://www.servicenow.com/careers.html",
+    "slug": "servicenow"
+  },
+  {
+    "name": "Workday",
+    "industry": "Technology — HR SaaS",
+    "state": "CA",
+    "roles": "SWE, QA Engineer, Data Analyst, Product Manager",
+    "size": "10,001+",
+    "careersUrl": "https://www.workday.com/en-us/company/careers.html",
+    "slug": "workday"
+  },
+  {
+    "name": "Okta",
+    "industry": "Technology — Identity Security",
+    "state": "CA",
+    "roles": "Security Engineer, SWE, Solutions Engineer",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.okta.com/company/careers/",
+    "slug": "okta"
+  },
+  {
+    "name": "Atlassian",
+    "industry": "Technology — Collaboration",
+    "state": "CA",
+    "roles": "SWE, Data Scientist, Product Manager, SRE",
+    "size": "10,001+",
+    "careersUrl": "https://www.atlassian.com/company/careers",
+    "slug": "atlassian"
+  },
+  {
+    "name": "Snowflake",
+    "industry": "Technology — Cloud Data",
+    "state": "CA",
+    "roles": "SWE, Data Engineer, Solutions Architect, Sales Engineer",
+    "size": "5,001–10,000",
+    "careersUrl": "https://careers.snowflake.com/",
+    "slug": "snowflake"
+  },
+  {
+    "name": "Twilio",
+    "industry": "Technology — Communications",
+    "state": "CA",
+    "roles": "SWE, DevOps, Solutions Engineer, Product Manager",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.twilio.com/company/jobs",
+    "slug": "twilio"
+  },
+  {
+    "name": "Splunk",
+    "industry": "Technology — Observability",
+    "state": "CA",
+    "roles": "SWE, Data Scientist, Security Analyst, SRE",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.splunk.com/en_us/careers.html",
+    "slug": "splunk"
+  },
+  {
+    "name": "Palo Alto Networks",
+    "industry": "Technology — Cybersecurity",
+    "state": "CA",
+    "roles": "Security Engineer, SWE, Threat Analyst, Cloud Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.paloaltonetworks.com/",
+    "slug": "palo-alto-networks"
+  },
+  {
+    "name": "CrowdStrike",
+    "industry": "Technology — Cybersecurity",
+    "state": "TX",
+    "roles": "SWE, Threat Researcher, Data Engineer, Cloud Engineer",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.crowdstrike.com/careers/",
+    "slug": "crowdstrike"
+  },
+  {
+    "name": "Uber",
+    "industry": "Technology — Mobility",
+    "state": "CA",
+    "roles": "SWE, ML Engineer, Data Scientist, Product Manager",
+    "size": "10,001+",
+    "careersUrl": "https://www.uber.com/us/en/careers/",
+    "slug": "uber"
+  },
+  {
+    "name": "Lyft",
+    "industry": "Technology — Mobility",
+    "state": "CA",
+    "roles": "SWE, Data Scientist, ML Engineer, Product Analyst",
+    "size": "1,001–5,000",
+    "careersUrl": "https://www.lyft.com/careers",
+    "slug": "lyft"
+  },
+  {
+    "name": "DoorDash",
+    "industry": "Technology — Delivery",
+    "state": "CA",
+    "roles": "SWE, ML Engineer, Data Analyst, Product Manager",
+    "size": "5,001–10,000",
+    "careersUrl": "https://careers.doordash.com/",
+    "slug": "doordash"
+  },
+  {
+    "name": "Airbnb",
+    "industry": "Technology — Travel",
+    "state": "CA",
+    "roles": "SWE, Data Scientist, Product Designer, ML Engineer",
+    "size": "5,001–10,000",
+    "careersUrl": "https://careers.airbnb.com/",
+    "slug": "airbnb"
+  },
+  {
+    "name": "Pinterest",
+    "industry": "Technology — Social Media",
+    "state": "CA",
+    "roles": "SWE, ML Engineer, Data Scientist, Product Manager",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.pinterestcareers.com/",
+    "slug": "pinterest"
+  },
+  {
+    "name": "Snap Inc.",
+    "industry": "Technology — Social Media",
+    "state": "CA",
+    "roles": "SWE, ML Engineer, AR Engineer, Data Scientist",
+    "size": "5,001–10,000",
+    "careersUrl": "https://careers.snap.com/",
+    "slug": "snap-inc"
+  },
+  {
+    "name": "Reddit",
+    "industry": "Technology — Social Media",
+    "state": "CA",
+    "roles": "SWE, ML Engineer, Data Scientist, SRE",
+    "size": "1,001–5,000",
+    "careersUrl": "https://www.redditinc.com/careers",
+    "slug": "reddit"
+  },
+  {
+    "name": "LinkedIn",
+    "industry": "Technology — Professional Network",
+    "state": "CA",
+    "roles": "SWE, Data Scientist, ML Engineer, Product Manager",
+    "size": "10,001+",
+    "careersUrl": "https://careers.linkedin.com/",
+    "slug": "linkedin"
+  },
+  {
+    "name": "Spotify",
+    "industry": "Technology — Music Streaming",
+    "state": "NY",
+    "roles": "SWE, ML Engineer, Data Engineer, Product Manager",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.lifeatspotify.com/jobs",
+    "slug": "spotify"
+  },
+  {
+    "name": "Netflix",
+    "industry": "Technology — Entertainment",
+    "state": "CA",
+    "roles": "SWE, Data Engineer, ML Researcher, Content Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.netflix.com/",
+    "slug": "netflix"
+  },
+  {
+    "name": "Adobe",
+    "industry": "Technology — Creative Software",
+    "state": "CA",
+    "roles": "SWE, ML Researcher, UX Designer, Data Scientist",
+    "size": "10,001+",
+    "careersUrl": "https://www.adobe.com/careers.html",
+    "slug": "adobe"
+  },
+  {
+    "name": "Cisco",
+    "industry": "Technology — Networking",
+    "state": "CA",
+    "roles": "Network Engineer, SWE, Security Engineer, Data Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.cisco.com/",
+    "slug": "cisco"
+  },
+  {
+    "name": "VMware (Broadcom)",
+    "industry": "Technology — Virtualization",
+    "state": "CA",
+    "roles": "SWE, Cloud Engineer, DevOps, Solutions Architect",
+    "size": "10,001+",
+    "careersUrl": "https://careers.vmware.com/",
+    "slug": "vmware-broadcom"
+  },
+  {
+    "name": "Intuit",
+    "industry": "Technology — Fintech",
+    "state": "CA",
+    "roles": "SWE, Data Scientist, Product Manager, ML Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.intuit.com/careers/",
+    "slug": "intuit"
+  },
+  {
+    "name": "Block (Square)",
+    "industry": "Technology — Fintech",
+    "state": "CA",
+    "roles": "SWE, Data Engineer, Crypto Engineer, Product Manager",
+    "size": "5,001–10,000",
+    "careersUrl": "https://block.xyz/careers",
+    "slug": "block-square"
+  },
+  {
+    "name": "Robinhood",
+    "industry": "Technology — Fintech",
+    "state": "CA",
+    "roles": "SWE, Data Scientist, ML Engineer, Security Engineer",
+    "size": "1,001–5,000",
+    "careersUrl": "https://careers.robinhood.com/",
+    "slug": "robinhood"
+  },
+  {
+    "name": "Coinbase",
+    "industry": "Technology — Crypto",
+    "state": "CA",
+    "roles": "SWE, Security Engineer, Data Scientist, Compliance Analyst",
+    "size": "1,001–5,000",
+    "careersUrl": "https://www.coinbase.com/careers",
+    "slug": "coinbase"
+  },
+  {
+    "name": "Rivian",
+    "industry": "Technology — EV",
+    "state": "CA",
+    "roles": "Mfg Engineer, Battery Engineer, SWE, Embedded Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://rivian.com/careers",
+    "slug": "rivian"
+  },
+  {
+    "name": "Lucid Motors",
+    "industry": "Technology — EV",
+    "state": "CA",
+    "roles": "Powertrain Engineer, SWE, Battery Scientist, Quality Eng",
+    "size": "1,001–5,000",
+    "careersUrl": "https://www.lucidmotors.com/careers",
+    "slug": "lucid-motors"
+  },
+  {
+    "name": "Duolingo",
+    "industry": "Technology — EdTech",
+    "state": "PA",
+    "roles": "SWE, ML Engineer, Data Scientist, Product Designer",
+    "size": "1,001–5,000",
+    "careersUrl": "https://careers.duolingo.com/",
+    "slug": "duolingo"
+  },
+  {
+    "name": "Coursera",
+    "industry": "Technology — EdTech",
+    "state": "CA",
+    "roles": "SWE, Data Analyst, ML Engineer, Product Manager",
+    "size": "1,001–5,000",
+    "careersUrl": "https://about.coursera.org/careers/",
+    "slug": "coursera"
+  },
+  {
+    "name": "Figma",
+    "industry": "Technology — Design Tools",
+    "state": "CA",
+    "roles": "SWE, Product Designer, Data Scientist",
+    "size": "1,001–5,000",
+    "careersUrl": "https://www.figma.com/careers/",
+    "slug": "figma"
+  },
+  {
+    "name": "Notion",
+    "industry": "Technology — Productivity",
+    "state": "CA",
+    "roles": "SWE, Data Engineer, Product Designer",
+    "size": "501–1,000",
+    "careersUrl": "https://www.notion.so/careers",
+    "slug": "notion"
+  },
+  {
+    "name": "Elastic",
+    "industry": "Technology — Search & Analytics",
+    "state": "CA",
+    "roles": "SWE, Solutions Architect, Data Engineer, SRE",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.elastic.co/careers/",
+    "slug": "elastic"
+  },
+  {
+    "name": "MongoDB",
+    "industry": "Technology — Database",
+    "state": "NY",
+    "roles": "SWE, Solutions Architect, Data Engineer, SRE",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.mongodb.com/careers",
+    "slug": "mongodb"
+  },
+  {
+    "name": "HashiCorp",
+    "industry": "Technology — Infrastructure",
+    "state": "CA",
+    "roles": "SWE, Solutions Engineer, DevOps Advocate",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.hashicorp.com/careers",
+    "slug": "hashicorp"
+  },
+  {
+    "name": "Datadog",
+    "industry": "Technology — Observability",
+    "state": "NY",
+    "roles": "SWE, Data Engineer, SRE, Solutions Engineer",
+    "size": "5,001–10,000",
+    "careersUrl": "https://careers.datadoghq.com/",
+    "slug": "datadog"
+  },
+  {
+    "name": "Confluent",
+    "industry": "Technology — Data Streaming",
+    "state": "CA",
+    "roles": "SWE, Solutions Engineer, Data Engineer",
+    "size": "1,001–5,000",
+    "careersUrl": "https://www.confluent.io/careers/",
+    "slug": "confluent"
+  },
+  {
+    "name": "GitLab",
+    "industry": "Technology — DevOps",
+    "state": "CA",
+    "roles": "SWE, SRE, Security Engineer, Product Manager",
+    "size": "1,001–5,000",
+    "careersUrl": "https://about.gitlab.com/jobs/",
+    "slug": "gitlab"
+  },
+  {
+    "name": "Cloudflare",
+    "industry": "Technology — CDN & Security",
+    "state": "CA",
+    "roles": "SWE, Network Engineer, Security Engineer, SRE",
+    "size": "1,001–5,000",
+    "careersUrl": "https://www.cloudflare.com/careers/",
+    "slug": "cloudflare"
+  },
+  {
+    "name": "Goldman Sachs",
+    "industry": "Finance — Investment Banking",
+    "state": "NY",
+    "roles": "Analyst, SWE, Quant, Risk Analyst, Data Scientist",
+    "size": "10,001+",
+    "careersUrl": "https://www.goldmansachs.com/careers/",
+    "slug": "goldman-sachs"
+  },
+  {
+    "name": "JPMorgan Chase",
+    "industry": "Finance — Banking",
+    "state": "NY",
+    "roles": "SWE, Data Analyst, Quant Analyst, Risk Manager",
+    "size": "10,001+",
+    "careersUrl": "https://careers.jpmorgan.com/",
+    "slug": "jpmorgan-chase"
+  },
+  {
+    "name": "Citigroup",
+    "industry": "Finance — Banking",
+    "state": "NY",
+    "roles": "Analyst, SWE, Risk Analyst, Operations Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.citi.com/",
+    "slug": "citigroup"
+  },
+  {
+    "name": "Morgan Stanley",
+    "industry": "Finance — Investment Banking",
+    "state": "NY",
+    "roles": "Analyst, SWE, Quant, Technology Associate",
+    "size": "10,001+",
+    "careersUrl": "https://www.morganstanley.com/careers",
+    "slug": "morgan-stanley"
+  },
+  {
+    "name": "UBS",
+    "industry": "Finance — Banking",
+    "state": "NY",
+    "roles": "Analyst, SWE, Risk Analyst, Wealth Mgmt Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://www.ubs.com/global/en/careers.html",
+    "slug": "ubs"
+  },
+  {
+    "name": "BNY Mellon",
+    "industry": "Finance — Asset Services",
+    "state": "NY",
+    "roles": "SWE, Data Analyst, Operations Analyst, Risk Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://www.bnymellon.com/careers",
+    "slug": "bny-mellon"
+  },
+  {
+    "name": "State Street",
+    "industry": "Finance — Asset Management",
+    "state": "MA",
+    "roles": "Data Analyst, SWE, Risk Analyst, Quant Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://careers.statestreet.com/",
+    "slug": "state-street"
+  },
+  {
+    "name": "Charles Schwab",
+    "industry": "Finance — Brokerage",
+    "state": "TX",
+    "roles": "SWE, Data Analyst, Financial Analyst, Client Specialist",
+    "size": "10,001+",
+    "careersUrl": "https://www.aboutschwab.com/careers",
+    "slug": "charles-schwab"
+  },
+  {
+    "name": "American Express",
+    "industry": "Finance — Payments",
+    "state": "NY",
+    "roles": "Data Scientist, SWE, Product Manager, Risk Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://www.americanexpress.com/en-us/careers/",
+    "slug": "american-express"
+  },
+  {
+    "name": "Visa",
+    "industry": "Finance — Payments",
+    "state": "CA",
+    "roles": "SWE, Data Engineer, Cybersecurity Analyst, Product Manager",
+    "size": "10,001+",
+    "careersUrl": "https://usa.visa.com/careers.html",
+    "slug": "visa"
+  },
+  {
+    "name": "Mastercard",
+    "industry": "Finance — Payments",
+    "state": "NY",
+    "roles": "SWE, Data Scientist, Product Manager, Consultant",
+    "size": "10,001+",
+    "careersUrl": "https://careers.mastercard.com/",
+    "slug": "mastercard"
+  },
+  {
+    "name": "Deloitte",
+    "industry": "Consulting — Professional Services",
+    "state": "NY",
+    "roles": "Consultant, Analyst, SWE, Data Scientist",
+    "size": "10,001+",
+    "careersUrl": "https://apply.deloitte.com/",
+    "slug": "deloitte"
+  },
+  {
+    "name": "McKinsey & Company",
+    "industry": "Consulting — Management",
+    "state": "NY",
+    "roles": "Business Analyst, Data Scientist, Associate",
+    "size": "10,001+",
+    "careersUrl": "https://www.mckinsey.com/careers",
+    "slug": "mckinsey-company"
+  },
+  {
+    "name": "Boston Consulting Group",
+    "industry": "Consulting — Management",
+    "state": "MA",
+    "roles": "Associate, Consultant, Data Scientist",
+    "size": "10,001+",
+    "careersUrl": "https://careers.bcg.com/",
+    "slug": "boston-consulting-group"
+  },
+  {
+    "name": "Bain & Company",
+    "industry": "Consulting — Management",
+    "state": "MA",
+    "roles": "Associate Consultant, Data Scientist, Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://www.bain.com/careers/",
+    "slug": "bain-company"
+  },
+  {
+    "name": "Accenture",
+    "industry": "Consulting — IT Services",
+    "state": "NY",
+    "roles": "SWE, Consultant, Data Analyst, Cloud Architect",
+    "size": "10,001+",
+    "careersUrl": "https://www.accenture.com/us-en/careers",
+    "slug": "accenture"
+  },
+  {
+    "name": "Booz Allen Hamilton",
+    "industry": "Consulting — Technology",
+    "state": "VA",
+    "roles": "Data Scientist, SWE, Cybersecurity Analyst, Consultant",
+    "size": "10,001+",
+    "careersUrl": "https://careers.boozallen.com/",
+    "slug": "booz-allen-hamilton"
+  },
+  {
+    "name": "Oliver Wyman",
+    "industry": "Consulting — Management",
+    "state": "NY",
+    "roles": "Consultant, Analyst, Actuary",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.oliverwyman.com/careers.html",
+    "slug": "oliver-wyman"
+  },
+  {
+    "name": "Johnson & Johnson",
+    "industry": "Healthcare — Pharma & Devices",
+    "state": "NJ",
+    "roles": "Research Scientist, Data Analyst, SWE, Quality Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.careers.jnj.com/",
+    "slug": "johnson-johnson"
+  },
+  {
+    "name": "Pfizer",
+    "industry": "Healthcare — Pharmaceuticals",
+    "state": "NY",
+    "roles": "Research Scientist, Biostatistician, Data Engineer, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://www.pfizer.com/about/careers",
+    "slug": "pfizer"
+  },
+  {
+    "name": "Moderna",
+    "industry": "Healthcare — Biotech",
+    "state": "MA",
+    "roles": "Scientist, ML Engineer, Data Engineer, Process Engineer",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.modernatx.com/careers",
+    "slug": "moderna"
+  },
+  {
+    "name": "AbbVie",
+    "industry": "Healthcare — Pharmaceuticals",
+    "state": "IL",
+    "roles": "Research Scientist, Data Analyst, SWE, Statistician",
+    "size": "10,001+",
+    "careersUrl": "https://careers.abbvie.com/",
+    "slug": "abbvie"
+  },
+  {
+    "name": "Bristol Myers Squibb",
+    "industry": "Healthcare — Pharmaceuticals",
+    "state": "NJ",
+    "roles": "Scientist, Biostatistician, Data Engineer, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://careers.bms.com/",
+    "slug": "bristol-myers-squibb"
+  },
+  {
+    "name": "Amgen",
+    "industry": "Healthcare — Biotech",
+    "state": "CA",
+    "roles": "Scientist, Process Engineer, Data Scientist, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://careers.amgen.com/",
+    "slug": "amgen"
+  },
+  {
+    "name": "Regeneron",
+    "industry": "Healthcare — Biotech",
+    "state": "NY",
+    "roles": "Research Scientist, Bioinformatics, Data Scientist, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://careers.regeneron.com/",
+    "slug": "regeneron"
+  },
+  {
+    "name": "Biogen",
+    "industry": "Healthcare — Biotech",
+    "state": "MA",
+    "roles": "Research Scientist, Data Scientist, SWE, Statistician",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.biogen.com/careers.html",
+    "slug": "biogen"
+  },
+  {
+    "name": "Thermo Fisher Scientific",
+    "industry": "Healthcare — Life Sciences",
+    "state": "MA",
+    "roles": "Scientist, Applications Engineer, Data Analyst, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.thermofisher.com/",
+    "slug": "thermo-fisher-scientific"
+  },
+  {
+    "name": "Illumina",
+    "industry": "Healthcare — Genomics",
+    "state": "CA",
+    "roles": "Bioinformatics Scientist, SWE, Data Scientist, Product Manager",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.illumina.com/company/careers.html",
+    "slug": "illumina"
+  },
+  {
+    "name": "UnitedHealth Group",
+    "industry": "Healthcare — Insurance & IT",
+    "state": "MN",
+    "roles": "Data Analyst, SWE, Business Analyst, Actuary",
+    "size": "10,001+",
+    "careersUrl": "https://careers.unitedhealthgroup.com/",
+    "slug": "unitedhealth-group"
+  },
+  {
+    "name": "Optum",
+    "industry": "Healthcare — Health IT",
+    "state": "MN",
+    "roles": "Data Scientist, SWE, Business Analyst, Cloud Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.optum.com/en/about-us/careers.html",
+    "slug": "optum"
+  },
+  {
+    "name": "Mayo Clinic",
+    "industry": "Healthcare — Provider",
+    "state": "MN",
+    "roles": "Research Analyst, Bioinformatics, Data Scientist, IT Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.mayoclinic.org/",
+    "slug": "mayo-clinic"
+  },
+  {
+    "name": "Cleveland Clinic",
+    "industry": "Healthcare — Provider",
+    "state": "OH",
+    "roles": "Research Associate, Data Analyst, IT Analyst, Biostatistician",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.clevelandclinic.org/",
+    "slug": "cleveland-clinic"
+  },
+  {
+    "name": "Intuitive Surgical",
+    "industry": "Healthcare — Medical Devices",
+    "state": "CA",
+    "roles": "Robotics Engineer, SWE, Mechanical Engineer, Systems Engineer",
+    "size": "5,001–10,000",
+    "careersUrl": "https://careers.intuitive.com/",
+    "slug": "intuitive-surgical"
+  },
+  {
+    "name": "Medtronic",
+    "industry": "Healthcare — Medical Devices",
+    "state": "MN",
+    "roles": "SWE, Mechanical Engineer, Biomedical Engineer, Data Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://www.medtronic.com/us-en/about/careers.html",
+    "slug": "medtronic"
+  },
+  {
+    "name": "Boston Scientific",
+    "industry": "Healthcare — Medical Devices",
+    "state": "MA",
+    "roles": "R&D Engineer, Quality Engineer, SWE, Regulatory Affairs",
+    "size": "10,001+",
+    "careersUrl": "https://www.bostonscientific.com/en-US/careers.html",
+    "slug": "boston-scientific"
+  },
+  {
+    "name": "Edwards Lifesciences",
+    "industry": "Healthcare — Medical Devices",
+    "state": "CA",
+    "roles": "R&D Engineer, Quality Engineer, Data Analyst, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://www.edwards.com/careers",
+    "slug": "edwards-lifesciences"
+  },
+  {
+    "name": "Genentech",
+    "industry": "Healthcare — Biotech",
+    "state": "CA",
+    "roles": "Scientist, Bioinformatics, Data Scientist, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://www.gene.com/careers",
+    "slug": "genentech"
+  },
+  {
+    "name": "General Motors",
+    "industry": "Manufacturing — Automotive",
+    "state": "MI",
+    "roles": "Mfg Engineer, SWE, EV Engineer, Data Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://search-careers.gm.com/",
+    "slug": "general-motors"
+  },
+  {
+    "name": "Ford Motor",
+    "industry": "Manufacturing — Automotive",
+    "state": "MI",
+    "roles": "Product Engineer, SWE, Data Analyst, Mfg Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://corporate.ford.com/careers.html",
+    "slug": "ford-motor"
+  },
+  {
+    "name": "Toyota North America",
+    "industry": "Manufacturing — Automotive",
+    "state": "TX",
+    "roles": "Mfg Engineer, Quality Engineer, SWE, Supply Chain",
+    "size": "10,001+",
+    "careersUrl": "https://www.toyota.com/usa/careers",
+    "slug": "toyota-north-america"
+  },
+  {
+    "name": "Honda North America",
+    "industry": "Manufacturing — Automotive",
+    "state": "OH",
+    "roles": "Mfg Engineer, Quality Engineer, R&D Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.honda.com/careers",
+    "slug": "honda-north-america"
+  },
+  {
+    "name": "Hyundai Motor America",
+    "industry": "Manufacturing — Automotive",
+    "state": "CA",
+    "roles": "Product Engineer, SWE, Data Analyst, Quality Engineer",
+    "size": "5,001–10,000",
+    "careersUrl": "https://careers.hyundai.com/",
+    "slug": "hyundai-motor-america"
+  },
+  {
+    "name": "BMW North America",
+    "industry": "Manufacturing — Automotive",
+    "state": "NJ",
+    "roles": "Mfg Engineer, SWE, Product Manager, Data Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://www.bmwgroup.jobs/us/en.html",
+    "slug": "bmw-north-america"
+  },
+  {
+    "name": "Bosch North America",
+    "industry": "Manufacturing — Industrial Tech",
+    "state": "MI",
+    "roles": "Embedded Engineer, SWE, Mfg Engineer, Controls Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.bosch.us/careers/",
+    "slug": "bosch-north-america"
+  },
+  {
+    "name": "3M",
+    "industry": "Manufacturing — Diversified",
+    "state": "MN",
+    "roles": "R&D Scientist, Process Engineer, Data Analyst, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://www.3m.com/3M/en_US/careers-us/",
+    "slug": "3m"
+  },
+  {
+    "name": "Honeywell",
+    "industry": "Manufacturing — Conglomerate",
+    "state": "NC",
+    "roles": "SWE, Mechanical Engineer, Data Scientist, Controls Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://careers.honeywell.com/",
+    "slug": "honeywell"
+  },
+  {
+    "name": "General Electric",
+    "industry": "Manufacturing — Conglomerate",
+    "state": "MA",
+    "roles": "Engineer, Data Scientist, SWE, Supply Chain Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://www.ge.com/careers",
+    "slug": "general-electric"
+  },
+  {
+    "name": "Caterpillar",
+    "industry": "Manufacturing — Heavy Equipment",
+    "state": "IL",
+    "roles": "Mechanical Engineer, SWE, Data Analyst, Supply Chain",
+    "size": "10,001+",
+    "careersUrl": "https://www.caterpillar.com/en/careers.html",
+    "slug": "caterpillar"
+  },
+  {
+    "name": "Deere & Company",
+    "industry": "Manufacturing — Agriculture",
+    "state": "IL",
+    "roles": "SWE, Embedded Engineer, ML Engineer, Mechanical Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.deere.com/en/our-company/careers/",
+    "slug": "deere-company"
+  },
+  {
+    "name": "Cummins",
+    "industry": "Manufacturing — Engines",
+    "state": "IN",
+    "roles": "Mechanical Engineer, SWE, Data Analyst, Quality Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.cummins.com/careers",
+    "slug": "cummins"
+  },
+  {
+    "name": "Parker Hannifin",
+    "industry": "Manufacturing — Motion & Control",
+    "state": "OH",
+    "roles": "Mechanical Engineer, Controls Engineer, SWE, Supply Chain",
+    "size": "10,001+",
+    "careersUrl": "https://www.parker.com/us/en/careers.html",
+    "slug": "parker-hannifin"
+  },
+  {
+    "name": "Emerson Electric",
+    "industry": "Manufacturing — Automation",
+    "state": "MO",
+    "roles": "Controls Engineer, SWE, Mechanical Engineer, Data Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://www.emerson.com/en-us/careers",
+    "slug": "emerson-electric"
+  },
+  {
+    "name": "Aptiv",
+    "industry": "Manufacturing — Auto Tech",
+    "state": "MI",
+    "roles": "Embedded SWE, ADAS Engineer, Data Scientist, HW Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.aptiv.com/en/careers",
+    "slug": "aptiv"
+  },
+  {
+    "name": "NextEra Energy",
+    "industry": "Energy — Renewables",
+    "state": "FL",
+    "roles": "Electrical Engineer, Data Analyst, SWE, Grid Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.nexteraenergy.com/careers.html",
+    "slug": "nextera-energy"
+  },
+  {
+    "name": "Duke Energy",
+    "industry": "Energy — Utilities",
+    "state": "NC",
+    "roles": "Electrical Engineer, Data Analyst, Nuclear Engineer, IT Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://www.duke-energy.com/our-company/careers",
+    "slug": "duke-energy"
+  },
+  {
+    "name": "Southern Company",
+    "industry": "Energy — Utilities",
+    "state": "GA",
+    "roles": "Electrical Engineer, Data Analyst, SWE, Environmental Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://southerncompany.jobs/",
+    "slug": "southern-company"
+  },
+  {
+    "name": "Dominion Energy",
+    "industry": "Energy — Utilities",
+    "state": "VA",
+    "roles": "Electrical Engineer, Data Analyst, SWE, Grid Operator",
+    "size": "10,001+",
+    "careersUrl": "https://careers.dominionenergy.com/",
+    "slug": "dominion-energy"
+  },
+  {
+    "name": "Exxon Mobil",
+    "industry": "Energy — Oil & Gas",
+    "state": "TX",
+    "roles": "Chemical Engineer, Geoscientist, Data Scientist, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://corporate.exxonmobil.com/careers",
+    "slug": "exxon-mobil"
+  },
+  {
+    "name": "Chevron",
+    "industry": "Energy — Oil & Gas",
+    "state": "CA",
+    "roles": "Petroleum Engineer, Chemical Engineer, Data Scientist, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://www.chevron.com/careers",
+    "slug": "chevron"
+  },
+  {
+    "name": "Baker Hughes",
+    "industry": "Energy — Oilfield Services",
+    "state": "TX",
+    "roles": "Mechanical Engineer, SWE, Data Scientist, Field Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://careers.bakerhughes.com/",
+    "slug": "baker-hughes"
+  },
+  {
+    "name": "SLB (Schlumberger)",
+    "industry": "Energy — Oilfield Services",
+    "state": "TX",
+    "roles": "Field Engineer, Data Scientist, Geoscientist, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://careers.slb.com/",
+    "slug": "slb-schlumberger"
+  },
+  {
+    "name": "Fluor Corporation",
+    "industry": "Energy — EPC",
+    "state": "TX",
+    "roles": "Project Engineer, Mechanical Engineer, Civil Engineer, Estimator",
+    "size": "10,001+",
+    "careersUrl": "https://www.fluor.com/careers",
+    "slug": "fluor-corporation"
+  },
+  {
+    "name": "Boeing",
+    "industry": "Aerospace — Commercial & Defense",
+    "state": "VA",
+    "roles": "Aerospace Engineer, SWE, Systems Engineer, Data Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.boeing.com/",
+    "slug": "boeing"
+  },
+  {
+    "name": "Northrop Grumman",
+    "industry": "Aerospace — Defense",
+    "state": "VA",
+    "roles": "Systems Engineer, SWE, Data Scientist, EE (non-clearance roles)",
+    "size": "10,001+",
+    "careersUrl": "https://www.northropgrumman.com/careers",
+    "slug": "northrop-grumman"
+  },
+  {
+    "name": "RTX (Raytheon)",
+    "industry": "Aerospace — Defense",
+    "state": "VA",
+    "roles": "Systems Engineer, SWE, Mechanical Engineer (non-clearance roles)",
+    "size": "10,001+",
+    "careersUrl": "https://careers.rtx.com/",
+    "slug": "rtx-raytheon"
+  },
+  {
+    "name": "General Dynamics",
+    "industry": "Aerospace — Defense",
+    "state": "VA",
+    "roles": "Systems Engineer, SWE, Data Analyst (non-clearance roles)",
+    "size": "10,001+",
+    "careersUrl": "https://www.gd.com/careers",
+    "slug": "general-dynamics"
+  },
+  {
+    "name": "L3Harris Technologies",
+    "industry": "Aerospace — Defense",
+    "state": "FL",
+    "roles": "RF Engineer, SWE, Systems Engineer (non-clearance roles)",
+    "size": "10,001+",
+    "careersUrl": "https://careers.l3harris.com/",
+    "slug": "l3harris-technologies"
+  },
+  {
+    "name": "Target",
+    "industry": "Retail — General",
+    "state": "MN",
+    "roles": "Data Scientist, SWE, Supply Chain Analyst, Merchandising Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://corporate.target.com/careers",
+    "slug": "target"
+  },
+  {
+    "name": "Costco",
+    "industry": "Retail — Wholesale",
+    "state": "WA",
+    "roles": "Data Analyst, SWE, Supply Chain Analyst, Buyer",
+    "size": "10,001+",
+    "careersUrl": "https://www.costco.com/jobs.html",
+    "slug": "costco"
+  },
+  {
+    "name": "Nike",
+    "industry": "Retail — Sportswear",
+    "state": "OR",
+    "roles": "Data Scientist, SWE, Product Designer, Supply Chain Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.nike.com/",
+    "slug": "nike"
+  },
+  {
+    "name": "PepsiCo",
+    "industry": "Consumer — F&B",
+    "state": "NY",
+    "roles": "Data Scientist, Supply Chain Analyst, SWE, Brand Manager",
+    "size": "10,001+",
+    "careersUrl": "https://www.pepsicojobs.com/",
+    "slug": "pepsico"
+  },
+  {
+    "name": "Coca-Cola",
+    "industry": "Consumer — Beverages",
+    "state": "GA",
+    "roles": "Data Analyst, SWE, Supply Chain Analyst, Brand Manager",
+    "size": "10,001+",
+    "careersUrl": "https://careers.coca-colacompany.com/",
+    "slug": "coca-cola"
+  },
+  {
+    "name": "Procter & Gamble",
+    "industry": "Consumer — CPG",
+    "state": "OH",
+    "roles": "R&D Scientist, Data Scientist, SWE, Supply Chain",
+    "size": "10,001+",
+    "careersUrl": "https://www.pgcareers.com/",
+    "slug": "procter-gamble"
+  },
+  {
+    "name": "Unilever",
+    "industry": "Consumer — CPG",
+    "state": "NJ",
+    "roles": "Data Analyst, R&D Scientist, Supply Chain, Brand Manager",
+    "size": "10,001+",
+    "careersUrl": "https://careers.unilever.com/",
+    "slug": "unilever"
+  },
+  {
+    "name": "Mars Inc.",
+    "industry": "Consumer — Food",
+    "state": "VA",
+    "roles": "Data Scientist, R&D Scientist, Supply Chain, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://careers.mars.com/",
+    "slug": "mars-inc"
+  },
+  {
+    "name": "General Mills",
+    "industry": "Consumer — Food",
+    "state": "MN",
+    "roles": "Data Analyst, R&D Scientist, Supply Chain, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://careers.generalmills.com/",
+    "slug": "general-mills"
+  },
+  {
+    "name": "Colgate-Palmolive",
+    "industry": "Consumer — CPG",
+    "state": "NY",
+    "roles": "R&D Scientist, Supply Chain Analyst, Data Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.colgatepalmolive.com/",
+    "slug": "colgate-palmolive"
+  },
+  {
+    "name": "Verizon",
+    "industry": "Telecom — Wireless",
+    "state": "NY",
+    "roles": "Network Engineer, SWE, Data Scientist, Cybersecurity",
+    "size": "10,001+",
+    "careersUrl": "https://www.verizon.com/about/careers",
+    "slug": "verizon"
+  },
+  {
+    "name": "T-Mobile",
+    "industry": "Telecom — Wireless",
+    "state": "WA",
+    "roles": "Network Engineer, SWE, Data Analyst, Product Manager",
+    "size": "10,001+",
+    "careersUrl": "https://www.t-mobile.com/careers",
+    "slug": "t-mobile"
+  },
+  {
+    "name": "Comcast",
+    "industry": "Media — Cable & Internet",
+    "state": "PA",
+    "roles": "SWE, Data Engineer, Network Engineer, Product Manager",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.comcast.com/",
+    "slug": "comcast"
+  },
+  {
+    "name": "Walt Disney Company",
+    "industry": "Media — Entertainment",
+    "state": "CA",
+    "roles": "SWE, Data Scientist, Product Manager, Animator",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.disneycareers.com/",
+    "slug": "walt-disney-company"
+  },
+  {
+    "name": "Warner Bros. Discovery",
+    "industry": "Media — Entertainment",
+    "state": "NY",
+    "roles": "SWE, Data Analyst, Product Manager, Content Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://careers.wbd.com/",
+    "slug": "warner-bros-discovery"
+  },
+  {
+    "name": "Electronic Arts",
+    "industry": "Media — Gaming",
+    "state": "CA",
+    "roles": "SWE, Game Developer, Data Scientist, ML Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.ea.com/careers",
+    "slug": "electronic-arts"
+  },
+  {
+    "name": "Epic Games",
+    "industry": "Media — Gaming",
+    "state": "NC",
+    "roles": "SWE, Game Developer, UE Developer, ML Engineer",
+    "size": "1,001–5,000",
+    "careersUrl": "https://www.epicgames.com/site/en-US/careers",
+    "slug": "epic-games"
+  },
+  {
+    "name": "Liberty Mutual",
+    "industry": "Insurance — P&C",
+    "state": "MA",
+    "roles": "Data Scientist, Actuary, SWE, Business Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.libertymutualgroup.com/",
+    "slug": "liberty-mutual"
+  },
+  {
+    "name": "Progressive",
+    "industry": "Insurance — Auto",
+    "state": "OH",
+    "roles": "Data Scientist, Actuary, SWE, Business Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://www.progressive.com/careers/",
+    "slug": "progressive"
+  },
+  {
+    "name": "Travelers",
+    "industry": "Insurance — P&C",
+    "state": "CT",
+    "roles": "Actuary, Data Analyst, SWE, Risk Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://careers.travelers.com/",
+    "slug": "travelers"
+  },
+  {
+    "name": "Hartford Financial",
+    "industry": "Insurance — Multi-line",
+    "state": "CT",
+    "roles": "Actuary, Data Analyst, SWE, Underwriter",
+    "size": "10,001+",
+    "careersUrl": "https://www.thehartford.com/careers",
+    "slug": "hartford-financial"
+  },
+  {
+    "name": "MetLife",
+    "industry": "Insurance — Life",
+    "state": "NY",
+    "roles": "Actuary, Data Scientist, SWE, Business Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.metlife.com/",
+    "slug": "metlife"
+  },
+  {
+    "name": "FedEx",
+    "industry": "Logistics — Delivery",
+    "state": "TN",
+    "roles": "Data Analyst, SWE, Logistics Analyst, Supply Chain",
+    "size": "10,001+",
+    "careersUrl": "https://careers.fedex.com/",
+    "slug": "fedex"
+  },
+  {
+    "name": "UPS",
+    "industry": "Logistics — Delivery",
+    "state": "GA",
+    "roles": "Data Analyst, SWE, IE Engineer, Supply Chain",
+    "size": "10,001+",
+    "careersUrl": "https://www.jobs-ups.com/",
+    "slug": "ups"
+  },
+  {
+    "name": "C.H. Robinson",
+    "industry": "Logistics — Freight",
+    "state": "MN",
+    "roles": "Data Analyst, SWE, Supply Chain Analyst, Pricing Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://www.chrobinson.com/en-us/careers/",
+    "slug": "c-h-robinson"
+  },
+  {
+    "name": "Maersk",
+    "industry": "Logistics — Shipping",
+    "state": "NJ",
+    "roles": "Data Analyst, SWE, Logistics Coordinator, Supply Chain",
+    "size": "10,001+",
+    "careersUrl": "https://www.maersk.com/careers",
+    "slug": "maersk"
+  },
+  {
+    "name": "XPO Logistics",
+    "industry": "Logistics — Freight",
+    "state": "CT",
+    "roles": "Data Analyst, SWE, Operations Analyst, Pricing Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.xpo.com/",
+    "slug": "xpo-logistics"
+  },
+  {
+    "name": "AECOM",
+    "industry": "Construction — Engineering",
+    "state": "TX",
+    "roles": "Civil Engineer, Environmental Engineer, Data Analyst, Project Mgr",
+    "size": "10,001+",
+    "careersUrl": "https://aecom.jobs/",
+    "slug": "aecom"
+  },
+  {
+    "name": "Jacobs Engineering",
+    "industry": "Construction — Engineering",
+    "state": "TX",
+    "roles": "Civil Engineer, Environmental Engineer, SWE, Data Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://careers.jacobs.com/",
+    "slug": "jacobs-engineering"
+  },
+  {
+    "name": "Bechtel",
+    "industry": "Construction — EPC",
+    "state": "VA",
+    "roles": "Civil Engineer, Mechanical Engineer, Project Engineer, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://www.bechtel.com/careers/",
+    "slug": "bechtel"
+  },
+  {
+    "name": "CBRE Group",
+    "industry": "Real Estate — Services",
+    "state": "TX",
+    "roles": "Data Analyst, Financial Analyst, SWE, Property Manager",
+    "size": "10,001+",
+    "careersUrl": "https://www.cbre.com/careers",
+    "slug": "cbre-group"
+  },
+  {
+    "name": "JLL",
+    "industry": "Real Estate — Services",
+    "state": "IL",
+    "roles": "Data Analyst, Financial Analyst, Property Manager, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://www.us.jll.com/en/careers",
+    "slug": "jll"
+  },
+  {
+    "name": "Marriott International",
+    "industry": "Hospitality — Hotels",
+    "state": "MD",
+    "roles": "Data Analyst, SWE, Revenue Analyst, Operations Manager",
+    "size": "10,001+",
+    "careersUrl": "https://www.marriott.com/careers/",
+    "slug": "marriott-international"
+  },
+  {
+    "name": "Hilton",
+    "industry": "Hospitality — Hotels",
+    "state": "VA",
+    "roles": "Data Analyst, SWE, Revenue Manager, Marketing Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.hilton.com/",
+    "slug": "hilton"
+  },
+  {
+    "name": "Booking.com",
+    "industry": "Hospitality — Travel Tech",
+    "state": "CT",
+    "roles": "SWE, Data Scientist, Product Manager, UX Designer",
+    "size": "5,001–10,000",
+    "careersUrl": "https://careers.booking.com/",
+    "slug": "booking-com"
+  },
+  {
+    "name": "eBay",
+    "industry": "E-Commerce — Marketplace",
+    "state": "CA",
+    "roles": "SWE, Data Scientist, ML Engineer, Product Manager",
+    "size": "10,001+",
+    "careersUrl": "https://careers.ebayinc.com/",
+    "slug": "ebay"
+  },
+  {
+    "name": "Shopify",
+    "industry": "E-Commerce — Platform",
+    "state": "Remote",
+    "roles": "SWE, Data Engineer, ML Engineer, Product Manager",
+    "size": "10,001+",
+    "careersUrl": "https://www.shopify.com/careers",
+    "slug": "shopify"
+  },
+  {
+    "name": "Wayfair",
+    "industry": "E-Commerce — Home Goods",
+    "state": "MA",
+    "roles": "SWE, Data Scientist, Supply Chain Analyst, Product Manager",
+    "size": "10,001+",
+    "careersUrl": "https://www.aboutwayfair.com/careers",
+    "slug": "wayfair"
+  },
+  {
+    "name": "Etsy",
+    "industry": "E-Commerce — Marketplace",
+    "state": "NY",
+    "roles": "SWE, Data Scientist, ML Engineer, Product Manager",
+    "size": "1,001–5,000",
+    "careersUrl": "https://careers.etsy.com/",
+    "slug": "etsy"
+  },
+  {
+    "name": "Zillow",
+    "industry": "E-Commerce — Real Estate",
+    "state": "WA",
+    "roles": "SWE, Data Scientist, ML Engineer, Product Manager",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.zillow.com/careers/",
+    "slug": "zillow"
+  },
+  {
+    "name": "Tata Consultancy (TCS)",
+    "industry": "IT Services — Consulting",
+    "state": "NJ",
+    "roles": "SWE, Business Analyst, SAP Consultant, Data Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://www.tcs.com/careers",
+    "slug": "tata-consultancy-tcs"
+  },
+  {
+    "name": "Wipro",
+    "industry": "IT Services — Consulting",
+    "state": "NJ",
+    "roles": "SWE, Cloud Engineer, Data Analyst, QA Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://careers.wipro.com/",
+    "slug": "wipro"
+  },
+  {
+    "name": "Tech Mahindra",
+    "industry": "IT Services — Consulting",
+    "state": "NJ",
+    "roles": "SWE, Network Engineer, Data Analyst, SAP Consultant",
+    "size": "10,001+",
+    "careersUrl": "https://careers.techmahindra.com/",
+    "slug": "tech-mahindra"
+  },
+  {
+    "name": "HCLTech",
+    "industry": "IT Services — Consulting",
+    "state": "TX",
+    "roles": "SWE, Cloud Engineer, DevOps, Data Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.hcltech.com/careers",
+    "slug": "hcltech"
+  },
+  {
+    "name": "Persistent Systems",
+    "industry": "IT Services — Engineering",
+    "state": "CA",
+    "roles": "SWE, Data Engineer, Cloud Architect, QA Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.persistent.com/careers/",
+    "slug": "persistent-systems"
+  },
+  {
+    "name": "LTIMindtree",
+    "industry": "IT Services — Consulting",
+    "state": "NJ",
+    "roles": "SWE, Data Analyst, Cloud Engineer, QA Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.ltimindtree.com/careers/",
+    "slug": "ltimindtree"
+  },
+  {
+    "name": "10x Genomics",
+    "industry": "Biotech — Genomics",
+    "state": "CA",
+    "roles": "Bioinformatics Scientist, SWE, Data Scientist, Lab Scientist",
+    "size": "1,001–5,000",
+    "careersUrl": "https://www.10xgenomics.com/careers",
+    "slug": "10x-genomics"
+  },
+  {
+    "name": "Ginkgo Bioworks",
+    "industry": "Biotech — Synthetic Bio",
+    "state": "MA",
+    "roles": "Scientist, Bioinformatics, Data Scientist, SWE",
+    "size": "1,001–5,000",
+    "careersUrl": "https://www.ginkgobioworks.com/careers/",
+    "slug": "ginkgo-bioworks"
+  },
+  {
+    "name": "Vertex Pharmaceuticals",
+    "industry": "Biotech — Pharma",
+    "state": "MA",
+    "roles": "Scientist, Biostatistician, Data Scientist, SWE",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.vrtx.com/careers/",
+    "slug": "vertex-pharmaceuticals"
+  },
+  {
+    "name": "Gilead Sciences",
+    "industry": "Biotech — Pharma",
+    "state": "CA",
+    "roles": "Research Scientist, Biostatistician, Data Scientist, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://www.gilead.com/careers",
+    "slug": "gilead-sciences"
+  },
+  {
+    "name": "BioMarin",
+    "industry": "Biotech — Rare Diseases",
+    "state": "CA",
+    "roles": "Research Scientist, Biostatistician, SWE, Quality",
+    "size": "1,001–5,000",
+    "careersUrl": "https://www.biomarin.com/our-company/careers/",
+    "slug": "biomarin"
+  },
+  {
+    "name": "Texas Instruments",
+    "industry": "Semiconductors — Analog",
+    "state": "TX",
+    "roles": "Analog Design Engineer, SWE, Test Engineer, Apps Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://careers.ti.com/",
+    "slug": "texas-instruments"
+  },
+  {
+    "name": "Micron Technology",
+    "industry": "Semiconductors — Memory",
+    "state": "ID",
+    "roles": "Process Engineer, SWE, Data Scientist, Design Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.micron.com/careers",
+    "slug": "micron-technology"
+  },
+  {
+    "name": "Applied Materials",
+    "industry": "Semiconductors — Equipment",
+    "state": "CA",
+    "roles": "Process Engineer, SWE, Field Engineer, Data Scientist",
+    "size": "10,001+",
+    "careersUrl": "https://www.appliedmaterials.com/company/careers",
+    "slug": "applied-materials"
+  },
+  {
+    "name": "Lam Research",
+    "industry": "Semiconductors — Equipment",
+    "state": "CA",
+    "roles": "Process Engineer, SWE, Mechanical Engineer, Data Scientist",
+    "size": "10,001+",
+    "careersUrl": "https://www.lamresearch.com/careers/",
+    "slug": "lam-research"
+  },
+  {
+    "name": "KLA Corporation",
+    "industry": "Semiconductors — Inspection",
+    "state": "CA",
+    "roles": "Optical Engineer, SWE, Data Scientist, Applications Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.kla.com/careers",
+    "slug": "kla-corporation"
+  },
+  {
+    "name": "Marvell Technology",
+    "industry": "Semiconductors — SoC",
+    "state": "CA",
+    "roles": "ASIC Engineer, SWE, Verification Engineer, Embedded Engineer",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.marvell.com/company/careers.html",
+    "slug": "marvell-technology"
+  },
+  {
+    "name": "Synopsys",
+    "industry": "Semiconductors — EDA",
+    "state": "CA",
+    "roles": "CAD Engineer, SWE, R&D Engineer, Applications Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.synopsys.com/careers.html",
+    "slug": "synopsys"
+  },
+  {
+    "name": "Cadence Design",
+    "industry": "Semiconductors — EDA",
+    "state": "CA",
+    "roles": "CAD Engineer, SWE, R&D Engineer, Applications Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.cadence.com/en_US/home/company/careers.html",
+    "slug": "cadence-design"
+  },
+  {
+    "name": "Analog Devices",
+    "industry": "Semiconductors — Analog",
+    "state": "MA",
+    "roles": "Analog Design Engineer, SWE, Test Engineer, Apps Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.analog.com/en/about-adi/careers.html",
+    "slug": "analog-devices"
+  },
+  {
+    "name": "ON Semiconductor",
+    "industry": "Semiconductors — Power",
+    "state": "AZ",
+    "roles": "Design Engineer, Process Engineer, SWE, Quality Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.onsemi.com/careers",
+    "slug": "on-semiconductor"
+  },
+  {
+    "name": "Anthropic",
+    "industry": "AI — Safety",
+    "state": "CA",
+    "roles": "ML Research, SWE, Policy Researcher, Data Scientist",
+    "size": "501–1,000",
+    "careersUrl": "https://www.anthropic.com/careers",
+    "slug": "anthropic"
+  },
+  {
+    "name": "OpenAI",
+    "industry": "AI — Research",
+    "state": "CA",
+    "roles": "ML Research, SWE, Safety Researcher, Data Engineer",
+    "size": "501–1,000",
+    "careersUrl": "https://openai.com/careers/",
+    "slug": "openai"
+  },
+  {
+    "name": "Scale AI",
+    "industry": "AI — Data Platform",
+    "state": "CA",
+    "roles": "ML Engineer, SWE, Data Scientist, Operations",
+    "size": "1,001–5,000",
+    "careersUrl": "https://scale.com/careers",
+    "slug": "scale-ai"
+  },
+  {
+    "name": "Anduril Industries",
+    "industry": "Defense Tech",
+    "state": "CA",
+    "roles": "SWE, Robotics Engineer, ML Engineer (non-clearance roles)",
+    "size": "1,001–5,000",
+    "careersUrl": "https://www.anduril.com/careers/",
+    "slug": "anduril-industries"
+  },
+  {
+    "name": "Ramp",
+    "industry": "Fintech — Corporate Cards",
+    "state": "NY",
+    "roles": "SWE, Data Engineer, Product Manager",
+    "size": "501–1,000",
+    "careersUrl": "https://ramp.com/careers",
+    "slug": "ramp"
+  },
+  {
+    "name": "Brex",
+    "industry": "Fintech — Corporate Cards",
+    "state": "CA",
+    "roles": "SWE, Data Scientist, Product Manager",
+    "size": "501–1,000",
+    "careersUrl": "https://www.brex.com/careers",
+    "slug": "brex"
+  },
+  {
+    "name": "Plaid",
+    "industry": "Fintech — Banking API",
+    "state": "CA",
+    "roles": "SWE, Data Engineer, ML Engineer, Security Engineer",
+    "size": "501–1,000",
+    "careersUrl": "https://plaid.com/careers/",
+    "slug": "plaid"
+  },
+  {
+    "name": "Toast",
+    "industry": "Technology — Restaurant SaaS",
+    "state": "MA",
+    "roles": "SWE, Data Engineer, Product Manager, Sales Engineer",
+    "size": "5,001–10,000",
+    "careersUrl": "https://careers.toasttab.com/",
+    "slug": "toast"
+  },
+  {
+    "name": "HubSpot",
+    "industry": "Technology — Marketing SaaS",
+    "state": "MA",
+    "roles": "SWE, Data Analyst, Product Manager, Solutions Engineer",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.hubspot.com/careers",
+    "slug": "hubspot"
+  },
+  {
+    "name": "Salesforce",
+    "industry": "Technology — CRM SaaS",
+    "state": "CA",
+    "roles": "SWE, Data Scientist, Solutions Architect, ML Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.salesforce.com/company/careers/",
+    "slug": "salesforce"
+  },
+  {
+    "name": "Nutanix",
+    "industry": "Technology — Cloud Infra",
+    "state": "CA",
+    "roles": "SWE, QA Engineer, Solutions Architect, SRE",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.nutanix.com/company/careers",
+    "slug": "nutanix"
+  },
+  {
+    "name": "Zscaler",
+    "industry": "Technology — Cybersecurity",
+    "state": "CA",
+    "roles": "SWE, Security Engineer, Cloud Engineer, SRE",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.zscaler.com/careers",
+    "slug": "zscaler"
+  },
+  {
+    "name": "Fortinet",
+    "industry": "Technology — Cybersecurity",
+    "state": "CA",
+    "roles": "SWE, Security Analyst, Network Engineer, SRE",
+    "size": "10,001+",
+    "careersUrl": "https://www.fortinet.com/corporate/careers",
+    "slug": "fortinet"
+  },
+  {
+    "name": "Cargill",
+    "industry": "Agriculture — Trading",
+    "state": "MN",
+    "roles": "Data Analyst, Supply Chain, R&D Scientist, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://careers.cargill.com/",
+    "slug": "cargill"
+  },
+  {
+    "name": "ADM",
+    "industry": "Agriculture — Processing",
+    "state": "IL",
+    "roles": "Chemical Engineer, Data Analyst, R&D Scientist, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://www.adm.com/en-us/careers/",
+    "slug": "adm"
+  },
+  {
+    "name": "Dow Chemical",
+    "industry": "Chemicals — Materials",
+    "state": "MI",
+    "roles": "Chemical Engineer, R&D Scientist, Data Analyst, SWE",
+    "size": "10,001+",
+    "careersUrl": "https://corporate.dow.com/en-us/careers.html",
+    "slug": "dow-chemical"
+  },
+  {
+    "name": "BASF",
+    "industry": "Chemicals — Diversified",
+    "state": "NJ",
+    "roles": "Chemical Engineer, R&D Scientist, Data Analyst, Process Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.basf.com/us/en/careers.html",
+    "slug": "basf"
+  },
+  {
+    "name": "Corning",
+    "industry": "Materials — Glass & Ceramics",
+    "state": "NY",
+    "roles": "Materials Scientist, Process Engineer, SWE, R&D Scientist",
+    "size": "10,001+",
+    "careersUrl": "https://www.corning.com/worldwide/en/careers.html",
+    "slug": "corning"
+  },
+  {
+    "name": "Nucor",
+    "industry": "Steel — Manufacturing",
+    "state": "NC",
+    "roles": "Mechanical Engineer, Electrical Engineer, Process Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.nucor.com/careers/",
+    "slug": "nucor"
+  },
+  {
+    "name": "Becton Dickinson",
+    "industry": "Medical — Devices",
+    "state": "NJ",
+    "roles": "R&D Engineer, Quality Engineer, SWE, Data Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.bd.com/",
+    "slug": "becton-dickinson"
+  },
+  {
+    "name": "Zimmer Biomet",
+    "industry": "Medical — Orthopedics",
+    "state": "IN",
+    "roles": "R&D Engineer, Quality Engineer, SWE, Regulatory Analyst",
+    "size": "10,001+",
+    "careersUrl": "https://www.zimmerbiomet.com/en/careers.html",
+    "slug": "zimmer-biomet"
+  },
+  {
+    "name": "Hologic",
+    "industry": "Medical — Diagnostics",
+    "state": "MA",
+    "roles": "R&D Engineer, SWE, Data Analyst, Quality Engineer",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.hologic.com/careers",
+    "slug": "hologic"
+  },
+  {
+    "name": "Agilent Technologies",
+    "industry": "Scientific — Instruments",
+    "state": "CA",
+    "roles": "Applications Scientist, SWE, Data Analyst, R&D Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://careers.agilent.com/",
+    "slug": "agilent-technologies"
+  },
+  {
+    "name": "Danaher",
+    "industry": "Conglomerate — Life Sciences",
+    "state": "DC",
+    "roles": "R&D Engineer, SWE, Data Analyst, Applications Scientist",
+    "size": "10,001+",
+    "careersUrl": "https://jobs.danaher.com/",
+    "slug": "danaher"
+  },
+  {
+    "name": "Keysight Technologies",
+    "industry": "Scientific — Instruments",
+    "state": "CA",
+    "roles": "RF Engineer, SWE, Test Engineer, Applications Engineer",
+    "size": "10,001+",
+    "careersUrl": "https://www.keysight.com/us/en/about/careers.html",
+    "slug": "keysight-technologies"
+  },
+  {
+    "name": "Akamai Technologies",
+    "industry": "Technology — CDN",
+    "state": "MA",
+    "roles": "SWE, Network Engineer, Security Engineer, SRE",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.akamai.com/careers",
+    "slug": "akamai-technologies"
+  },
+  {
+    "name": "Veeva Systems",
+    "industry": "Technology — Life Sciences SaaS",
+    "state": "CA",
+    "roles": "SWE, Consultant, QA Engineer, Data Engineer",
+    "size": "5,001–10,000",
+    "careersUrl": "https://careers.veeva.com/",
+    "slug": "veeva-systems"
+  },
+  {
+    "name": "Arista Networks",
+    "industry": "Technology — Networking",
+    "state": "CA",
+    "roles": "SWE, Network Engineer, Test Engineer, Solutions Architect",
+    "size": "5,001–10,000",
+    "careersUrl": "https://www.arista.com/en/careers",
+    "slug": "arista-networks"
+  }
+]

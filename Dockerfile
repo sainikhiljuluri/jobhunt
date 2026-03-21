@@ -18,8 +18,6 @@ RUN npm ci --only=production --ignore-scripts && \
 # Copy backend source (includes src/data/*.json)
 COPY backend/src/ ./src/
 
-# Verify data files exist
-RUN ls -la ./src/data/ && echo "Data files verified"
 
 # Copy built frontend static files
 COPY --from=frontend-build /app/frontend/out ../frontend/out
