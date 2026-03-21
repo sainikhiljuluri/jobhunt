@@ -61,18 +61,9 @@ export async function runScraper() {
         }
     }
 
-    // ── Slow scraper: AI Companies (runs after fast scrapers save) ────────────
-    try {
-        const aiJobs = await scrapeAICompanies(filterSenior);
-        const { newCount, inserted } = saveJobs(aiJobs);
-        totalFound += aiJobs.length;
-        totalNew += newCount;
-        allNewJobs.push(...inserted);
-        console.log(`📦 AI Companies (200+): ${aiJobs.length} found, ${newCount} new`);
-    } catch (err) {
-        errors.push(`AI Companies: ${err.message}`);
-        console.error(`❌ AI Companies: ${err.message}`);
-    }
+    // AI Companies probe disabled — SimplifyJobs already covers these companies.
+    // The 236-company API probe added minimal extra jobs but took 10+ minutes.
+    // Re-enable when we add Ashby API scraping (many AI cos use Ashby).
 
     // ── Browser-based scrapers (LinkedIn, Indeed) ─────────────────────────────
     if (process.env.SKIP_BROWSER_SCRAPERS === 'true') {
