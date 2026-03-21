@@ -1,0 +1,10 @@
+node_modules
+.git
+.claude
+*.xlsx
+*.md
+docs/
+data/*.db
+*.log
+.env
+.env.*

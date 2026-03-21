@@ -6,15 +6,16 @@ RUN npm ci
 COPY frontend/ ./
 RUN npm run build
 
-# Stage 2: Backend with Playwright + serve frontend
-FROM mcr.microsoft.com/playwright:v1.42.1-jammy
+# Stage 2: Backend + serve frontend (no Playwright - saves 1GB+ image size)
+FROM node:20-slim
 WORKDIR /app
 
 # Install backend dependencies
 COPY backend/package*.json ./
-RUN npm ci --only=production
+RUN npm ci --only=production --ignore-scripts && \
+    npm rebuild better-sqlite3
 
-# Copy backend source
+# Copy backend source (includes src/data/*.json)
 COPY backend/src/ ./src/
 
 # Copy built frontend static files
@@ -23,6 +24,7 @@ COPY --from=frontend-build /app/frontend/out ../frontend/out
 # Create data directory for SQLite
 RUN mkdir -p ./data
 
+ENV SKIP_BROWSER_SCRAPERS=true
 EXPOSE 4000
 
 CMD ["node", "src/server.js"]

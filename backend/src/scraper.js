@@ -3,7 +3,8 @@
  * Runs all scrapers, deduplicates, and saves to DB
  */
 
-import { chromium } from 'playwright';
+let chromium;
+try { ({ chromium } = await import('playwright')); } catch { chromium = null; }
 import { scrapeLinkedIn } from './scrapers/linkedin.js';
 import { scrapeIndeed } from './scrapers/indeed.js';
 import { scrapeGreenhouse } from './scrapers/greenhouse.js';
@@ -63,47 +64,50 @@ export async function runScraper() {
     }
 
     // ── Browser-based scrapers (LinkedIn, Indeed) ─────────────────────────────
-    let browser;
-    try {
-        browser = await chromium.launch({
-            headless: true,
-            args: [
-                '--no-sandbox',
-                '--disable-setuid-sandbox',
-                '--disable-dev-shm-usage',
-                '--disable-blink-features=AutomationControlled',
-            ],
-        });
+    if (process.env.SKIP_BROWSER_SCRAPERS === 'true') {
+        console.log('⏭️  Skipping browser scrapers (SKIP_BROWSER_SCRAPERS=true)');
+    } else {
+        let browser;
+        try {
+            browser = await chromium.launch({
+                headless: true,
+                args: [
+                    '--no-sandbox',
+                    '--disable-setuid-sandbox',
+                    '--disable-dev-shm-usage',
+                    '--disable-blink-features=AutomationControlled',
+                ],
+            });
 
-        // Override navigator.webdriver to avoid bot detection
-        await browser.newContext({
-            userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-            viewport: { width: 1280, height: 800 },
-            locale: 'en-US',
-        });
+            await browser.newContext({
+                userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+                viewport: { width: 1280, height: 800 },
+                locale: 'en-US',
+            });
 
-        const browserScrapers = [
-            { name: 'LinkedIn', fn: () => scrapeLinkedIn(browser, filterSenior) },
-            { name: 'Indeed', fn: () => scrapeIndeed(browser, filterSenior) },
-            { name: 'Career Pages (205 companies)', fn: () => scrapeCareerPages(browser, filterSenior) },
-        ];
+            const browserScrapers = [
+                { name: 'LinkedIn', fn: () => scrapeLinkedIn(browser, filterSenior) },
+                { name: 'Indeed', fn: () => scrapeIndeed(browser, filterSenior) },
+                { name: 'Career Pages (205 companies)', fn: () => scrapeCareerPages(browser, filterSenior) },
+            ];
 
-        for (const scraper of browserScrapers) {
-            try {
-                const jobs = await scraper.fn();
-                const { newCount, inserted } = saveJobs(jobs);
-                totalFound += jobs.length;
-                totalNew += newCount;
-                allNewJobs.push(...inserted);
-                console.log(`📦 ${scraper.name}: ${jobs.length} found, ${newCount} new`);
-            } catch (err) {
-                const msg = `${scraper.name}: ${err.message}`;
-                errors.push(msg);
-                console.error(`❌ ${msg}`);
+            for (const scraper of browserScrapers) {
+                try {
+                    const jobs = await scraper.fn();
+                    const { newCount, inserted } = saveJobs(jobs);
+                    totalFound += jobs.length;
+                    totalNew += newCount;
+                    allNewJobs.push(...inserted);
+                    console.log(`📦 ${scraper.name}: ${jobs.length} found, ${newCount} new`);
+                } catch (err) {
+                    const msg = `${scraper.name}: ${err.message}`;
+                    errors.push(msg);
+                    console.error(`❌ ${msg}`);
+                }
             }
+        } finally {
+            if (browser) await browser.close();
         }
-    } finally {
-        if (browser) await browser.close();
     }
 
     // ── Finalize ───────────────────────────────────────────────────────────────
