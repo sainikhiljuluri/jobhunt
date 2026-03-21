@@ -130,27 +130,6 @@ export async function runScraper() {
     return { totalFound, totalNew, errors, allNewJobs };
 }
 
-/**
- * Check if a job location is in the US
- */
-function isUSLocation(location) {
-    if (!location) return true; // assume US if unknown
-    const loc = location.toLowerCase();
-    // Reject clearly non-US locations
-    const nonUS = ['uk', 'united kingdom', 'london', 'canada', 'toronto', 'vancouver',
-        'india', 'bangalore', 'mumbai', 'hyderabad', 'germany', 'berlin', 'munich',
-        'france', 'paris', 'japan', 'tokyo', 'china', 'beijing', 'shanghai',
-        'singapore', 'australia', 'sydney', 'melbourne', 'brazil', 'mexico',
-        'ireland', 'dublin', 'netherlands', 'amsterdam', 'sweden', 'stockholm',
-        'israel', 'tel aviv', 'switzerland', 'zurich', 'poland', 'warsaw',
-        'spain', 'madrid', 'italy', 'milan', 'korea', 'seoul', 'bristol, uk',
-        'ontario', 'british columbia', 'quebec', 'alberta'];
-    if (nonUS.some(n => loc.includes(n))) return false;
-    // Accept US indicators
-    if (loc.includes('us') || loc.includes('united states') || loc.includes('remote') ||
-        /\b[a-z]+,\s*[a-z]{2}\b/.test(loc)) return true; // "City, ST" pattern
-    return true; // default accept
-}
 
 /**
  * Insert jobs into DB, returns count + list of actually-new (non-duplicate) jobs
@@ -159,8 +138,6 @@ function saveJobs(jobs) {
     let newCount = 0;
     const inserted = [];
     for (const job of jobs) {
-        // Filter non-US jobs
-        if (!isUSLocation(job.location)) continue;
         try {
             const result = insertJob.run(job);
             if (result.changes > 0) {

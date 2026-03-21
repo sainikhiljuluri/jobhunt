@@ -6,9 +6,11 @@ import { api, Job, Stats, JobFilters } from '@/lib/api';
 // ── Utility ───────────────────────────────────────────────────────────────────
 
 function timeAgo(dateStr: string) {
-    const d = new Date(dateStr);
+    // Server stores UTC without 'Z' suffix — append it so browser parses as UTC
+    const d = new Date(dateStr.endsWith('Z') ? dateStr : dateStr + 'Z');
     const now = new Date();
     const diffMs = now.getTime() - d.getTime();
+    if (diffMs < 0) return 'just now';
     const mins = Math.floor(diffMs / 60000);
     if (mins < 60) return `${mins}m ago`;
     const hours = Math.floor(mins / 60);

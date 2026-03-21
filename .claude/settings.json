@@ -19,7 +19,9 @@
       "Bash(node -e \"const d=require\\(''./backend/src/data/ai_companies.json''\\);console.log\\(''Total AI companies:'',d.length\\)\")",
       "Bash(node -e \"const d=require\\(''./backend/src/data/ai_companies.json''\\);console.log\\(''Total AI companies:'',d.length\\);const ashby=d.filter\\(c=>c.careersUrl.includes\\(''ashby''\\)\\);console.log\\(''Using Ashby:'',ashby.length\\);const gh=d.filter\\(c=>c.careersUrl.includes\\(''greenhouse''\\)\\);console.log\\(''Using Greenhouse:'',gh.length\\)\")",
       "Bash(python3 -c \"import sys,json;d=json.load\\(sys.stdin\\);print\\(''''Jobs:'''',d[''''total''''],''''New:'''',d[''''new_count''''],''''Last run:'''',d.get\\(''''last_run'''',{}\\).get\\(''''finished_at'''',''''never''''\\)\\)\")",
-      "Bash(node -e \"const d=JSON.parse\\(require\\(''fs''\\).readFileSync\\(''backend/src/data/ai_companies.json'',''utf-8''\\)\\);console.log\\(''Valid JSON, entries:'',d.length\\)\")"
+      "Bash(node -e \"const d=JSON.parse\\(require\\(''fs''\\).readFileSync\\(''backend/src/data/ai_companies.json'',''utf-8''\\)\\);console.log\\(''Valid JSON, entries:'',d.length\\)\")",
+      "Bash(python3 -c \"import sys,json;d=json.load\\(sys.stdin\\);print\\(''''Total:'''',d[''''total'''']\\);r=d.get\\(''''last_run''''\\) or {};print\\(''''Last run started:'''',r.get\\(''''started_at'''',''''none''''\\)\\);print\\(''''Last run finished:'''',r.get\\(''''finished_at'''',''''none''''\\)\\);print\\(''''Run ID:'''',r.get\\(''''id'''',''''none''''\\)\\)\")",
+      "Bash(python3 -c \":*)"
     ]
   }
 }
