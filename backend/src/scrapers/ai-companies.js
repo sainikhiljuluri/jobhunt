@@ -47,6 +47,39 @@ async function probeLever(slug) {
     } catch { return null; }
 }
 
+/**
+ * Probe Ashby job board — used by OpenAI, Perplexity, Character.AI, Midjourney, etc.
+ */
+async function probeAshby(slug) {
+    try {
+        const r = await fetch('https://api.ashbyhq.com/posting-api/job-board/' + slug, {
+            headers: { 'User-Agent': 'JobHunterPro/1.0' },
+            signal: AbortSignal.timeout(5000),
+        });
+        if (!r.ok) return null;
+        const d = await r.json();
+        return d.jobs?.length ? d.jobs : null;
+    } catch { return null; }
+}
+
+function processAshby(ashbyJobs, company, filterSenior) {
+    const out = [];
+    for (const j of ashbyJobs) {
+        const title = j.title || '';
+        if (!isNewGrad(title)) continue;
+        if (filterSenior && isSeniorRole(title)) continue;
+        const url = j.jobUrl || `https://jobs.ashbyhq.com/${company.slug}/${j.id}`;
+        out.push({
+            id: makeJobId(url), title, company: company.name,
+            location: j.location || 'US', url,
+            source: 'ai-companies', category: classifyCategory(title, company.category),
+            salary: null, description: j.descriptionPlain || null,
+            posted_at: j.publishedAt ? new Date(j.publishedAt).toISOString() : new Date().toISOString(),
+        });
+    }
+    return out;
+}
+
 function slugVariants(name) {
     const n = name.toLowerCase().replace(/\s*ai$/i, '').replace(/[()]/g, '');
     return [...new Set([
@@ -112,6 +145,8 @@ export async function scrapeAICompanies(filterSenior = true) {
                 if (gh) return { co, jobs: processGreenhouse(gh, co, filterSenior), via: 'greenhouse' };
                 const lv = await probeLever(slug);
                 if (lv) return { co, jobs: processLever(lv, co, filterSenior), via: 'lever' };
+                const ab = await probeAshby(slug);
+                if (ab) return { co, jobs: processAshby(ab, co, filterSenior), via: 'ashby' };
             }
             return { co, jobs: [], via: 'none' };
         }));
