@@ -10,7 +10,9 @@ import { fileURLToPath } from 'url';
 import { makeJobId, isSeniorRole, classifyCategory, sleep } from '../utils/helpers.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const aiCompanies = JSON.parse(readFileSync(join(__dirname, '../data/ai_companies.json'), 'utf-8'));
+let aiCompanies = [];
+try { aiCompanies = JSON.parse(readFileSync(join(__dirname, '../data/ai_companies.json'), 'utf-8')); }
+catch { console.warn('⚠️  ai_companies.json not found — AI companies scraper disabled'); }
 
 const NEW_GRAD_KW = [
     'new grad', 'new graduate', 'entry level', 'entry-level',

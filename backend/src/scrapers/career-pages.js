@@ -14,7 +14,9 @@ import { fileURLToPath } from 'url';
 import { makeJobId, isSeniorRole, classifyCategory, sleep } from '../utils/helpers.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const companiesData = JSON.parse(readFileSync(join(__dirname, '../data/companies.json'), 'utf-8'));
+let companiesData = [];
+try { companiesData = JSON.parse(readFileSync(join(__dirname, '../data/companies.json'), 'utf-8')); }
+catch { console.warn('⚠️  companies.json not found — career-pages scraper disabled'); }
 
 const NEW_GRAD_KEYWORDS = [
     'new grad', 'new graduate', 'entry level', 'entry-level',
