@@ -13,6 +13,7 @@ import { scrapeDirectCareerPages } from './scrapers/direct.js';
 import { scrapeSimplifyJobs } from './scrapers/simplifyjobs.js';
 import { scrapeAdzuna } from './scrapers/adzuna.js';
 import { scrapeCareerPages } from './scrapers/career-pages.js';
+import { scrapeAICompanies } from './scrapers/ai-companies.js';
 import { insertJob, startScrapeRun, finishScrapeRun, getAllSettings } from './db.js';
 import { notifyDreamCompanyJobs } from './notifier.js';
 
@@ -41,6 +42,7 @@ export async function runScraper() {
         { name: 'Direct Career Pages', fn: () => scrapeDirectCareerPages(filterSenior) },
         { name: 'SimplifyJobs', fn: () => scrapeSimplifyJobs(filterSenior) },
         { name: 'Adzuna', fn: () => scrapeAdzuna(filterSenior) },
+        { name: 'AI Companies (200+)', fn: () => scrapeAICompanies(filterSenior) },
     ];
 
     // Run API scrapers in parallel (they're all fetch-based)

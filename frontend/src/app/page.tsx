@@ -114,6 +114,7 @@ const SOURCES = [
     { value: 'workday', label: 'Workday' },
     { value: 'direct', label: 'Direct' },
     { value: 'career-page', label: '🏢 Career Pages' },
+    { value: 'ai-companies', label: '🤖 AI Companies' },
 ];
 
 function FilterBar({ filters, onChange, onScrape, scraping }: FilterBarProps) {
