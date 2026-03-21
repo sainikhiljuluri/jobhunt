@@ -4,7 +4,7 @@ node_modules
 *.xlsx
 *.md
 docs/
-data/*.db
 *.log
 .env
 .env.*
+backend/data/*.db
