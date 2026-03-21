@@ -34,7 +34,7 @@ async function probeGreenhouse(slug) {
     try {
         const r = await fetch(`https://boards-api.greenhouse.io/v1/boards/${slug}/jobs`, {
             headers: { 'User-Agent': 'JobHunterPro/1.0' },
-            signal: AbortSignal.timeout(5000),
+            signal: AbortSignal.timeout(3000),
         });
         if (!r.ok) return null;
         const d = await r.json();
@@ -46,7 +46,7 @@ async function probeLever(slug) {
     try {
         const r = await fetch(`https://api.lever.co/v0/postings/${slug}?mode=json`, {
             headers: { 'User-Agent': 'JobHunterPro/1.0' },
-            signal: AbortSignal.timeout(5000),
+            signal: AbortSignal.timeout(3000),
         });
         if (!r.ok) return null;
         const d = await r.json();
@@ -61,7 +61,7 @@ async function probeAshby(slug) {
     try {
         const r = await fetch('https://api.ashbyhq.com/posting-api/job-board/' + slug, {
             headers: { 'User-Agent': 'JobHunterPro/1.0' },
-            signal: AbortSignal.timeout(5000),
+            signal: AbortSignal.timeout(3000),
         });
         if (!r.ok) return null;
         const d = await r.json();
@@ -88,13 +88,11 @@ function processAshby(ashbyJobs, company, filterSenior) {
 }
 
 function slugVariants(name) {
-    const n = name.toLowerCase().replace(/\s*ai$/i, '').replace(/[()]/g, '');
+    const n = name.toLowerCase().replace(/\s*ai$/i, '').replace(/[()]/g, '').trim();
     return [...new Set([
         n.replace(/[^a-z0-9]/g, ''),
         n.replace(/[^a-z0-9]+/g, '-').replace(/-+$/, ''),
-        n.split(/\s+/)[0],
-        n.replace(/[^a-z0-9]+/g, ''),
-    ].filter(s => s.length > 2))];
+    ].filter(s => s.length > 2))].slice(0, 2);
 }
 
 function processGreenhouse(ghJobs, company, filterSenior) {
@@ -139,21 +137,35 @@ export async function scrapeAICompanies(filterSenior = true) {
     const allJobs = [];
     let hits = 0;
 
-    // Process in batches of 15 concurrent API probes
-    for (let i = 0; i < aiCompanies.length; i += 15) {
-        const batch = aiCompanies.slice(i, i + 15);
+    // Process in batches of 30 concurrent API probes
+    for (let i = 0; i < aiCompanies.length; i += 30) {
+        const batch = aiCompanies.slice(i, i + 30);
 
         const results = await Promise.allSettled(batch.map(async (co) => {
             const slugs = slugVariants(co.name);
             if (co.slug) slugs.unshift(co.slug);
 
-            for (const slug of slugs) {
-                const gh = await probeGreenhouse(slug);
-                if (gh) return { co, jobs: processGreenhouse(gh, co, filterSenior), via: 'greenhouse' };
-                const lv = await probeLever(slug);
-                if (lv) return { co, jobs: processLever(lv, co, filterSenior), via: 'lever' };
-                const ab = await probeAshby(slug);
-                if (ab) return { co, jobs: processAshby(ab, co, filterSenior), via: 'ashby' };
+            // Probe all APIs in parallel for speed
+            const slug = slugs[0];
+            const [gh, lv, ab] = await Promise.all([
+                probeGreenhouse(slug),
+                probeLever(slug),
+                probeAshby(slug),
+            ]);
+            if (gh) return { co, jobs: processGreenhouse(gh, co, filterSenior), via: 'greenhouse' };
+            if (lv) return { co, jobs: processLever(lv, co, filterSenior), via: 'lever' };
+            if (ab) return { co, jobs: processAshby(ab, co, filterSenior), via: 'ashby' };
+
+            // Try second slug if first didn't match
+            if (slugs[1]) {
+                const [gh2, lv2, ab2] = await Promise.all([
+                    probeGreenhouse(slugs[1]),
+                    probeLever(slugs[1]),
+                    probeAshby(slugs[1]),
+                ]);
+                if (gh2) return { co, jobs: processGreenhouse(gh2, co, filterSenior), via: 'greenhouse' };
+                if (lv2) return { co, jobs: processLever(lv2, co, filterSenior), via: 'lever' };
+                if (ab2) return { co, jobs: processAshby(ab2, co, filterSenior), via: 'ashby' };
             }
             return { co, jobs: [], via: 'none' };
         }));
