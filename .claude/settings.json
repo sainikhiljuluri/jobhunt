@@ -16,7 +16,8 @@
       "Bash(git push:*)",
       "Bash(npm run:*)",
       "Bash(node -e \"const d = require\\(''./backend/src/data/ai_companies.json''\\); console.log\\(''Total AI companies:'', d.length\\); const cats = {}; d.forEach\\(c => cats[c.category] = \\(cats[c.category]||0\\)+1\\); Object.entries\\(cats\\).sort\\(\\(a,b\\)=>b[1]-a[1]\\).forEach\\(\\([k,v]\\)=>console.log\\(''  ''+k+'': ''+v\\)\\);\")",
-      "Bash(node -e \"const d=require\\(''./backend/src/data/ai_companies.json''\\);console.log\\(''Total AI companies:'',d.length\\)\")"
+      "Bash(node -e \"const d=require\\(''./backend/src/data/ai_companies.json''\\);console.log\\(''Total AI companies:'',d.length\\)\")",
+      "Bash(node -e \"const d=require\\(''./backend/src/data/ai_companies.json''\\);console.log\\(''Total AI companies:'',d.length\\);const ashby=d.filter\\(c=>c.careersUrl.includes\\(''ashby''\\)\\);console.log\\(''Using Ashby:'',ashby.length\\);const gh=d.filter\\(c=>c.careersUrl.includes\\(''greenhouse''\\)\\);console.log\\(''Using Greenhouse:'',gh.length\\)\")"
     ]
   }
 }
