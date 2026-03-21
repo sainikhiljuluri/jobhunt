@@ -189,16 +189,8 @@ function JobCard({
 
     return (
         <div className={`job-card status-${job.status}`}>
-            <div className="company-logo" style={{ color: `#${color}` }}>
-                <img
-                    src={`https://logo.clearbit.com/${encodeURIComponent(job.company.toLowerCase().replace(/\s/g, ''))}.com`}
-                    alt={job.company}
-                    onError={e => {
-                        (e.target as HTMLImageElement).style.display = 'none';
-                        (e.target as HTMLImageElement).nextElementSibling!.textContent = initials;
-                    }}
-                />
-                <span style={{ display: 'none' }}>{initials}</span>
+            <div className="company-logo" style={{ color: `#${color}`, background: `#${color}22` }}>
+                <span>{initials}</span>
             </div>
 
             <div className="job-info">
