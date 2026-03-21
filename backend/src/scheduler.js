@@ -6,7 +6,7 @@ import cron from 'node-cron';
 import { runScraper } from './scraper.js';
 import { sendDigest } from './notifier.js';
 import { checkJobUrls } from './job-checker.js';
-import { getNewJobsSince, getAllSettings } from './db.js';
+import { getNewJobsSince, getAllSettings, deleteOldJobs } from './db.js';
 
 let isRunning = false;
 let lastDigestTime = new Date().toISOString();
@@ -38,8 +38,19 @@ export function startScheduler() {
         runJobCheckerSafe();
     });
 
+    // Cleanup old jobs daily at midnight
+    cron.schedule('0 0 * * *', () => {
+        const result = deleteOldJobs.run();
+        console.log(`🗑️  Cleanup: deleted ${result.changes} jobs older than 3 days`);
+    });
+
+    // Run cleanup on startup too
+    const startupCleanup = deleteOldJobs.run();
+    if (startupCleanup.changes > 0) console.log(`🗑️  Startup cleanup: deleted ${startupCleanup.changes} old jobs`);
+
     console.log(`📨 Digest scheduled every ${digestHours} hours`);
     console.log(`🔍 Job URL checker scheduled every 12 hours`);
+    console.log(`🗑️  Auto-cleanup scheduled daily (jobs > 3 days, except saved/applied)`);
 }
 
 async function runScraperSafe() {

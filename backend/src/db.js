@@ -143,6 +143,13 @@ export const getLastScrapeRun = db.prepare(`
   SELECT * FROM scrape_runs ORDER BY started_at DESC LIMIT 1
 `);
 
+// Auto-cleanup: delete jobs older than 3 days (except saved/applied)
+export const deleteOldJobs = db.prepare(`
+  DELETE FROM jobs
+  WHERE status NOT IN ('saved', 'applied')
+  AND scraped_at < datetime('now', '-3 days')
+`);
+
 export const getNewJobsSince = db.prepare(`
   SELECT * FROM jobs
   WHERE is_new = 1 AND scraped_at >= ?
