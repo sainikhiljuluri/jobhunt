@@ -14,18 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 // In production: set ALLOWED_ORIGIN env var to your Vercel URL (e.g. https://job-hunter-pro.vercel.app)
-const allowedOrigins = [
-    'http://localhost:3000',
-    process.env.ALLOWED_ORIGIN,
-].filter(Boolean);
-
-app.use(cors({
-    origin: (origin, cb) => {
-        // allow non-browser requests (curl, Playwright) and whitelisted origins
-        if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
-        cb(new Error(`CORS: origin ${origin} not allowed`));
-    },
-}));
+app.use(cors());
 app.use(express.json());
 
 // ── Jobs ──────────────────────────────────────────────────────────────────────
