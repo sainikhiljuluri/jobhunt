@@ -103,9 +103,29 @@ app.get('/api/health', (_req, res) => {
     res.json({ ok: true, time: new Date().toISOString() });
 });
 
+// ── Serve Frontend (production) ──────────────────────────────────────────────
+
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const frontendPath = path.join(__dirname, '../../frontend/out');
+
+import fs from 'fs';
+if (fs.existsSync(frontendPath)) {
+    app.use(express.static(frontendPath));
+    // Serve index.html for all non-API routes (SPA fallback)
+    app.get('*', (req, res) => {
+        if (req.path.startsWith('/api/')) return res.status(404).json({ error: 'Not found' });
+        const page = path.join(frontendPath, req.path, 'index.html');
+        if (fs.existsSync(page)) return res.sendFile(page);
+        res.sendFile(path.join(frontendPath, 'index.html'));
+    });
+    console.log('🌐 Serving frontend from', frontendPath);
+}
+
 // ── Start ─────────────────────────────────────────────────────────────────────
 
 app.listen(PORT, () => {
-    console.log(`\n🎯 Job Hunter Pro API running at http://localhost:${PORT}`);
+    console.log(`\n🎯 Job Hunter Pro running at http://localhost:${PORT}`);
     startScheduler();
 });

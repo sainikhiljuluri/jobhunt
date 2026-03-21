@@ -1,5 +1,5 @@
-// In production: set NEXT_PUBLIC_API_URL in Vercel env vars to your Railway backend URL
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+// In production: API is served from the same origin (Express serves both)
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || (typeof window !== 'undefined' ? window.location.origin + '/api' : 'http://localhost:4000/api');
 
 export interface Job {
     id: string;
