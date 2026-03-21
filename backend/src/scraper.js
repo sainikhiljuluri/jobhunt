@@ -12,6 +12,7 @@ import { scrapeWorkday } from './scrapers/workday.js';
 import { scrapeDirectCareerPages } from './scrapers/direct.js';
 import { scrapeSimplifyJobs } from './scrapers/simplifyjobs.js';
 import { scrapeAdzuna } from './scrapers/adzuna.js';
+import { scrapeCareerPages } from './scrapers/career-pages.js';
 import { insertJob, startScrapeRun, finishScrapeRun, getAllSettings } from './db.js';
 import { notifyDreamCompanyJobs } from './notifier.js';
 
@@ -82,6 +83,7 @@ export async function runScraper() {
         const browserScrapers = [
             { name: 'LinkedIn', fn: () => scrapeLinkedIn(browser, filterSenior) },
             { name: 'Indeed', fn: () => scrapeIndeed(browser, filterSenior) },
+            { name: 'Career Pages (205 companies)', fn: () => scrapeCareerPages(browser, filterSenior) },
         ];
 
         for (const scraper of browserScrapers) {

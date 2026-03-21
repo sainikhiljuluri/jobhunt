@@ -594,6 +594,12 @@ body {
   color: #38bdf8;
 }
 
+.badge-career-page {
+  background: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
 .badge-applied {
   background: rgba(32, 201, 151, 0.2);
   color: #20c997;

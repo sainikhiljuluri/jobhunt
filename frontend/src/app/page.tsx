@@ -113,6 +113,7 @@ const SOURCES = [
     { value: 'lever', label: 'Lever' },
     { value: 'workday', label: 'Workday' },
     { value: 'direct', label: 'Direct' },
+    { value: 'career-page', label: '🏢 Career Pages' },
 ];
 
 function FilterBar({ filters, onChange, onScrape, scraping }: FilterBarProps) {
