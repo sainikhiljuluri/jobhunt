@@ -35,32 +35,43 @@ export async function runScraper() {
     const errors = [];
     const allNewJobs = [];
 
-    // ── API-based scrapers (no browser needed) ─────────────────────────────────
-    const apiScrapers = [
+    // ── Fast API scrapers (finish in seconds) ──────────────────────────────────
+    const fastScrapers = [
         { name: 'Greenhouse', fn: () => scrapeGreenhouse(filterSenior) },
         { name: 'Lever', fn: () => scrapeLever(filterSenior) },
         { name: 'Workday', fn: () => scrapeWorkday(filterSenior) },
         { name: 'Direct Career Pages', fn: () => scrapeDirectCareerPages(filterSenior) },
         { name: 'SimplifyJobs', fn: () => scrapeSimplifyJobs(filterSenior) },
         { name: 'Adzuna', fn: () => scrapeAdzuna(filterSenior) },
-        { name: 'AI Companies (200+)', fn: () => scrapeAICompanies(filterSenior) },
     ];
 
-    // Run API scrapers in parallel (they're all fetch-based)
-    const apiResults = await Promise.allSettled(apiScrapers.map(s => s.fn()));
-    for (let i = 0; i < apiResults.length; i++) {
-        const result = apiResults[i];
+    const fastResults = await Promise.allSettled(fastScrapers.map(s => s.fn()));
+    for (let i = 0; i < fastResults.length; i++) {
+        const result = fastResults[i];
         if (result.status === 'fulfilled') {
             const { newCount, inserted } = saveJobs(result.value);
             totalFound += result.value.length;
             totalNew += newCount;
             allNewJobs.push(...inserted);
-            console.log(`📦 ${apiScrapers[i].name}: ${result.value.length} found, ${newCount} new`);
+            console.log(`📦 ${fastScrapers[i].name}: ${result.value.length} found, ${newCount} new`);
         } else {
-            const msg = `${apiScrapers[i].name}: ${result.reason?.message}`;
+            const msg = `${fastScrapers[i].name}: ${result.reason?.message}`;
             errors.push(msg);
             console.error(`❌ ${msg}`);
         }
+    }
+
+    // ── Slow scraper: AI Companies (runs after fast scrapers save) ────────────
+    try {
+        const aiJobs = await scrapeAICompanies(filterSenior);
+        const { newCount, inserted } = saveJobs(aiJobs);
+        totalFound += aiJobs.length;
+        totalNew += newCount;
+        allNewJobs.push(...inserted);
+        console.log(`📦 AI Companies (200+): ${aiJobs.length} found, ${newCount} new`);
+    } catch (err) {
+        errors.push(`AI Companies: ${err.message}`);
+        console.error(`❌ AI Companies: ${err.message}`);
     }
 
     // ── Browser-based scrapers (LinkedIn, Indeed) ─────────────────────────────
