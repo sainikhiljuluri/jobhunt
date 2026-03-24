@@ -6,8 +6,11 @@ import { api, Job, Stats, JobFilters } from '@/lib/api';
 // ── Utility ───────────────────────────────────────────────────────────────────
 
 function timeAgo(dateStr: string) {
-    // Server stores UTC without 'Z' suffix — append it so browser parses as UTC
-    const d = new Date(dateStr.endsWith('Z') ? dateStr : dateStr + 'Z');
+    if (!dateStr) return 'Never';
+    // Server stores UTC as "2026-03-23 10:00:00" — convert to ISO format
+    const isoStr = dateStr.includes('T') ? dateStr : dateStr.replace(' ', 'T') + 'Z';
+    const d = new Date(isoStr);
+    if (isNaN(d.getTime())) return 'Unknown';
     const now = new Date();
     const diffMs = now.getTime() - d.getTime();
     if (diffMs < 0) return 'just now';

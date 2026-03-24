@@ -132,12 +132,38 @@ export async function runScraper() {
 
 
 /**
+ * Only keep jobs with relevant tech titles
+ */
+const ALLOWED_TITLE_KEYWORDS = [
+    'software engineer', 'software developer', 'swe',
+    'ai engineer', 'ai developer', 'artificial intelligence',
+    'data scientist', 'data science',
+    'ml engineer', 'machine learning',
+    'data analyst', 'data analytics',
+    'python developer',
+    'full stack', 'fullstack', 'full-stack',
+    'frontend engineer', 'front-end engineer', 'front end engineer',
+    'backend engineer', 'back-end engineer', 'back end engineer',
+    'data engineer', 'analytics engineer',
+    'devops', 'cloud engineer', 'site reliability', 'sre',
+    'new grad', 'new graduate', 'entry level',
+];
+
+function isRelevantTitle(title) {
+    const lower = title.toLowerCase();
+    return ALLOWED_TITLE_KEYWORDS.some(kw => lower.includes(kw));
+}
+
+/**
  * Insert jobs into DB, returns count + list of actually-new (non-duplicate) jobs
  */
 function saveJobs(jobs) {
     let newCount = 0;
+    let filtered = 0;
     const inserted = [];
     for (const job of jobs) {
+        // Only save jobs with relevant tech titles
+        if (!isRelevantTitle(job.title)) { filtered++; continue; }
         try {
             const result = insertJob.run(job);
             if (result.changes > 0) {
@@ -145,11 +171,11 @@ function saveJobs(jobs) {
                 inserted.push(job);
             }
         } catch (err) {
-            // Duplicate URL — expected, skip silently
             if (!err.message.includes('UNIQUE')) {
                 console.error(`DB insert error: ${err.message}`);
             }
         }
     }
+    if (filtered > 0) console.log(`   🔍 Filtered out ${filtered} irrelevant titles`);
     return { newCount, inserted };
 }
