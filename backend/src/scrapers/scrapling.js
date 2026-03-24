@@ -18,10 +18,11 @@ export async function scrapeWithScrapling() {
             timeout: 300000, // 5 min max
             maxBuffer: 10 * 1024 * 1024, // 10MB output
         }, (err, stdout, stderr) => {
-            if (stderr) console.log(stderr); // Show progress logs
+            if (stderr) console.log(`🐍 Python stderr:\n${stderr}`);
 
             if (err) {
                 console.error(`❌ Scrapling error: ${err.message}`);
+                if (stdout) console.error(`   stdout: ${stdout.slice(0, 500)}`);
                 resolve([]);
                 return;
             }

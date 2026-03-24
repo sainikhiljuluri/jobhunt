@@ -16,10 +16,21 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
 from bs4 import BeautifulSoup
 
-DATA_DIR = Path(__file__).parent.parent / "backend" / "src" / "data"
-# Also check Docker paths
-if not DATA_DIR.exists():
-    DATA_DIR = Path(__file__).parent.parent / "src" / "data"
+# Try multiple paths (local dev vs Docker)
+_candidates = [
+    Path(__file__).parent.parent / "backend" / "src" / "data",
+    Path(__file__).parent.parent / "src" / "data",
+    Path("/app/src/data"),
+]
+DATA_DIR = None
+for p in _candidates:
+    if p.exists():
+        DATA_DIR = p
+        break
+if DATA_DIR is None:
+    print(json.dumps({"jobs": [], "total": 0, "hits": 0, "errors": 1}))
+    print(f"ERROR: No data dir found. Tried: {[str(p) for p in _candidates]}", file=sys.stderr)
+    sys.exit(0)
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
