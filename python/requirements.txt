@@ -1,1 +1,3 @@
-scrapling[fetchers]
+requests
+beautifulsoup4
+lxml

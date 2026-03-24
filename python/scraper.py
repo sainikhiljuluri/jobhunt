@@ -1,6 +1,6 @@
 """
-Career Page Scraper using Scrapling
-Visits company career pages, searches for new-grad jobs, outputs JSON to stdout.
+Career Page Scraper — visits company career URLs and extracts job listings.
+Uses requests + BeautifulSoup (no browser needed, works in slim containers).
 Called by Node.js backend via child_process.
 """
 
@@ -10,12 +10,25 @@ import hashlib
 import re
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import urlparse, urljoin
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
-# Load company lists
+import requests
+from bs4 import BeautifulSoup
+
 DATA_DIR = Path(__file__).parent.parent / "backend" / "src" / "data"
+# Also check Docker paths
+if not DATA_DIR.exists():
+    DATA_DIR = Path(__file__).parent.parent / "src" / "data"
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+}
 
 TITLE_KEYWORDS = [
-    "software engineer", "software developer", "swe",
+    "software engineer", "software developer", "swe ",
     "ai engineer", "ai developer",
     "data scientist", "data science",
     "ml engineer", "machine learning",
@@ -25,9 +38,9 @@ TITLE_KEYWORDS = [
     "frontend engineer", "front-end", "front end",
     "backend engineer", "back-end", "back end",
     "data engineer", "analytics engineer",
-    "devops", "cloud engineer", "sre",
+    "devops", "cloud engineer", "sre ",
     "new grad", "new graduate", "entry level", "entry-level",
-    "junior", "associate",
+    "junior developer", "junior engineer", "associate engineer",
 ]
 
 SENIOR_KEYWORDS = [
@@ -36,57 +49,56 @@ SENIOR_KEYWORDS = [
     "intern ", "internship", "co-op",
 ]
 
-NEW_GRAD_KEYWORDS = [
-    "new grad", "new graduate", "entry level", "entry-level",
-    "junior", "2025", "2026", "associate", "early career",
-    "university", "campus", "recent grad",
+JOB_URL_PATTERNS = [
+    "/job", "/position", "/opening", "/career", "/apply",
+    "/requisition", "jobid=", "job_id=", "/posting",
+    "greenhouse.io", "lever.co", "ashbyhq.com", "workday",
+    "/roles/", "/opportunities",
 ]
 
 
-def make_job_id(url: str) -> str:
+def make_id(url):
     return hashlib.sha256(url.encode()).hexdigest()[:16]
 
 
-def is_relevant_title(title: str) -> bool:
-    lower = title.lower()
-    return any(kw in lower for kw in TITLE_KEYWORDS)
+def is_relevant(title):
+    t = title.lower()
+    return any(kw in t for kw in TITLE_KEYWORDS)
 
 
-def is_senior(title: str) -> bool:
-    lower = title.lower()
-    return any(kw in lower for kw in SENIOR_KEYWORDS)
+def is_senior(title):
+    t = title.lower()
+    return any(kw in t for kw in SENIOR_KEYWORDS)
 
 
-def classify_category(title: str) -> str:
-    lower = title.lower()
-    if any(kw in lower for kw in ["ai engineer", "llm", "generative ai", "nlp", "computer vision"]):
+def classify(title):
+    t = title.lower()
+    if any(k in t for k in ["ai engineer", "llm", "generative ai", "nlp"]):
         return "ai"
-    if any(kw in lower for kw in ["machine learning", "ml engineer", "deep learning"]):
+    if any(k in t for k in ["machine learning", "ml engineer", "deep learning"]):
         return "ml"
-    if "full" in lower and "stack" in lower:
+    if "full" in t and "stack" in t:
         return "fullstack"
-    if any(kw in lower for kw in ["data scien", "applied scientist"]):
+    if any(k in t for k in ["data scien", "applied scientist"]):
         return "data-science"
-    if any(kw in lower for kw in ["data engineer", "analytics engineer", "etl", "data pipeline"]):
+    if any(k in t for k in ["data engineer", "analytics engineer", "etl"]):
         return "data-engineer"
-    if any(kw in lower for kw in ["data analyst", "business intelligence", "bi analyst"]):
+    if any(k in t for k in ["data analyst", "business intelligence"]):
         return "data-analyst"
-    if any(kw in lower for kw in ["devops", "site reliability", "sre", "cloud engineer"]):
+    if any(k in t for k in ["devops", "site reliability", "sre", "cloud engineer"]):
         return "devops"
     return "swe"
 
 
 def load_companies():
     companies = []
-    for filename in ["companies.json", "ai_companies.json"]:
-        filepath = DATA_DIR / filename
-        if filepath.exists():
-            with open(filepath) as f:
-                data = json.load(f)
-                for c in data:
+    for fname in ["companies.json", "ai_companies.json"]:
+        fp = DATA_DIR / fname
+        if fp.exists():
+            with open(fp) as f:
+                for c in json.load(f):
                     if c.get("careersUrl"):
                         companies.append(c)
-    # Deduplicate by URL
     seen = set()
     unique = []
     for c in companies:
@@ -97,106 +109,93 @@ def load_companies():
     return unique
 
 
-def extract_jobs_from_page(page, company_name: str, source_url: str) -> list:
-    """Extract job listings from a scrapled page."""
+def scrape_one(company):
+    """Scrape a single company career page. Returns list of jobs."""
+    name = company.get("name", "Unknown")
+    url = company["careersUrl"]
     jobs = []
-    now = datetime.utcnow().isoformat() + "Z"
 
-    # Strategy 1: Find all links that look like job postings
-    all_links = page.css("a[href]")
+    try:
+        resp = requests.get(url, headers=HEADERS, timeout=8, allow_redirects=True)
+        if resp.status_code != 200:
+            return jobs
 
-    for link in all_links:
-        href = link.attrib.get("href", "")
-        text = link.text.strip() if link.text else ""
+        soup = BeautifulSoup(resp.text, "lxml")
+        base_url = resp.url
 
-        if not text or len(text) < 5 or len(text) > 200:
-            continue
+        # Find all links
+        for a in soup.find_all("a", href=True):
+            href = a["href"]
+            text = a.get_text(strip=True)
 
-        # Check if the link looks like a job posting
-        job_url_patterns = [
-            "/job", "/position", "/opening", "/career", "/apply",
-            "/requisition", "jobId=", "job_id=", "/posting",
-            "greenhouse.io", "lever.co", "ashbyhq.com", "workday",
-        ]
-        is_job_link = any(p in href.lower() for p in job_url_patterns)
-        if not is_job_link:
-            continue
+            if not text or len(text) < 5 or len(text) > 200:
+                continue
 
-        # Check title relevance
-        if not is_relevant_title(text):
-            continue
-        if is_senior(text):
-            continue
+            # Check if link looks like a job posting
+            href_lower = href.lower()
+            if not any(p in href_lower for p in JOB_URL_PATTERNS):
+                continue
 
-        # Make URL absolute
-        if href.startswith("/"):
-            from urllib.parse import urlparse
-            parsed = urlparse(source_url)
-            href = f"{parsed.scheme}://{parsed.netloc}{href}"
+            if not is_relevant(text):
+                continue
+            if is_senior(text):
+                continue
 
-        jobs.append({
-            "id": make_job_id(href),
-            "title": text,
-            "company": company_name,
-            "location": "US",
-            "url": href,
-            "source": "scrapling",
-            "category": classify_category(text),
-            "salary": None,
-            "description": None,
-            "posted_at": now,
-        })
+            # Make absolute URL
+            full_url = urljoin(base_url, href)
+
+            jobs.append({
+                "id": make_id(full_url),
+                "title": text,
+                "company": name,
+                "location": company.get("state", "US"),
+                "url": full_url,
+                "source": "scrapling",
+                "category": classify(text),
+                "salary": None,
+                "description": None,
+                "posted_at": datetime.utcnow().isoformat() + "Z",
+            })
+
+    except Exception:
+        pass
 
     return jobs
 
 
-def scrape_all():
-    """Main scraping function — visits career pages with Scrapling."""
-    try:
-        from scrapling import StealthyFetcher
-    except ImportError:
-        print(json.dumps({"error": "scrapling not installed", "jobs": []}))
-        return
-
+def main():
     companies = load_companies()
-    print(f"Scrapling: loaded {len(companies)} companies", file=sys.stderr)
+    print(f"Python scraper: loaded {len(companies)} companies", file=sys.stderr)
 
-    fetcher = StealthyFetcher()
     all_jobs = []
     hits = 0
-    errors = 0
+    seen_titles = set()
 
-    # Limit to 100 companies per run to stay within time/memory limits
-    for i, company in enumerate(companies[:100]):
-        name = company.get("name", "Unknown")
-        url = company["careersUrl"]
+    # Scrape in parallel — 20 threads
+    with ThreadPoolExecutor(max_workers=20) as pool:
+        futures = {pool.submit(scrape_one, c): c for c in companies}
+        for future in as_completed(futures):
+            company = futures[future]
+            try:
+                jobs = future.result()
+                # Dedup by title+company
+                unique_jobs = []
+                for j in jobs:
+                    key = j["title"].lower() + "|" + j["company"].lower()
+                    if key not in seen_titles:
+                        seen_titles.add(key)
+                        unique_jobs.append(j)
 
-        try:
-            print(f"  [{i+1}/100] {name}...", file=sys.stderr, end=" ")
-            page = fetcher.fetch(url, timeout=10)
+                if unique_jobs:
+                    all_jobs.extend(unique_jobs)
+                    hits += 1
+                    print(f"  {company['name']}: {len(unique_jobs)} jobs", file=sys.stderr)
+            except Exception:
+                pass
 
-            if page.status != 200:
-                print(f"HTTP {page.status}", file=sys.stderr)
-                errors += 1
-                continue
-
-            jobs = extract_jobs_from_page(page, name, url)
-            if jobs:
-                all_jobs.extend(jobs)
-                hits += 1
-                print(f"{len(jobs)} jobs found", file=sys.stderr)
-            else:
-                print("0 jobs", file=sys.stderr)
-
-        except Exception as e:
-            print(f"error: {str(e)[:50]}", file=sys.stderr)
-            errors += 1
-
-    print(f"\nScrapling done: {len(all_jobs)} jobs from {hits} companies, {errors} errors", file=sys.stderr)
-
-    # Output JSON to stdout for Node.js to consume
-    print(json.dumps({"jobs": all_jobs, "total": len(all_jobs), "hits": hits, "errors": errors}))
+    print(f"Python scraper done: {len(all_jobs)} jobs from {hits} companies", file=sys.stderr)
+    print(json.dumps({"jobs": all_jobs, "total": len(all_jobs), "hits": hits, "errors": 0}))
 
 
 if __name__ == "__main__":
-    scrape_all()
+    main()

@@ -10,20 +10,19 @@ RUN npm run build
 FROM node:20-slim
 WORKDIR /app
 
-# Install Python 3 + pip
+# Install Python 3 + pip (lightweight)
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends python3 python3-pip python3-venv && \
+    apt-get install -y --no-install-recommends python3 python3-pip && \
     rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
-COPY python/requirements.txt /app/python/requirements.txt
-RUN python3 -m venv /app/python/venv && \
-    /app/python/venv/bin/pip install --no-cache-dir -r /app/python/requirements.txt
-
-ENV PYTHON_BIN=/app/python/venv/bin/python3
+# Install Python packages (no venv needed in Docker)
+COPY python/requirements.txt /tmp/requirements.txt
+RUN pip3 install --no-cache-dir --break-system-packages -r /tmp/requirements.txt
 
 # Copy Python scraper
 COPY python/ /app/python/
+
+ENV PYTHON_BIN=python3
 
 # Install backend dependencies
 COPY backend/package*.json ./

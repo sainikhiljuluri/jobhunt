@@ -23,7 +23,8 @@
       "Bash(python3 -c \"import sys,json;d=json.load\\(sys.stdin\\);print\\(''''Total:'''',d[''''total'''']\\);r=d.get\\(''''last_run''''\\) or {};print\\(''''Last run started:'''',r.get\\(''''started_at'''',''''none''''\\)\\);print\\(''''Last run finished:'''',r.get\\(''''finished_at'''',''''none''''\\)\\);print\\(''''Run ID:'''',r.get\\(''''id'''',''''none''''\\)\\)\")",
       "Bash(python3 -c \":*)",
       "Bash(python3 -c \"import sys,json;d=json.load\\(sys.stdin\\);print\\(''''Name:'''',d.get\\(''''name''''\\)\\);print\\(''''Description:'''',d.get\\(''''description''''\\)\\);print\\(''''Stars:'''',d.get\\(''''stargazers_count''''\\)\\);print\\(''''Language:'''',d.get\\(''''language''''\\)\\);print\\(''''Updated:'''',d.get\\(''''updated_at''''\\)\\);print\\(''''Default branch:'''',d.get\\(''''default_branch''''\\)\\)\")",
-      "WebSearch"
+      "WebSearch",
+      "Bash(python3 -c \"import sys,json;d=json.load\\(sys.stdin\\);r=d.get\\(''''last_run''''\\) or {};print\\(''''Total:'''',d[''''total'''']\\);print\\(''''Last run:'''',r.get\\(''''finished_at'''',''''none''''\\)\\);print\\(''''Found:'''',r.get\\(''''jobs_found'''',0\\)\\);print\\(''''New:'''',r.get\\(''''jobs_new'''',0\\)\\);print\\(''''Errors:'''',r.get\\(''''errors'''',''''none''''\\)\\)\")"
     ]
   }
 }
