@@ -15,6 +15,7 @@ import { scrapeSimplifyJobs } from './scrapers/simplifyjobs.js';
 import { scrapeAdzuna } from './scrapers/adzuna.js';
 import { scrapeCareerPages } from './scrapers/career-pages.js';
 import { scrapeAICompanies } from './scrapers/ai-companies.js';
+import { scrapeWithScrapling } from './scrapers/scrapling.js';
 import { insertJob, startScrapeRun, finishScrapeRun, getAllSettings } from './db.js';
 import { notifyDreamCompanyJobs } from './notifier.js';
 
@@ -110,6 +111,18 @@ export async function runScraper() {
         } finally {
             if (browser) await browser.close();
         }
+    }
+
+    // ── Scrapling (Python) — scrapes career pages with stealth browser ────────
+    try {
+        const scraplingJobs = await scrapeWithScrapling();
+        const { newCount, inserted } = saveJobs(scraplingJobs);
+        totalFound += scraplingJobs.length;
+        totalNew += newCount;
+        allNewJobs.push(...inserted);
+        console.log(`📦 Scrapling: ${scraplingJobs.length} found, ${newCount} new`);
+    } catch (err) {
+        console.error(`❌ Scrapling: ${err.message}`);
     }
 
     // ── Finalize ───────────────────────────────────────────────────────────────

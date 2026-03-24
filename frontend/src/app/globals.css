@@ -606,6 +606,12 @@ body {
   border: 1px solid rgba(236, 72, 153, 0.3);
 }
 
+.badge-scrapling {
+  background: rgba(52, 211, 153, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
 .badge-applied {
   background: rgba(32, 201, 151, 0.2);
   color: #20c997;

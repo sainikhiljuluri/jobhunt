@@ -120,6 +120,7 @@ const SOURCES = [
     { value: 'direct', label: 'Direct' },
     { value: 'career-page', label: '🏢 Career Pages' },
     { value: 'ai-companies', label: '🤖 AI Companies' },
+    { value: 'scrapling', label: '🐍 Scrapling' },
 ];
 
 function FilterBar({ filters, onChange, onScrape, scraping }: FilterBarProps) {
