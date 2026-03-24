@@ -9,7 +9,9 @@
   padding: 0;
 }
 
-:root {
+/* ── Dark Theme (default) ──────────────────────────────────── */
+:root,
+[data-theme="dark"] {
   --bg-primary: #0a0b0e;
   --bg-secondary: #111318;
   --bg-card: #161b27;
@@ -44,6 +46,27 @@
   --transition: 0.2s ease;
 }
 
+/* ── Light Theme ──────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-primary: #f5f7fa;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0f2f5;
+  --border-color: #d1d5db;
+  --border-glow: #4c6ef5;
+
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a5568;
+  --text-muted: #9ca3af;
+
+  --gradient-hero: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 50%, #f5f7fa 100%);
+  --gradient-card: linear-gradient(145deg, #ffffff, #f9fafb);
+  --gradient-brand: linear-gradient(135deg, #4c6ef5, #748ffc);
+
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 0 20px rgba(76, 110, 245, 0.1);
+}
+
 html,
 body {
   height: 100%;
@@ -72,6 +95,47 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
+}
+
+/* ── Light theme overrides ─────────────────────────────────────────── */
+[data-theme="light"] .navbar {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+[data-theme="light"] .navbar-brand span.highlight {
+  -webkit-text-fill-color: var(--accent-blue);
+}
+
+[data-theme="light"] .search-input {
+  background: var(--bg-primary);
+}
+
+[data-theme="light"] .settings-input {
+  background: var(--bg-primary);
+}
+
+[data-theme="light"] .company-logo {
+  background: var(--bg-primary);
+}
+
+/* ── Theme Toggle ──────────────────────────────────────────── */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  cursor: pointer;
+  font-size: 18px;
+  transition: all var(--transition);
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent-blue);
+  background: var(--bg-card-hover);
 }
 
 /* ── Layout ────────────────────────────────────────────────────────── */

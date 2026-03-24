@@ -288,6 +288,19 @@ export default function Home() {
     const [scraping, setScraping] = useState(false);
     const [filters, setFilters] = useState<JobFilters>({ page: 1, limit: 30 });
     const { toasts, show: showToast } = useToast();
+    const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+
+    useEffect(() => {
+        const saved = localStorage.getItem('theme') as 'dark' | 'light' | null;
+        if (saved) { setTheme(saved); document.documentElement.setAttribute('data-theme', saved); }
+    }, []);
+
+    function toggleTheme() {
+        const next = theme === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+    }
 
     const fetchJobs = useCallback(async (f: JobFilters) => {
         setLoading(true);
@@ -358,6 +371,9 @@ export default function Home() {
                     <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>
                         Graduating May 2026
                     </span>
+                    <button className="theme-toggle" onClick={toggleTheme} title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}>
+                        {theme === 'dark' ? '☀️' : '🌙'}
+                    </button>
                     <a href="/settings" className="btn btn-secondary">
                         ⚙️ Settings
                     </a>

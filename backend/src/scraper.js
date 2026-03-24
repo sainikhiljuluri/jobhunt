@@ -16,7 +16,7 @@ import { scrapeAdzuna } from './scrapers/adzuna.js';
 import { scrapeCareerPages } from './scrapers/career-pages.js';
 import { scrapeAICompanies } from './scrapers/ai-companies.js';
 import { scrapeWithScrapling } from './scrapers/scrapling.js';
-import { insertJob, startScrapeRun, finishScrapeRun, getAllSettings } from './db.js';
+import { insertJob, jobExistsByTitleCompany, startScrapeRun, finishScrapeRun, getAllSettings } from './db.js';
 import { notifyDreamCompanyJobs } from './notifier.js';
 
 
@@ -175,8 +175,9 @@ function saveJobs(jobs) {
     let filtered = 0;
     const inserted = [];
     for (const job of jobs) {
-        // Only save jobs with relevant tech titles
         if (!isRelevantTitle(job.title)) { filtered++; continue; }
+        // Dedup: skip if same title+company already exists from another source
+        if (jobExistsByTitleCompany.get(job.title, job.company)) continue;
         try {
             const result = insertJob.run(job);
             if (result.changes > 0) {

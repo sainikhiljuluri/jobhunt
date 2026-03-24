@@ -84,6 +84,11 @@ export const insertJob = db.prepare(`
   VALUES (@id, @title, @company, @location, @url, @source, @category, @salary, @description, @posted_at, 'new', 1)
 `);
 
+// Check if a job with same title+company already exists (dedup across sources)
+export const jobExistsByTitleCompany = db.prepare(`
+  SELECT 1 FROM jobs WHERE title = ? AND company = ? LIMIT 1
+`);
+
 export const getJobs = db.prepare(`
   SELECT * FROM jobs
   WHERE
