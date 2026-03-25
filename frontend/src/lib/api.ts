@@ -15,7 +15,7 @@ export interface Job {
     posted_at: string;
     scraped_at: string;
     status: 'new' | 'saved' | 'applied' | 'ignored' | 'closed';
-    is_new: number;
+    is_new: boolean | number;
 }
 
 export interface JobsResponse {

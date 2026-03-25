@@ -176,9 +176,11 @@ export async function finishScrapeRun(jobsFound, jobsNew, errors, runId) {
 }
 
 export async function getLastScrapeRun() {
+    // Return the last COMPLETED run (finished_at is not null)
     const { data, error } = await supabase
         .from('scrape_runs')
         .select('*')
+        .not('finished_at', 'is', null)
         .order('started_at', { ascending: false })
         .limit(1)
         .single();

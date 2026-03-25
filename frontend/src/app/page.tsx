@@ -213,7 +213,7 @@ function JobCard({
             </div>
 
             <div className="job-badges">
-                {job.is_new === 1 && <span className="badge badge-new">NEW</span>}
+                {!!job.is_new && <span className="badge badge-new">NEW</span>}
                 <span className={`badge badge-cat-${job.category}`}>
                     {job.category === 'ai' ? 'AI Eng' :
                         job.category === 'ml' ? 'ML Eng' :
@@ -349,7 +349,7 @@ export default function Home() {
     async function handleStatusChange(id: string, status: string) {
         try {
             await api.updateJobStatus(id, status);
-            setJobs(prev => prev.map(j => j.id === id ? { ...j, status: status as Job['status'], is_new: 0 } : j));
+            setJobs(prev => prev.map(j => j.id === id ? { ...j, status: status as Job['status'], is_new: false } : j));
             fetchStats();
         } catch {
             showToast('Failed to update status', 'error');
@@ -395,7 +395,7 @@ export default function Home() {
                                 className="btn btn-ghost btn-sm"
                                 onClick={async () => {
                                     await api.markAllSeen();
-                                    setJobs(prev => prev.map(j => ({ ...j, is_new: 0 })));
+                                    setJobs(prev => prev.map(j => ({ ...j, is_new: false })));
                                     fetchStats();
                                 }}
                             >

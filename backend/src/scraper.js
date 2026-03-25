@@ -35,94 +35,106 @@ export async function runScraper() {
     const errors = [];
     const allNewJobs = [];
 
-    // ── Fast API scrapers (finish in seconds) ──────────────────────────────────
-    const fastScrapers = [
-        { name: 'Greenhouse', fn: () => scrapeGreenhouse(filterSenior) },
-        { name: 'Lever', fn: () => scrapeLever(filterSenior) },
-        { name: 'Workday', fn: () => scrapeWorkday(filterSenior) },
-        { name: 'Direct Career Pages', fn: () => scrapeDirectCareerPages(filterSenior) },
-        { name: 'SimplifyJobs', fn: () => scrapeSimplifyJobs(filterSenior) },
-        { name: 'Adzuna', fn: () => scrapeAdzuna(filterSenior) },
-        { name: 'AI Companies (113)', fn: () => scrapeAICompanies(filterSenior) },
-    ];
+    try {
+        // ── Fast API scrapers (run in parallel) ──────────────────────────────────
+        const fastScrapers = [
+            { name: 'Greenhouse', fn: () => scrapeGreenhouse(filterSenior) },
+            { name: 'Lever', fn: () => scrapeLever(filterSenior) },
+            { name: 'Workday', fn: () => scrapeWorkday(filterSenior) },
+            { name: 'Direct Career Pages', fn: () => scrapeDirectCareerPages(filterSenior) },
+            { name: 'SimplifyJobs', fn: () => scrapeSimplifyJobs(filterSenior) },
+            { name: 'Adzuna', fn: () => scrapeAdzuna(filterSenior) },
+        ];
 
-    const fastResults = await Promise.allSettled(fastScrapers.map(s => s.fn()));
-    for (let i = 0; i < fastResults.length; i++) {
-        const result = fastResults[i];
-        if (result.status === 'fulfilled') {
-            const { newCount, inserted } = await saveJobs(result.value);
-            totalFound += result.value.length;
-            totalNew += newCount;
-            allNewJobs.push(...inserted);
-            console.log(`📦 ${fastScrapers[i].name}: ${result.value.length} found, ${newCount} new`);
-        } else {
-            const msg = `${fastScrapers[i].name}: ${result.reason?.message}`;
-            errors.push(msg);
-            console.error(`❌ ${msg}`);
-        }
-    }
-
-    // ── Browser-based scrapers (LinkedIn, Indeed) ─────────────────────────────
-    if (process.env.SKIP_BROWSER_SCRAPERS === 'true') {
-        console.log('⏭️  Skipping browser scrapers (SKIP_BROWSER_SCRAPERS=true)');
-    } else {
-        let browser;
-        try {
-            browser = await chromium.launch({
-                headless: true,
-                args: [
-                    '--no-sandbox',
-                    '--disable-setuid-sandbox',
-                    '--disable-dev-shm-usage',
-                    '--disable-blink-features=AutomationControlled',
-                ],
-            });
-
-            await browser.newContext({
-                userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-                viewport: { width: 1280, height: 800 },
-                locale: 'en-US',
-            });
-
-            const browserScrapers = [
-                { name: 'LinkedIn', fn: () => scrapeLinkedIn(browser, filterSenior) },
-                { name: 'Indeed', fn: () => scrapeIndeed(browser, filterSenior) },
-                { name: 'Career Pages (205 companies)', fn: () => scrapeCareerPages(browser, filterSenior) },
-            ];
-
-            for (const scraper of browserScrapers) {
+        const fastResults = await Promise.allSettled(fastScrapers.map(s => s.fn()));
+        for (let i = 0; i < fastResults.length; i++) {
+            const result = fastResults[i];
+            if (result.status === 'fulfilled') {
                 try {
-                    const jobs = await scraper.fn();
-                    const { newCount, inserted } = await saveJobs(jobs);
-                    totalFound += jobs.length;
+                    const { newCount, inserted } = await saveJobs(result.value);
+                    totalFound += result.value.length;
                     totalNew += newCount;
                     allNewJobs.push(...inserted);
-                    console.log(`📦 ${scraper.name}: ${jobs.length} found, ${newCount} new`);
+                    console.log(`📦 ${fastScrapers[i].name}: ${result.value.length} found, ${newCount} new`);
                 } catch (err) {
-                    const msg = `${scraper.name}: ${err.message}`;
-                    errors.push(msg);
-                    console.error(`❌ ${msg}`);
+                    errors.push(`${fastScrapers[i].name} save: ${err.message}`);
+                    console.error(`❌ ${fastScrapers[i].name} save error: ${err.message}`);
                 }
+            } else {
+                const msg = `${fastScrapers[i].name}: ${result.reason?.message}`;
+                errors.push(msg);
+                console.error(`❌ ${msg}`);
             }
-        } finally {
-            if (browser) await browser.close();
+        }
+
+        // ── AI Companies (runs separately — large, takes ~60s) ───────────────────
+        try {
+            const aiJobs = await scrapeAICompanies(filterSenior);
+            const { newCount, inserted } = await saveJobs(aiJobs);
+            totalFound += aiJobs.length;
+            totalNew += newCount;
+            allNewJobs.push(...inserted);
+            console.log(`📦 AI Companies: ${aiJobs.length} found, ${newCount} new`);
+        } catch (err) {
+            errors.push(`AI Companies: ${err.message}`);
+            console.error(`❌ AI Companies: ${err.message}`);
+        }
+
+        // ── Browser-based scrapers (LinkedIn, Indeed) ─────────────────────────────
+        if (process.env.SKIP_BROWSER_SCRAPERS === 'true') {
+            console.log('⏭️  Skipping browser scrapers (SKIP_BROWSER_SCRAPERS=true)');
+        } else {
+            let browser;
+            try {
+                browser = await chromium.launch({
+                    headless: true,
+                    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-blink-features=AutomationControlled'],
+                });
+                await browser.newContext({
+                    userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+                    viewport: { width: 1280, height: 800 }, locale: 'en-US',
+                });
+                for (const scraper of [
+                    { name: 'LinkedIn', fn: () => scrapeLinkedIn(browser, filterSenior) },
+                    { name: 'Indeed', fn: () => scrapeIndeed(browser, filterSenior) },
+                    { name: 'Career Pages (205 companies)', fn: () => scrapeCareerPages(browser, filterSenior) },
+                ]) {
+                    try {
+                        const jobs = await scraper.fn();
+                        const { newCount, inserted } = await saveJobs(jobs);
+                        totalFound += jobs.length;
+                        totalNew += newCount;
+                        allNewJobs.push(...inserted);
+                        console.log(`📦 ${scraper.name}: ${jobs.length} found, ${newCount} new`);
+                    } catch (err) {
+                        errors.push(`${scraper.name}: ${err.message}`);
+                        console.error(`❌ ${scraper.name}: ${err.message}`);
+                    }
+                }
+            } finally {
+                if (browser) await browser.close();
+            }
+        }
+
+        // ── Scrapling (Python) ───────────────────────────────────────────────────
+        try {
+            const scraplingJobs = await scrapeWithScrapling();
+            const { newCount, inserted } = await saveJobs(scraplingJobs);
+            totalFound += scraplingJobs.length;
+            totalNew += newCount;
+            allNewJobs.push(...inserted);
+            console.log(`📦 Scrapling: ${scraplingJobs.length} found, ${newCount} new`);
+        } catch (err) {
+            console.error(`❌ Scrapling: ${err.message}`);
+        }
+    } finally {
+        // ── ALWAYS finalize the run, even if scrapers crash ──────────────────────
+        try {
+            await finishScrapeRun(totalFound, totalNew, errors.length ? JSON.stringify(errors) : null, runId);
+        } catch (err) {
+            console.error(`❌ Failed to finalize scrape run: ${err.message}`);
         }
     }
-
-    // ── Scrapling (Python) — scrapes career pages with stealth browser ────────
-    try {
-        const scraplingJobs = await scrapeWithScrapling();
-        const { newCount, inserted } = await saveJobs(scraplingJobs);
-        totalFound += scraplingJobs.length;
-        totalNew += newCount;
-        allNewJobs.push(...inserted);
-        console.log(`📦 Scrapling: ${scraplingJobs.length} found, ${newCount} new`);
-    } catch (err) {
-        console.error(`❌ Scrapling: ${err.message}`);
-    }
-
-    // ── Finalize ───────────────────────────────────────────────────────────────
-    await finishScrapeRun(totalFound, totalNew, errors.length ? JSON.stringify(errors) : null, runId);
 
     console.log(`\n✅ Scrape complete! Found: ${totalFound} | New: ${totalNew} | Errors: ${errors.length}`);
     console.log('─'.repeat(60));
