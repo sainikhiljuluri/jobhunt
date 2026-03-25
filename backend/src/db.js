@@ -1,169 +1,246 @@
-import Database from 'better-sqlite3';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import fs from 'fs';
+/**
+ * Database layer — Supabase (PostgreSQL)
+ * All exports are async functions instead of prepared statements.
+ */
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DB_PATH = path.join(__dirname, '../../data/jobs.db');
+import { createClient } from '@supabase/supabase-js';
 
-// Ensure data directory exists
-fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-const db = new Database(DB_PATH);
+if (!SUPABASE_URL || !SUPABASE_KEY) {
+    console.error('❌ Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY env vars');
+    process.exit(1);
+}
 
-// Enable WAL mode for better performance
-db.pragma('journal_mode = WAL');
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// Create tables
-db.exec(`
-  CREATE TABLE IF NOT EXISTS jobs (
-    id TEXT PRIMARY KEY,
-    title TEXT NOT NULL,
-    company TEXT NOT NULL,
-    location TEXT,
-    url TEXT NOT NULL UNIQUE,
-    source TEXT NOT NULL,
-    category TEXT NOT NULL,
-    salary TEXT,
-    description TEXT,
-    posted_at TEXT,
-    scraped_at TEXT NOT NULL DEFAULT (datetime('now')),
-    status TEXT NOT NULL DEFAULT 'new',
-    is_new INTEGER NOT NULL DEFAULT 1,
-    closed_at TEXT
-  );
+// ── Seed default settings on startup ─────────────────────────────────────────
 
-  CREATE TABLE IF NOT EXISTS scrape_runs (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    started_at TEXT NOT NULL DEFAULT (datetime('now')),
-    finished_at TEXT,
-    jobs_found INTEGER DEFAULT 0,
-    jobs_new INTEGER DEFAULT 0,
-    errors TEXT
-  );
-
-  CREATE TABLE IF NOT EXISTS settings (
-    key TEXT PRIMARY KEY,
-    value TEXT NOT NULL
-  );
-
-  CREATE INDEX IF NOT EXISTS idx_jobs_status ON jobs(status);
-  CREATE INDEX IF NOT EXISTS idx_jobs_category ON jobs(category);
-  CREATE INDEX IF NOT EXISTS idx_jobs_source ON jobs(source);
-  CREATE INDEX IF NOT EXISTS idx_jobs_scraped_at ON jobs(scraped_at);
-  CREATE INDEX IF NOT EXISTS idx_jobs_is_new ON jobs(is_new);
-`);
-
-// Safe migration: add closed_at column if missing (for existing DBs)
-try { db.exec('ALTER TABLE jobs ADD COLUMN closed_at TEXT'); } catch (_) { /* already exists */ }
-
-// Seed default settings
 const defaultSettings = {
-  keywords_ai: 'new grad AI engineer,new grad machine learning engineer,entry level AI engineer,2026 new grad AI',
-  keywords_swe: 'new grad software engineer,entry level software engineer,2026 new grad SWE,new grad full stack',
-  keywords_data: 'new grad data scientist,new grad data engineer,entry level data scientist,new grad analytics engineer',
-  scrape_interval_minutes: '30',
-  filter_exclude_senior: 'true',
-  slack_enabled: 'false',
-  slack_webhook_url: '',
-  dream_companies: 'openai,anthropic,google,meta,apple,stripe,databricks',
-  digest_interval_hours: '6',
-  frontend_url: 'http://localhost:3000',
-  job_checker_enabled: 'true',
+    keywords_ai: 'new grad AI engineer,new grad machine learning engineer,entry level AI engineer,2026 new grad AI',
+    keywords_swe: 'new grad software engineer,entry level software engineer,2026 new grad SWE,new grad full stack',
+    keywords_data: 'new grad data scientist,new grad data engineer,entry level data scientist,new grad analytics engineer',
+    scrape_interval_minutes: '30',
+    filter_exclude_senior: 'true',
+    slack_enabled: 'false',
+    slack_webhook_url: '',
+    dream_companies: 'openai,anthropic,google,meta,apple,stripe,databricks',
+    digest_interval_hours: '6',
+    frontend_url: 'http://localhost:3000',
+    job_checker_enabled: 'true',
 };
 
-const insertSetting = db.prepare('INSERT OR IGNORE INTO settings (key, value) VALUES (?, ?)');
-for (const [key, value] of Object.entries(defaultSettings)) {
-  insertSetting.run(key, value);
+export async function seedSettings() {
+    for (const [key, value] of Object.entries(defaultSettings)) {
+        await supabase
+            .from('settings')
+            .upsert({ key, value }, { onConflict: 'key', ignoreDuplicates: true });
+    }
 }
 
-// ── Prepared Statements ──────────────────────────────────────────────────────
+// ── Jobs ─────────────────────────────────────────────────────────────────────
 
-export const insertJob = db.prepare(`
-  INSERT OR IGNORE INTO jobs (id, title, company, location, url, source, category, salary, description, posted_at, status, is_new)
-  VALUES (@id, @title, @company, @location, @url, @source, @category, @salary, @description, @posted_at, 'new', 1)
-`);
+export async function insertJob(job) {
+    const { data, error } = await supabase
+        .from('jobs')
+        .upsert({
+            id: job.id,
+            title: job.title,
+            company: job.company,
+            location: job.location || null,
+            url: job.url,
+            source: job.source,
+            category: job.category,
+            salary: job.salary || null,
+            description: job.description || null,
+            posted_at: job.posted_at || null,
+            status: 'new',
+            is_new: true,
+        }, { onConflict: 'id', ignoreDuplicates: true })
+        .select();
 
-// Check if a job with same title+company already exists (dedup across sources)
-export const jobExistsByTitleCompany = db.prepare(`
-  SELECT 1 FROM jobs WHERE title = ? AND company = ? LIMIT 1
-`);
-
-export const getJobs = db.prepare(`
-  SELECT * FROM jobs
-  WHERE
-    (:status IS NULL OR status = :status) AND
-    (:category IS NULL OR category = :category) AND
-    (:source IS NULL OR source = :source) AND
-    (:search IS NULL OR title LIKE :search OR company LIKE :search)
-  ORDER BY posted_at DESC, scraped_at DESC
-  LIMIT :limit OFFSET :offset
-`);
-
-export const countJobs = db.prepare(`
-  SELECT COUNT(*) as total FROM jobs
-  WHERE
-    (:status IS NULL OR status = :status) AND
-    (:category IS NULL OR category = :category) AND
-    (:source IS NULL OR source = :source) AND
-    (:search IS NULL OR title LIKE :search OR company LIKE :search)
-`);
-
-export const updateJobStatus = db.prepare(`
-  UPDATE jobs SET status = ?, is_new = 0 WHERE id = ?
-`);
-
-export const markAllSeen = db.prepare(`
-  UPDATE jobs SET is_new = 0 WHERE is_new = 1
-`);
-
-export const getStats = db.prepare(`
-  SELECT
-    COUNT(*) as total,
-    SUM(CASE WHEN is_new = 1 THEN 1 ELSE 0 END) as new_count,
-    SUM(CASE WHEN status = 'applied' THEN 1 ELSE 0 END) as applied,
-    SUM(CASE WHEN status = 'saved' THEN 1 ELSE 0 END) as saved,
-    SUM(CASE WHEN scraped_at >= datetime('now', '-24 hours') THEN 1 ELSE 0 END) as last_24h
-  FROM jobs
-`);
-
-export const getSettings = db.prepare('SELECT key, value FROM settings');
-
-export const upsertSetting = db.prepare(`
-  INSERT INTO settings (key, value) VALUES (?, ?)
-  ON CONFLICT(key) DO UPDATE SET value = excluded.value
-`);
-
-export const startScrapeRun = db.prepare(`
-  INSERT INTO scrape_runs (started_at) VALUES (datetime('now'))
-`);
-
-export const finishScrapeRun = db.prepare(`
-  UPDATE scrape_runs
-  SET finished_at = datetime('now'), jobs_found = ?, jobs_new = ?, errors = ?
-  WHERE id = ?
-`);
-
-export const getLastScrapeRun = db.prepare(`
-  SELECT * FROM scrape_runs ORDER BY started_at DESC LIMIT 1
-`);
-
-// Auto-cleanup: delete jobs older than 3 days (except saved/applied)
-export const deleteOldJobs = db.prepare(`
-  DELETE FROM jobs
-  WHERE status NOT IN ('saved', 'applied')
-  AND scraped_at < datetime('now', '-3 days')
-`);
-
-export const getNewJobsSince = db.prepare(`
-  SELECT * FROM jobs
-  WHERE is_new = 1 AND scraped_at >= ?
-  ORDER BY scraped_at DESC
-`);
-
-export function getAllSettings() {
-  const rows = getSettings.all();
-  return Object.fromEntries(rows.map(r => [r.key, r.value]));
+    if (error && !error.message.includes('duplicate')) {
+        throw error;
+    }
+    // ignoreDuplicates: returns empty array for existing rows, array with row for new
+    return { changes: data && data.length > 0 ? 1 : 0 };
 }
 
-export default db;
+export async function jobExistsByTitleCompany(title, company) {
+    const { data } = await supabase
+        .from('jobs')
+        .select('id')
+        .eq('title', title)
+        .eq('company', company)
+        .limit(1);
+    return data && data.length > 0 ? data[0] : null;
+}
+
+export async function getJobs(params) {
+    let query = supabase
+        .from('jobs')
+        .select('*', { count: 'exact' });
+
+    if (params.status) query = query.eq('status', params.status);
+    if (params.category) query = query.eq('category', params.category);
+    if (params.source) query = query.eq('source', params.source);
+    if (params.search) {
+        // Search in title or company (ILIKE for case-insensitive)
+        const term = params.search.replace(/%/g, '');
+        query = query.or(`title.ilike.%${term}%,company.ilike.%${term}%`);
+    }
+
+    query = query
+        .order('posted_at', { ascending: false, nullsFirst: false })
+        .order('scraped_at', { ascending: false })
+        .range(params.offset, params.offset + params.limit - 1);
+
+    const { data, count, error } = await query;
+    if (error) throw error;
+    return { jobs: data || [], total: count || 0 };
+}
+
+export async function updateJobStatus(status, id) {
+    const { error } = await supabase
+        .from('jobs')
+        .update({ status, is_new: false })
+        .eq('id', id);
+    if (error) throw error;
+}
+
+export async function markAllSeen() {
+    const { error } = await supabase
+        .from('jobs')
+        .update({ is_new: false })
+        .eq('is_new', true);
+    if (error) throw error;
+}
+
+export async function getStats() {
+    // Use RPC function or multiple queries
+    const { data, error } = await supabase.rpc('get_job_stats');
+    if (error) {
+        // Fallback: manual queries if RPC not set up yet
+        const { count: total } = await supabase.from('jobs').select('*', { count: 'exact', head: true });
+        const { count: new_count } = await supabase.from('jobs').select('*', { count: 'exact', head: true }).eq('is_new', true);
+        const { count: applied } = await supabase.from('jobs').select('*', { count: 'exact', head: true }).eq('status', 'applied');
+        const { count: saved } = await supabase.from('jobs').select('*', { count: 'exact', head: true }).eq('status', 'saved');
+        const since24h = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+        const { count: last_24h } = await supabase.from('jobs').select('*', { count: 'exact', head: true }).gte('scraped_at', since24h);
+        return { total: total || 0, new_count: new_count || 0, applied: applied || 0, saved: saved || 0, last_24h: last_24h || 0 };
+    }
+    return data;
+}
+
+// ── Settings ─────────────────────────────────────────────────────────────────
+
+export async function getAllSettings() {
+    const { data, error } = await supabase
+        .from('settings')
+        .select('key, value');
+    if (error) throw error;
+    return Object.fromEntries((data || []).map(r => [r.key, r.value]));
+}
+
+export async function upsertSetting(key, value) {
+    const { error } = await supabase
+        .from('settings')
+        .upsert({ key, value: String(value) }, { onConflict: 'key' });
+    if (error) throw error;
+}
+
+// ── Scrape Runs ──────────────────────────────────────────────────────────────
+
+export async function startScrapeRun() {
+    const { data, error } = await supabase
+        .from('scrape_runs')
+        .insert({ started_at: new Date().toISOString() })
+        .select('id')
+        .single();
+    if (error) throw error;
+    return data.id;
+}
+
+export async function finishScrapeRun(jobsFound, jobsNew, errors, runId) {
+    const { error } = await supabase
+        .from('scrape_runs')
+        .update({
+            finished_at: new Date().toISOString(),
+            jobs_found: jobsFound,
+            jobs_new: jobsNew,
+            errors: errors,
+        })
+        .eq('id', runId);
+    if (error) throw error;
+}
+
+export async function getLastScrapeRun() {
+    const { data, error } = await supabase
+        .from('scrape_runs')
+        .select('*')
+        .order('started_at', { ascending: false })
+        .limit(1)
+        .single();
+    if (error && error.code !== 'PGRST116') throw error; // PGRST116 = no rows
+    return data || null;
+}
+
+// ── Cleanup ──────────────────────────────────────────────────────────────────
+
+export async function deleteOldJobs() {
+    const cutoff = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString();
+    const { data, error } = await supabase
+        .from('jobs')
+        .delete()
+        .not('status', 'in', '("saved","applied")')
+        .lt('scraped_at', cutoff)
+        .select('id');
+    if (error) throw error;
+    return { changes: data ? data.length : 0 };
+}
+
+// ── Digest helpers ───────────────────────────────────────────────────────────
+
+export async function getNewJobsSince(since) {
+    const { data, error } = await supabase
+        .from('jobs')
+        .select('*')
+        .eq('is_new', true)
+        .gte('scraped_at', since)
+        .order('scraped_at', { ascending: false });
+    if (error) throw error;
+    return data || [];
+}
+
+// ── Job Checker ──────────────────────────────────────────────────────────────
+
+export async function getActiveJobUrls() {
+    const cutoff = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+    const { data, error } = await supabase
+        .from('jobs')
+        .select('id, url, company, title')
+        .not('status', 'in', '("closed","ignored")')
+        .gte('scraped_at', cutoff)
+        .order('scraped_at', { ascending: false })
+        .limit(500);
+    if (error) throw error;
+    return data || [];
+}
+
+export async function markJobClosed(id) {
+    const { error } = await supabase
+        .from('jobs')
+        .update({ status: 'closed', closed_at: new Date().toISOString() })
+        .eq('id', id);
+    if (error) throw error;
+}
+
+// ── Initialize ───────────────────────────────────────────────────────────────
+
+export async function initDB() {
+    await seedSettings();
+    console.log('✅ Supabase connected & settings seeded');
+}
+
+export default supabase;

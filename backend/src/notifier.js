@@ -8,6 +8,8 @@ import { getAllSettings } from './db.js';
 
 /**
  * Send a Slack message via incoming webhook
+ * @param {string} webhookUrl
+ * @param {object} payload
  */
 async function sendSlack(webhookUrl, payload) {
     const resp = await fetch(webhookUrl, {
@@ -27,7 +29,7 @@ async function sendSlack(webhookUrl, payload) {
  * Called after each scrape with the list of newly inserted jobs
  */
 export async function notifyDreamCompanyJobs(newJobs) {
-    const settings = getAllSettings();
+    const settings = await getAllSettings();
     if (settings.slack_enabled !== 'true' || !settings.slack_webhook_url) return;
 
     const dreamCompanies = (settings.dream_companies || '')
@@ -98,7 +100,7 @@ export async function notifyDreamCompanyJobs(newJobs) {
  * Send a batched digest of all new jobs since last digest
  */
 export async function sendDigest(newJobsSinceLastDigest) {
-    const settings = getAllSettings();
+    const settings = await getAllSettings();
     if (settings.slack_enabled !== 'true' || !settings.slack_webhook_url) return;
     if (newJobsSinceLastDigest.length === 0) return;
 

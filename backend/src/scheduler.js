@@ -13,8 +13,8 @@ let lastDigestTime = new Date().toISOString();
 
 // ── Scraper ──────────────────────────────────────────────────────────────────
 
-export function startScheduler() {
-    const settings = getAllSettings();
+export async function startScheduler() {
+    const settings = await getAllSettings();
     const intervalMin = parseInt(settings.scrape_interval_minutes) || 30;
 
     console.log(`⏰ Scheduler initialized — scraping every ${intervalMin} minutes`);
@@ -39,14 +39,18 @@ export function startScheduler() {
     });
 
     // Cleanup old jobs daily at midnight
-    cron.schedule('0 0 * * *', () => {
-        const result = deleteOldJobs.run();
+    cron.schedule('0 0 * * *', async () => {
+        const result = await deleteOldJobs();
         console.log(`🗑️  Cleanup: deleted ${result.changes} jobs older than 3 days`);
     });
 
     // Run cleanup on startup too
-    const startupCleanup = deleteOldJobs.run();
-    if (startupCleanup.changes > 0) console.log(`🗑️  Startup cleanup: deleted ${startupCleanup.changes} old jobs`);
+    try {
+        const startupCleanup = await deleteOldJobs();
+        if (startupCleanup.changes > 0) console.log(`🗑️  Startup cleanup: deleted ${startupCleanup.changes} old jobs`);
+    } catch (err) {
+        console.error('🗑️  Startup cleanup error:', err.message);
+    }
 
     console.log(`📨 Digest scheduled every ${digestHours} hours`);
     console.log(`🔍 Job URL checker scheduled every 12 hours`);
@@ -72,7 +76,7 @@ async function runScraperSafe() {
 
 async function runDigestSafe() {
     try {
-        const newJobs = getNewJobsSince.all(lastDigestTime);
+        const newJobs = await getNewJobsSince(lastDigestTime);
         if (newJobs.length > 0) {
             await sendDigest(newJobs);
             lastDigestTime = new Date().toISOString();

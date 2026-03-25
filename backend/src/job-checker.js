@@ -4,19 +4,7 @@
  * Marks dead URLs (404, 410, unreachable) as "closed".
  */
 
-import db, { getAllSettings } from './db.js';
-
-const getActiveJobUrls = db.prepare(`
-    SELECT id, url, company, title FROM jobs
-    WHERE status NOT IN ('closed', 'ignored')
-    AND scraped_at >= datetime('now', '-30 days')
-    ORDER BY scraped_at DESC
-    LIMIT 500
-`);
-
-const markJobClosed = db.prepare(`
-    UPDATE jobs SET status = 'closed', closed_at = datetime('now') WHERE id = ?
-`);
+import { getAllSettings, getActiveJobUrls, markJobClosed } from './db.js';
 
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
@@ -24,10 +12,10 @@ const sleep = (ms) => new Promise(r => setTimeout(r, ms));
  * Check a batch of job URLs and mark dead ones as closed
  */
 export async function checkJobUrls() {
-    const settings = getAllSettings();
+    const settings = await getAllSettings();
     if (settings.job_checker_enabled === 'false') return;
 
-    const jobs = getActiveJobUrls.all();
+    const jobs = await getActiveJobUrls();
     if (jobs.length === 0) return;
 
     console.log(`\n🔍 Job Checker: checking ${jobs.length} job URLs...`);
@@ -69,7 +57,7 @@ export async function checkJobUrls() {
             if (result.status === 'fulfilled') {
                 checked++;
                 if (result.value.dead) {
-                    markJobClosed.run(result.value.job.id);
+                    await markJobClosed(result.value.job.id);
                     closed++;
                     console.log(`   ❌ Closed: ${result.value.job.title} @ ${result.value.job.company}`);
                 }

@@ -20,9 +20,6 @@ COPY backend/src/ ./src/
 # Copy built frontend
 COPY --from=frontend-build /app/frontend/out ./frontend/out
 
-# Create data directory for SQLite
-RUN mkdir -p ./data
-
 EXPOSE 4000
 
 CMD ["node", "src/server.js"]

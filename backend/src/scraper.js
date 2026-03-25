@@ -14,22 +14,20 @@ import { scrapeDirectCareerPages } from './scrapers/direct.js';
 import { scrapeSimplifyJobs } from './scrapers/simplifyjobs.js';
 import { scrapeAdzuna } from './scrapers/adzuna.js';
 import { scrapeCareerPages } from './scrapers/career-pages.js';
-import { scrapeAICompanies } from './scrapers/ai-companies.js';
 import { scrapeWithScrapling } from './scrapers/scrapling.js';
 import { insertJob, jobExistsByTitleCompany, startScrapeRun, finishScrapeRun, getAllSettings } from './db.js';
 import { notifyDreamCompanyJobs } from './notifier.js';
 
 
 export async function runScraper() {
-    const settings = getAllSettings();
+    const settings = await getAllSettings();
     const filterSenior = settings.filter_exclude_senior !== 'false';
 
     console.log('\n🚀 Job Hunter Pro — Starting scrape run...');
     console.log(`⏰ ${new Date().toLocaleString()}`);
     console.log(`🔍 Filter senior roles: ${filterSenior}`);
 
-    const runInfo = startScrapeRun.run();
-    const runId = runInfo.lastInsertRowid;
+    const runId = await startScrapeRun();
 
     let totalFound = 0;
     let totalNew = 0;
@@ -50,7 +48,7 @@ export async function runScraper() {
     for (let i = 0; i < fastResults.length; i++) {
         const result = fastResults[i];
         if (result.status === 'fulfilled') {
-            const { newCount, inserted } = saveJobs(result.value);
+            const { newCount, inserted } = await saveJobs(result.value);
             totalFound += result.value.length;
             totalNew += newCount;
             allNewJobs.push(...inserted);
@@ -61,10 +59,6 @@ export async function runScraper() {
             console.error(`❌ ${msg}`);
         }
     }
-
-    // AI Companies probe disabled — SimplifyJobs already covers these companies.
-    // The 236-company API probe added minimal extra jobs but took 10+ minutes.
-    // Re-enable when we add Ashby API scraping (many AI cos use Ashby).
 
     // ── Browser-based scrapers (LinkedIn, Indeed) ─────────────────────────────
     if (process.env.SKIP_BROWSER_SCRAPERS === 'true') {
@@ -97,7 +91,7 @@ export async function runScraper() {
             for (const scraper of browserScrapers) {
                 try {
                     const jobs = await scraper.fn();
-                    const { newCount, inserted } = saveJobs(jobs);
+                    const { newCount, inserted } = await saveJobs(jobs);
                     totalFound += jobs.length;
                     totalNew += newCount;
                     allNewJobs.push(...inserted);
@@ -116,7 +110,7 @@ export async function runScraper() {
     // ── Scrapling (Python) — scrapes career pages with stealth browser ────────
     try {
         const scraplingJobs = await scrapeWithScrapling();
-        const { newCount, inserted } = saveJobs(scraplingJobs);
+        const { newCount, inserted } = await saveJobs(scraplingJobs);
         totalFound += scraplingJobs.length;
         totalNew += newCount;
         allNewJobs.push(...inserted);
@@ -126,7 +120,7 @@ export async function runScraper() {
     }
 
     // ── Finalize ───────────────────────────────────────────────────────────────
-    finishScrapeRun.run(totalFound, totalNew, errors.length ? JSON.stringify(errors) : null, runId);
+    await finishScrapeRun(totalFound, totalNew, errors.length ? JSON.stringify(errors) : null, runId);
 
     console.log(`\n✅ Scrape complete! Found: ${totalFound} | New: ${totalNew} | Errors: ${errors.length}`);
     console.log('─'.repeat(60));
@@ -170,22 +164,22 @@ function isRelevantTitle(title) {
 /**
  * Insert jobs into DB, returns count + list of actually-new (non-duplicate) jobs
  */
-function saveJobs(jobs) {
+async function saveJobs(jobs) {
     let newCount = 0;
     let filtered = 0;
     const inserted = [];
     for (const job of jobs) {
         if (!isRelevantTitle(job.title)) { filtered++; continue; }
         // Dedup: skip if same title+company already exists from another source
-        if (jobExistsByTitleCompany.get(job.title, job.company)) continue;
+        if (await jobExistsByTitleCompany(job.title, job.company)) continue;
         try {
-            const result = insertJob.run(job);
+            const result = await insertJob(job);
             if (result.changes > 0) {
                 newCount++;
                 inserted.push(job);
             }
         } catch (err) {
-            if (!err.message.includes('UNIQUE')) {
+            if (!err.message?.includes('duplicate')) {
                 console.error(`DB insert error: ${err.message}`);
             }
         }

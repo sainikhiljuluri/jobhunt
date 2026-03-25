@@ -26,17 +26,13 @@ ENV PYTHON_BIN=python3
 
 # Install backend dependencies
 COPY backend/package*.json ./
-RUN npm ci --only=production --ignore-scripts && \
-    npm rebuild better-sqlite3
+RUN npm ci --only=production
 
 # Copy backend source (includes src/data/*.json)
 COPY backend/src/ ./src/
 
 # Copy built frontend static files
 COPY --from=frontend-build /app/frontend/out ../frontend/out
-
-# Create data directory for SQLite
-RUN mkdir -p ./data
 
 ENV SKIP_BROWSER_SCRAPERS=true
 EXPOSE 4000

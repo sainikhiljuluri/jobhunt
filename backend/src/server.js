@@ -4,41 +4,44 @@
 
 import express from 'express';
 import cors from 'cors';
+import { initDB } from './db.js';
 import { startScheduler, triggerScrape } from './scheduler.js';
 import {
-    getJobs, countJobs, updateJobStatus, markAllSeen,
+    getJobs, updateJobStatus, markAllSeen,
     getStats, getAllSettings, upsertSetting, getLastScrapeRun,
 } from './db.js';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-// In production: set ALLOWED_ORIGIN env var to your Vercel URL (e.g. https://job-hunter-pro.vercel.app)
 app.use(cors());
 app.use(express.json());
 
 // ── Jobs ──────────────────────────────────────────────────────────────────────
 
-app.get('/api/jobs', (req, res) => {
-    const { status, category, source, search, page = 1, limit = 50 } = req.query;
-    const offset = (parseInt(page) - 1) * parseInt(limit);
+app.get('/api/jobs', async (req, res) => {
+    try {
+        const { status, category, source, search, page = 1, limit = 50 } = req.query;
+        const offset = (parseInt(page) - 1) * parseInt(limit);
 
-    const params = {
-        status: status || null,
-        category: category || null,
-        source: source || null,
-        search: search ? `%${search}%` : null,
-        limit: parseInt(limit),
-        offset,
-    };
+        const params = {
+            status: status || null,
+            category: category || null,
+            source: source || null,
+            search: search ? `%${search}%` : null,
+            limit: parseInt(limit),
+            offset,
+        };
 
-    const jobs = getJobs.all(params);
-    const { total } = countJobs.get(params);
-
-    res.json({ jobs, total, page: parseInt(page), limit: parseInt(limit) });
+        const { jobs, total } = await getJobs(params);
+        res.json({ jobs, total, page: parseInt(page), limit: parseInt(limit) });
+    } catch (err) {
+        console.error('GET /api/jobs error:', err);
+        res.status(500).json({ error: 'Failed to fetch jobs' });
+    }
 });
 
-app.patch('/api/jobs/:id/status', (req, res) => {
+app.patch('/api/jobs/:id/status', async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
 
@@ -47,43 +50,69 @@ app.patch('/api/jobs/:id/status', (req, res) => {
         return res.status(400).json({ error: `Invalid status. Must be one of: ${valid.join(', ')}` });
     }
 
-    updateJobStatus.run(status, id);
-    res.json({ ok: true });
+    try {
+        await updateJobStatus(status, id);
+        res.json({ ok: true });
+    } catch (err) {
+        console.error('PATCH /api/jobs/:id/status error:', err);
+        res.status(500).json({ error: 'Failed to update status' });
+    }
 });
 
-app.post('/api/jobs/mark-seen', (_req, res) => {
-    markAllSeen.run();
-    res.json({ ok: true });
+app.post('/api/jobs/mark-seen', async (_req, res) => {
+    try {
+        await markAllSeen();
+        res.json({ ok: true });
+    } catch (err) {
+        console.error('POST /api/jobs/mark-seen error:', err);
+        res.status(500).json({ error: 'Failed to mark seen' });
+    }
 });
 
 // ── Stats ─────────────────────────────────────────────────────────────────────
 
-app.get('/api/stats', (_req, res) => {
-    const stats = getStats.get();
-    const lastRun = getLastScrapeRun.get();
-    res.json({ ...stats, last_run: lastRun });
+app.get('/api/stats', async (_req, res) => {
+    try {
+        const stats = await getStats();
+        const lastRun = await getLastScrapeRun();
+        res.json({ ...stats, last_run: lastRun });
+    } catch (err) {
+        console.error('GET /api/stats error:', err);
+        res.status(500).json({ error: 'Failed to fetch stats' });
+    }
 });
 
 // ── Scraper Control ───────────────────────────────────────────────────────────
 
 app.post('/api/scrape/run', async (_req, res) => {
     res.json({ ok: true, message: 'Scrape started in background' });
-    // Don't await — let it run in background
     triggerScrape().catch(console.error);
 });
 
 // ── Settings ──────────────────────────────────────────────────────────────────
 
-app.get('/api/settings', (_req, res) => {
-    res.json(getAllSettings());
+app.get('/api/settings', async (_req, res) => {
+    try {
+        const settings = await getAllSettings();
+        res.json(settings);
+    } catch (err) {
+        console.error('GET /api/settings error:', err);
+        res.status(500).json({ error: 'Failed to fetch settings' });
+    }
 });
 
-app.post('/api/settings', (req, res) => {
-    const updates = req.body;
-    for (const [key, value] of Object.entries(updates)) {
-        upsertSetting.run(key, String(value));
+app.post('/api/settings', async (req, res) => {
+    try {
+        const updates = req.body;
+        for (const [key, value] of Object.entries(updates)) {
+            await upsertSetting(key, String(value));
+        }
+        const settings = await getAllSettings();
+        res.json({ ok: true, settings });
+    } catch (err) {
+        console.error('POST /api/settings error:', err);
+        res.status(500).json({ error: 'Failed to update settings' });
     }
-    res.json({ ok: true, settings: getAllSettings() });
 });
 
 // ── Health ────────────────────────────────────────────────────────────────────
@@ -102,7 +131,6 @@ const frontendPath = path.join(__dirname, '../../frontend/out');
 import fs from 'fs';
 if (fs.existsSync(frontendPath)) {
     app.use(express.static(frontendPath));
-    // Serve index.html for all non-API routes (SPA fallback)
     app.get('*', (req, res) => {
         if (req.path.startsWith('/api/')) return res.status(404).json({ error: 'Not found' });
         const page = path.join(frontendPath, req.path, 'index.html');
@@ -114,7 +142,15 @@ if (fs.existsSync(frontendPath)) {
 
 // ── Start ─────────────────────────────────────────────────────────────────────
 
-app.listen(PORT, () => {
-    console.log(`\n🎯 Job Hunter Pro running at http://localhost:${PORT}`);
-    startScheduler();
+async function start() {
+    await initDB();
+    app.listen(PORT, () => {
+        console.log(`\n🎯 Job Hunter Pro running at http://localhost:${PORT}`);
+        startScheduler();
+    });
+}
+
+start().catch(err => {
+    console.error('💥 Failed to start server:', err);
+    process.exit(1);
 });
