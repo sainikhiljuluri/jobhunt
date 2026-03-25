@@ -3010,5 +3010,293 @@
     "slug": "scribe",
     "ats": "ashby",
     "category": "Productivity"
+  },
+  {
+    "name": "Luma Health",
+    "slug": "lumahealth",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Freed",
+    "slug": "freed",
+    "ats": "ashby",
+    "category": "Healthcare AI"
+  },
+  {
+    "name": "Forward",
+    "slug": "forward",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "One Medical",
+    "slug": "onemedical",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Clover Health",
+    "slug": "cloverhealth",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Oscar Health",
+    "slug": "oscar",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Headway",
+    "slug": "headway",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Alma",
+    "slug": "alma",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Pelago",
+    "slug": "pelago",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Maven Clinic",
+    "slug": "maven",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Tia",
+    "slug": "tia",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Midi Health",
+    "slug": "midi-health",
+    "ats": "ashby",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Sesame",
+    "slug": "sesame",
+    "ats": "ashby",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Amwell",
+    "slug": "amwell",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "AlayaCare",
+    "slug": "alayacare",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Eko Health",
+    "slug": "eko",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Relay Therapeutics",
+    "slug": "relaytherapeutics",
+    "ats": "greenhouse",
+    "category": "Biotech"
+  },
+  {
+    "name": "Absci",
+    "slug": "absci",
+    "ats": "greenhouse",
+    "category": "Biotech"
+  },
+  {
+    "name": "Arsenal Bio",
+    "slug": "arsenalbio",
+    "ats": "lever",
+    "category": "Biotech"
+  },
+  {
+    "name": "Nkarta",
+    "slug": "nkarta",
+    "ats": "greenhouse",
+    "category": "Biotech"
+  },
+  {
+    "name": "Color Health",
+    "slug": "color-health",
+    "ats": "ashby",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Natera",
+    "slug": "natera",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Truveta",
+    "slug": "truveta",
+    "ats": "greenhouse",
+    "category": "Healthcare Data"
+  },
+  {
+    "name": "Synapse Health",
+    "slug": "synapsehealth",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "HealthVerity",
+    "slug": "healthverity",
+    "ats": "greenhouse",
+    "category": "Healthcare Data"
+  },
+  {
+    "name": "Medal",
+    "slug": "medal",
+    "ats": "ashby",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Collective Health",
+    "slug": "collectivehealth",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Resilience",
+    "slug": "resilience",
+    "ats": "greenhouse",
+    "category": "Insurance"
+  },
+  {
+    "name": "Marshmallow",
+    "slug": "marshmallow",
+    "ats": "ashby",
+    "category": "Insurance"
+  },
+  {
+    "name": "Wakam",
+    "slug": "wakam",
+    "ats": "greenhouse",
+    "category": "Insurance"
+  },
+  {
+    "name": "Openly",
+    "slug": "openly",
+    "ats": "greenhouse",
+    "category": "Insurance"
+  },
+  {
+    "name": "Bestow",
+    "slug": "bestow",
+    "ats": "ashby",
+    "category": "Insurance"
+  },
+  {
+    "name": "Ethos Life",
+    "slug": "ethos",
+    "ats": "greenhouse",
+    "category": "Insurance"
+  },
+  {
+    "name": "Ladder",
+    "slug": "ladder",
+    "ats": "ashby",
+    "category": "Insurance"
+  },
+  {
+    "name": "Sure",
+    "slug": "sure",
+    "ats": "lever",
+    "category": "Insurance"
+  },
+  {
+    "name": "Hyperexponential",
+    "slug": "hyperexponential",
+    "ats": "ashby",
+    "category": "Insurance"
+  },
+  {
+    "name": "Double",
+    "slug": "double",
+    "ats": "ashby",
+    "category": "AI"
+  },
+  {
+    "name": "Durable",
+    "slug": "durable",
+    "ats": "greenhouse",
+    "category": "AI"
+  },
+  {
+    "name": "Krea AI",
+    "slug": "krea",
+    "ats": "ashby",
+    "category": "Generative AI"
+  },
+  {
+    "name": "Udio",
+    "slug": "udio",
+    "ats": "greenhouse",
+    "category": "Audio AI"
+  },
+  {
+    "name": "Exa AI",
+    "slug": "exa",
+    "ats": "ashby",
+    "category": "AI Search"
+  },
+  {
+    "name": "Browserbase",
+    "slug": "browserbase",
+    "ats": "ashby",
+    "category": "AI Infrastructure"
+  },
+  {
+    "name": "Langfuse",
+    "slug": "langfuse",
+    "ats": "ashby",
+    "category": "LLMOps"
+  },
+  {
+    "name": "Nomic",
+    "slug": "nomic",
+    "ats": "ashby",
+    "category": "AI"
+  },
+  {
+    "name": "Iterative",
+    "slug": "iterative",
+    "ats": "ashby",
+    "category": "ML Platform"
+  },
+  {
+    "name": "Toloka",
+    "slug": "toloka",
+    "ats": "greenhouse",
+    "category": "AI Data"
+  },
+  {
+    "name": "Remotasks",
+    "slug": "remotasks",
+    "ats": "greenhouse",
+    "category": "AI Data"
+  },
+  {
+    "name": "Dispatch",
+    "slug": "dispatch",
+    "ats": "greenhouse",
+    "category": "Healthcare"
   }
 ]
