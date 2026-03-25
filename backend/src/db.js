@@ -86,9 +86,8 @@ export async function getJobs(params) {
     if (params.category) query = query.eq('category', params.category);
     if (params.source) query = query.eq('source', params.source);
     if (params.search) {
-        // Search in title or company (ILIKE for case-insensitive)
-        const term = params.search.replace(/%/g, '');
-        query = query.or(`title.ilike.%${term}%,company.ilike.%${term}%`);
+        const term = params.search.replace(/[%_]/g, '');
+        if (term) query = query.or(`title.ilike.%${term}%,company.ilike.%${term}%`);
     }
 
     query = query

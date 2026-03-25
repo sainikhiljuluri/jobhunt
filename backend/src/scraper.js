@@ -125,6 +125,7 @@ export async function runScraper() {
             allNewJobs.push(...inserted);
             console.log(`📦 Scrapling: ${scraplingJobs.length} found, ${newCount} new`);
         } catch (err) {
+            errors.push(`Scrapling: ${err.message}`);
             console.error(`❌ Scrapling: ${err.message}`);
         }
     } finally {

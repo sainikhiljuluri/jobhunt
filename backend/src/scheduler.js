@@ -23,19 +23,19 @@ export async function startScheduler() {
     runScraperSafe();
 
     // Scrape on configured interval (default: every 30 min)
-    cron.schedule(`*/${intervalMin} * * * *`, () => {
-        runScraperSafe();
+    cron.schedule(`*/${intervalMin} * * * *`, async () => {
+        await runScraperSafe();
     });
 
     // Digest cron — runs on its own interval (default: every 6 hours)
     const digestHours = parseInt(settings.digest_interval_hours) || 6;
-    cron.schedule(`0 */${digestHours} * * *`, () => {
-        runDigestSafe();
+    cron.schedule(`0 */${digestHours} * * *`, async () => {
+        await runDigestSafe();
     });
 
     // Job health checker — runs every 12 hours
-    cron.schedule('0 */12 * * *', () => {
-        runJobCheckerSafe();
+    cron.schedule('0 */12 * * *', async () => {
+        await runJobCheckerSafe();
     });
 
     // Cleanup old jobs daily at midnight

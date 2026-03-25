@@ -28,7 +28,7 @@ app.get('/api/jobs', async (req, res) => {
             status: status || null,
             category: category || null,
             source: source || null,
-            search: search ? `%${search}%` : null,
+            search: search || null,
             limit: parseInt(limit),
             offset,
         };
