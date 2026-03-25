@@ -1,0 +1,1736 @@
+[
+  {
+    "name": "OpenAI",
+    "slug": "openai",
+    "ats": "ashby",
+    "category": "Foundation Models"
+  },
+  {
+    "name": "Anthropic",
+    "slug": "anthropic",
+    "ats": "greenhouse",
+    "category": "Foundation Models"
+  },
+  {
+    "name": "xAI",
+    "slug": "xai",
+    "ats": "greenhouse",
+    "category": "Foundation Models"
+  },
+  {
+    "name": "Cohere",
+    "slug": "cohere",
+    "ats": "ashby",
+    "category": "Foundation Models"
+  },
+  {
+    "name": "Character.AI",
+    "slug": "character",
+    "ats": "ashby",
+    "category": "Foundation Models"
+  },
+  {
+    "name": "Perplexity AI",
+    "slug": "perplexity",
+    "ats": "ashby",
+    "category": "Foundation Models"
+  },
+  {
+    "name": "Reka AI",
+    "slug": "reka",
+    "ats": "ashby",
+    "category": "Foundation Models"
+  },
+  {
+    "name": "Essential AI",
+    "slug": "essential",
+    "ats": "greenhouse",
+    "category": "Foundation Models"
+  },
+  {
+    "name": "Imbue",
+    "slug": "imbue",
+    "ats": "greenhouse",
+    "category": "Foundation Models"
+  },
+  {
+    "name": "Contextual AI",
+    "slug": "contextual",
+    "ats": "ashby",
+    "category": "Foundation Models"
+  },
+  {
+    "name": "Writer",
+    "slug": "writer",
+    "ats": "ashby",
+    "category": "Generative AI"
+  },
+  {
+    "name": "Typeface",
+    "slug": "typeface",
+    "ats": "greenhouse",
+    "category": "Generative AI"
+  },
+  {
+    "name": "Runway",
+    "slug": "runway",
+    "ats": "ashby",
+    "category": "Generative AI"
+  },
+  {
+    "name": "Sierra AI",
+    "slug": "sierra",
+    "ats": "ashby",
+    "category": "Conversational AI"
+  },
+  {
+    "name": "Harvey AI",
+    "slug": "harvey",
+    "ats": "ashby",
+    "category": "Legal AI"
+  },
+  {
+    "name": "Hebbia",
+    "slug": "hebbia",
+    "ats": "greenhouse",
+    "category": "Enterprise AI"
+  },
+  {
+    "name": "Moveworks",
+    "slug": "moveworks",
+    "ats": "greenhouse",
+    "category": "Enterprise AI"
+  },
+  {
+    "name": "Cerebras Systems",
+    "slug": "cerebrassystems",
+    "ats": "greenhouse",
+    "category": "AI Hardware"
+  },
+  {
+    "name": "SambaNova Systems",
+    "slug": "sambanovasystems",
+    "ats": "greenhouse",
+    "category": "AI Hardware"
+  },
+  {
+    "name": "Tenstorrent",
+    "slug": "tenstorrent",
+    "ats": "greenhouse",
+    "category": "AI Hardware"
+  },
+  {
+    "name": "d-Matrix",
+    "slug": "d-matrix",
+    "ats": "ashby",
+    "category": "AI Hardware"
+  },
+  {
+    "name": "Rain AI",
+    "slug": "rain",
+    "ats": "ashby",
+    "category": "AI Hardware"
+  },
+  {
+    "name": "Lightmatter",
+    "slug": "lightmatter",
+    "ats": "greenhouse",
+    "category": "AI Hardware"
+  },
+  {
+    "name": "Lightning AI",
+    "slug": "lightning",
+    "ats": "ashby",
+    "category": "AI Infrastructure"
+  },
+  {
+    "name": "Databricks",
+    "slug": "databricks",
+    "ats": "greenhouse",
+    "category": "AI Infrastructure"
+  },
+  {
+    "name": "Anyscale",
+    "slug": "anyscale",
+    "ats": "ashby",
+    "category": "AI Infrastructure"
+  },
+  {
+    "name": "Modal",
+    "slug": "modal",
+    "ats": "ashby",
+    "category": "AI Infrastructure"
+  },
+  {
+    "name": "Baseten",
+    "slug": "baseten",
+    "ats": "ashby",
+    "category": "AI Infrastructure"
+  },
+  {
+    "name": "Pinecone",
+    "slug": "pinecone",
+    "ats": "ashby",
+    "category": "Vector DB"
+  },
+  {
+    "name": "Weaviate",
+    "slug": "weaviate",
+    "ats": "ashby",
+    "category": "Vector DB"
+  },
+  {
+    "name": "Vectara",
+    "slug": "vectara",
+    "ats": "greenhouse",
+    "category": "Vector DB"
+  },
+  {
+    "name": "Zilliz",
+    "slug": "zilliz",
+    "ats": "lever",
+    "category": "Vector DB"
+  },
+  {
+    "name": "Labelbox",
+    "slug": "labelbox",
+    "ats": "greenhouse",
+    "category": "Data Platform"
+  },
+  {
+    "name": "Arthur AI",
+    "slug": "arthur",
+    "ats": "ashby",
+    "category": "AI Safety"
+  },
+  {
+    "name": "Dataiku",
+    "slug": "dataiku",
+    "ats": "greenhouse",
+    "category": "ML Platform"
+  },
+  {
+    "name": "Domino Data Lab",
+    "slug": "dominodatalab",
+    "ats": "greenhouse",
+    "category": "ML Platform"
+  },
+  {
+    "name": "Comet ML",
+    "slug": "comet",
+    "ats": "greenhouse",
+    "category": "ML Platform"
+  },
+  {
+    "name": "Prefect",
+    "slug": "prefect",
+    "ats": "ashby",
+    "category": "Data Orchestration"
+  },
+  {
+    "name": "Cursor",
+    "slug": "cursor",
+    "ats": "ashby",
+    "category": "AI Code"
+  },
+  {
+    "name": "Cognition Labs",
+    "slug": "cognition",
+    "ats": "ashby",
+    "category": "AI Code"
+  },
+  {
+    "name": "Poolside AI",
+    "slug": "poolside",
+    "ats": "ashby",
+    "category": "AI Code"
+  },
+  {
+    "name": "Factory AI",
+    "slug": "factory",
+    "ats": "ashby",
+    "category": "AI Code"
+  },
+  {
+    "name": "Replit",
+    "slug": "replit",
+    "ats": "ashby",
+    "category": "AI Code"
+  },
+  {
+    "name": "Grammarly",
+    "slug": "grammarly",
+    "ats": "greenhouse",
+    "category": "Applied AI"
+  },
+  {
+    "name": "Waymo",
+    "slug": "waymo",
+    "ats": "greenhouse",
+    "category": "Autonomous Vehicles"
+  },
+  {
+    "name": "Aurora Innovation",
+    "slug": "aurorainnovation",
+    "ats": "greenhouse",
+    "category": "Autonomous Vehicles"
+  },
+  {
+    "name": "Motional",
+    "slug": "motional",
+    "ats": "greenhouse",
+    "category": "Autonomous Vehicles"
+  },
+  {
+    "name": "Nuro",
+    "slug": "nuro",
+    "ats": "greenhouse",
+    "category": "Autonomous Vehicles"
+  },
+  {
+    "name": "Kodiak Robotics",
+    "slug": "kodiak",
+    "ats": "greenhouse",
+    "category": "Autonomous Vehicles"
+  },
+  {
+    "name": "Ghost Autonomy",
+    "slug": "ghost",
+    "ats": "ashby",
+    "category": "Autonomous Vehicles"
+  },
+  {
+    "name": "May Mobility",
+    "slug": "maymobility",
+    "ats": "greenhouse",
+    "category": "Autonomous Vehicles"
+  },
+  {
+    "name": "Zoox",
+    "slug": "zoox",
+    "ats": "lever",
+    "category": "Autonomous Vehicles"
+  },
+  {
+    "name": "Torc Robotics",
+    "slug": "torcrobotics",
+    "ats": "greenhouse",
+    "category": "Autonomous Vehicles"
+  },
+  {
+    "name": "Waabi",
+    "slug": "waabi",
+    "ats": "lever",
+    "category": "Autonomous Vehicles"
+  },
+  {
+    "name": "Applied Intuition",
+    "slug": "appliedintuition",
+    "ats": "greenhouse",
+    "category": "Autonomous Vehicles"
+  },
+  {
+    "name": "Agility Robotics",
+    "slug": "agilityrobotics",
+    "ats": "greenhouse",
+    "category": "Robotics"
+  },
+  {
+    "name": "Apptronik",
+    "slug": "apptronik",
+    "ats": "greenhouse",
+    "category": "Robotics"
+  },
+  {
+    "name": "Locus Robotics",
+    "slug": "locusrobotics",
+    "ats": "greenhouse",
+    "category": "Robotics"
+  },
+  {
+    "name": "Skydio",
+    "slug": "skydio",
+    "ats": "ashby",
+    "category": "Robotics"
+  },
+  {
+    "name": "Anduril Industries",
+    "slug": "andurilindustries",
+    "ats": "greenhouse",
+    "category": "Defense AI"
+  },
+  {
+    "name": "Palantir",
+    "slug": "palantir",
+    "ats": "lever",
+    "category": "Defense AI"
+  },
+  {
+    "name": "Primer AI",
+    "slug": "primer",
+    "ats": "ashby",
+    "category": "Defense AI"
+  },
+  {
+    "name": "Recorded Future",
+    "slug": "recordedfuture",
+    "ats": "greenhouse",
+    "category": "Security AI"
+  },
+  {
+    "name": "Abnormal Security",
+    "slug": "abnormalsecurity",
+    "ats": "greenhouse",
+    "category": "Security AI"
+  },
+  {
+    "name": "Flatiron Health",
+    "slug": "flatironhealth",
+    "ats": "greenhouse",
+    "category": "Healthcare AI"
+  },
+  {
+    "name": "PathAI",
+    "slug": "pathai",
+    "ats": "greenhouse",
+    "category": "Healthcare AI"
+  },
+  {
+    "name": "Abridge",
+    "slug": "abridge",
+    "ats": "ashby",
+    "category": "Healthcare AI"
+  },
+  {
+    "name": "Ambience Healthcare",
+    "slug": "ambiencehealthcare",
+    "ats": "ashby",
+    "category": "Healthcare AI"
+  },
+  {
+    "name": "Insitro",
+    "slug": "insitro",
+    "ats": "ashby",
+    "category": "Healthcare AI"
+  },
+  {
+    "name": "Suki AI",
+    "slug": "suki",
+    "ats": "greenhouse",
+    "category": "Healthcare AI"
+  },
+  {
+    "name": "Notable Health",
+    "slug": "notable",
+    "ats": "ashby",
+    "category": "Healthcare AI"
+  },
+  {
+    "name": "Upstart",
+    "slug": "upstart",
+    "ats": "greenhouse",
+    "category": "Fintech AI"
+  },
+  {
+    "name": "AlphaSense",
+    "slug": "alphasense",
+    "ats": "greenhouse",
+    "category": "Fintech AI"
+  },
+  {
+    "name": "Socure",
+    "slug": "socure",
+    "ats": "ashby",
+    "category": "Fintech AI"
+  },
+  {
+    "name": "Sardine AI",
+    "slug": "sardine",
+    "ats": "ashby",
+    "category": "Fintech AI"
+  },
+  {
+    "name": "Cresta",
+    "slug": "cresta",
+    "ats": "greenhouse",
+    "category": "Conversational AI"
+  },
+  {
+    "name": "PolyAI",
+    "slug": "polyai",
+    "ats": "greenhouse",
+    "category": "Conversational AI"
+  },
+  {
+    "name": "Forethought",
+    "slug": "forethought",
+    "ats": "greenhouse",
+    "category": "Conversational AI"
+  },
+  {
+    "name": "LivePerson",
+    "slug": "liveperson",
+    "ats": "greenhouse",
+    "category": "Conversational AI"
+  },
+  {
+    "name": "Decagon",
+    "slug": "decagon",
+    "ats": "ashby",
+    "category": "Conversational AI"
+  },
+  {
+    "name": "Hive AI",
+    "slug": "hive",
+    "ats": "greenhouse",
+    "category": "Computer Vision"
+  },
+  {
+    "name": "Tractable",
+    "slug": "tractable",
+    "ats": "ashby",
+    "category": "Computer Vision"
+  },
+  {
+    "name": "Samsara",
+    "slug": "samsara",
+    "ats": "greenhouse",
+    "category": "IoT AI"
+  },
+  {
+    "name": "Snowflake AI",
+    "slug": "snowflake",
+    "ats": "ashby",
+    "category": "Data AI"
+  },
+  {
+    "name": "Pika Labs",
+    "slug": "pika",
+    "ats": "ashby",
+    "category": "Video AI"
+  },
+  {
+    "name": "ElevenLabs",
+    "slug": "elevenlabs",
+    "ats": "ashby",
+    "category": "Audio AI"
+  },
+  {
+    "name": "Descript",
+    "slug": "descript",
+    "ats": "greenhouse",
+    "category": "Audio AI"
+  },
+  {
+    "name": "AssemblyAI",
+    "slug": "assemblyai",
+    "ats": "greenhouse",
+    "category": "Audio AI"
+  },
+  {
+    "name": "Deepgram",
+    "slug": "deepgram",
+    "ats": "ashby",
+    "category": "Audio AI"
+  },
+  {
+    "name": "Brex",
+    "slug": "brex",
+    "ats": "greenhouse",
+    "category": "Applied AI"
+  },
+  {
+    "name": "Ramp",
+    "slug": "ramp",
+    "ats": "ashby",
+    "category": "Applied AI"
+  },
+  {
+    "name": "Plaid",
+    "slug": "plaid",
+    "ats": "ashby",
+    "category": "Applied AI"
+  },
+  {
+    "name": "Notion AI",
+    "slug": "notion",
+    "ats": "ashby",
+    "category": "Applied AI"
+  },
+  {
+    "name": "Figma AI",
+    "slug": "figma",
+    "ats": "greenhouse",
+    "category": "Applied AI"
+  },
+  {
+    "name": "Google DeepMind",
+    "slug": "deepmind",
+    "ats": "greenhouse",
+    "category": "Foundation Models"
+  },
+  {
+    "name": "Cohere Health",
+    "slug": "coherehealth",
+    "ats": "greenhouse",
+    "category": "Healthcare AI"
+  },
+  {
+    "name": "Butterfly Network",
+    "slug": "butterflynetwork",
+    "ats": "greenhouse",
+    "category": "Healthcare AI"
+  },
+  {
+    "name": "Komodo Health",
+    "slug": "komodohealth",
+    "ats": "greenhouse",
+    "category": "Healthcare AI"
+  },
+  {
+    "name": "Aledade",
+    "slug": "aledade",
+    "ats": "lever",
+    "category": "Healthcare AI"
+  },
+  {
+    "name": "Toast AI",
+    "slug": "toast",
+    "ats": "greenhouse",
+    "category": "Applied AI"
+  },
+  {
+    "name": "Duolingo AI",
+    "slug": "duolingo",
+    "ats": "greenhouse",
+    "category": "Education AI"
+  },
+  {
+    "name": "Coursera AI",
+    "slug": "coursera",
+    "ats": "greenhouse",
+    "category": "Education AI"
+  },
+  {
+    "name": "Khan Academy AI",
+    "slug": "khanacademy",
+    "ats": "greenhouse",
+    "category": "Education AI"
+  },
+  {
+    "name": "Regard",
+    "slug": "regard",
+    "ats": "ashby",
+    "category": "Healthcare AI"
+  },
+  {
+    "name": "Nabla",
+    "slug": "nabla",
+    "ats": "ashby",
+    "category": "Healthcare AI"
+  },
+  {
+    "name": "Material Security",
+    "slug": "materialsecurity",
+    "ats": "ashby",
+    "category": "Security AI"
+  },
+  {
+    "name": "Alloy",
+    "slug": "alloy",
+    "ats": "greenhouse",
+    "category": "Fintech AI"
+  },
+  {
+    "name": "Hawk AI",
+    "slug": "hawk",
+    "ats": "ashby",
+    "category": "Fintech AI"
+  },
+  {
+    "name": "Intercom",
+    "slug": "intercom",
+    "ats": "greenhouse",
+    "category": "Conversational AI"
+  },
+  {
+    "name": "Parloa",
+    "slug": "parloa",
+    "ats": "greenhouse",
+    "category": "Conversational AI"
+  },
+  {
+    "name": "LangChain",
+    "slug": "langchain",
+    "ats": "ashby",
+    "category": "LLM Framework"
+  },
+  {
+    "name": "LlamaIndex",
+    "slug": "llamaindex",
+    "ats": "ashby",
+    "category": "LLM Framework"
+  },
+  {
+    "name": "Union.ai",
+    "slug": "union",
+    "ats": "ashby",
+    "category": "Data Orchestration"
+  },
+  {
+    "name": "Braintrust",
+    "slug": "braintrust",
+    "ats": "ashby",
+    "category": "LLMOps"
+  },
+  {
+    "name": "Stripe",
+    "slug": "stripe",
+    "ats": "greenhouse",
+    "category": "Fintech"
+  },
+  {
+    "name": "Block (Square)",
+    "slug": "block",
+    "ats": "greenhouse",
+    "category": "Fintech"
+  },
+  {
+    "name": "Twilio",
+    "slug": "twilio",
+    "ats": "greenhouse",
+    "category": "Communication"
+  },
+  {
+    "name": "Pinterest",
+    "slug": "pinterest",
+    "ats": "greenhouse",
+    "category": "Social"
+  },
+  {
+    "name": "Reddit",
+    "slug": "reddit",
+    "ats": "greenhouse",
+    "category": "Social"
+  },
+  {
+    "name": "Dropbox",
+    "slug": "dropbox",
+    "ats": "greenhouse",
+    "category": "Cloud"
+  },
+  {
+    "name": "Okta",
+    "slug": "okta",
+    "ats": "greenhouse",
+    "category": "Security"
+  },
+  {
+    "name": "Zscaler",
+    "slug": "zscaler",
+    "ats": "greenhouse",
+    "category": "Security"
+  },
+  {
+    "name": "Cloudflare",
+    "slug": "cloudflare",
+    "ats": "greenhouse",
+    "category": "Infrastructure"
+  },
+  {
+    "name": "Fastly",
+    "slug": "fastly",
+    "ats": "greenhouse",
+    "category": "Infrastructure"
+  },
+  {
+    "name": "Datadog",
+    "slug": "datadog",
+    "ats": "greenhouse",
+    "category": "Observability"
+  },
+  {
+    "name": "Elastic",
+    "slug": "elastic",
+    "ats": "greenhouse",
+    "category": "Data"
+  },
+  {
+    "name": "MongoDB",
+    "slug": "mongodb",
+    "ats": "greenhouse",
+    "category": "Database"
+  },
+  {
+    "name": "Confluent",
+    "slug": "confluent",
+    "ats": "ashby",
+    "category": "Data"
+  },
+  {
+    "name": "GitLab",
+    "slug": "gitlab",
+    "ats": "greenhouse",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "Twitch",
+    "slug": "twitch",
+    "ats": "greenhouse",
+    "category": "Media"
+  },
+  {
+    "name": "Lyft",
+    "slug": "lyft",
+    "ats": "greenhouse",
+    "category": "Transportation"
+  },
+  {
+    "name": "Airbnb",
+    "slug": "airbnb",
+    "ats": "greenhouse",
+    "category": "Marketplace"
+  },
+  {
+    "name": "Instacart",
+    "slug": "instacart",
+    "ats": "greenhouse",
+    "category": "Delivery"
+  },
+  {
+    "name": "Robinhood",
+    "slug": "robinhood",
+    "ats": "greenhouse",
+    "category": "Fintech"
+  },
+  {
+    "name": "Coinbase",
+    "slug": "coinbase",
+    "ats": "greenhouse",
+    "category": "Crypto"
+  },
+  {
+    "name": "Gemini",
+    "slug": "gemini",
+    "ats": "greenhouse",
+    "category": "Crypto"
+  },
+  {
+    "name": "Ripple",
+    "slug": "ripple",
+    "ats": "greenhouse",
+    "category": "Crypto"
+  },
+  {
+    "name": "Airtable",
+    "slug": "airtable",
+    "ats": "greenhouse",
+    "category": "Productivity"
+  },
+  {
+    "name": "Asana",
+    "slug": "asana",
+    "ats": "greenhouse",
+    "category": "Productivity"
+  },
+  {
+    "name": "Linear",
+    "slug": "linear",
+    "ats": "ashby",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "Vercel",
+    "slug": "vercel",
+    "ats": "greenhouse",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "Supabase",
+    "slug": "supabase",
+    "ats": "ashby",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "Neon",
+    "slug": "neon",
+    "ats": "ashby",
+    "category": "Database"
+  },
+  {
+    "name": "PlanetScale",
+    "slug": "planetscale",
+    "ats": "greenhouse",
+    "category": "Database"
+  },
+  {
+    "name": "Railway",
+    "slug": "railway",
+    "ats": "ashby",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "Render",
+    "slug": "render",
+    "ats": "ashby",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "Postman",
+    "slug": "postman",
+    "ats": "greenhouse",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "Temporal",
+    "slug": "temporal",
+    "ats": "greenhouse",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "LaunchDarkly",
+    "slug": "launchdarkly",
+    "ats": "greenhouse",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "CircleCI",
+    "slug": "circleci",
+    "ats": "greenhouse",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "Buildkite",
+    "slug": "buildkite",
+    "ats": "greenhouse",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "Coder",
+    "slug": "coder",
+    "ats": "ashby",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "Scale AI",
+    "slug": "scaleai",
+    "ats": "greenhouse",
+    "category": "AI Infrastructure"
+  },
+  {
+    "name": "Suno",
+    "slug": "suno",
+    "ats": "ashby",
+    "category": "Audio AI"
+  },
+  {
+    "name": "Ideogram",
+    "slug": "ideogram",
+    "ats": "ashby",
+    "category": "Generative AI"
+  },
+  {
+    "name": "Marqeta",
+    "slug": "marqeta",
+    "ats": "greenhouse",
+    "category": "Fintech"
+  },
+  {
+    "name": "Affirm",
+    "slug": "affirm",
+    "ats": "greenhouse",
+    "category": "Fintech"
+  },
+  {
+    "name": "Chime",
+    "slug": "chime",
+    "ats": "greenhouse",
+    "category": "Fintech"
+  },
+  {
+    "name": "SoFi",
+    "slug": "sofi",
+    "ats": "greenhouse",
+    "category": "Fintech"
+  },
+  {
+    "name": "Adyen",
+    "slug": "adyen",
+    "ats": "greenhouse",
+    "category": "Fintech"
+  },
+  {
+    "name": "Mercury",
+    "slug": "mercury",
+    "ats": "greenhouse",
+    "category": "Fintech"
+  },
+  {
+    "name": "Melio",
+    "slug": "melio",
+    "ats": "greenhouse",
+    "category": "Fintech"
+  },
+  {
+    "name": "Gusto",
+    "slug": "gusto",
+    "ats": "greenhouse",
+    "category": "HR Tech"
+  },
+  {
+    "name": "Oyster",
+    "slug": "oyster",
+    "ats": "ashby",
+    "category": "HR Tech"
+  },
+  {
+    "name": "Lattice",
+    "slug": "lattice",
+    "ats": "greenhouse",
+    "category": "HR Tech"
+  },
+  {
+    "name": "1Password",
+    "slug": "1password",
+    "ats": "ashby",
+    "category": "Security"
+  },
+  {
+    "name": "Bitwarden",
+    "slug": "bitwarden",
+    "ats": "greenhouse",
+    "category": "Security"
+  },
+  {
+    "name": "Dashlane",
+    "slug": "dashlane",
+    "ats": "greenhouse",
+    "category": "Security"
+  },
+  {
+    "name": "Tailscale",
+    "slug": "tailscale",
+    "ats": "greenhouse",
+    "category": "Security"
+  },
+  {
+    "name": "Netskope",
+    "slug": "netskope",
+    "ats": "greenhouse",
+    "category": "Security"
+  },
+  {
+    "name": "Netlify",
+    "slug": "netlify",
+    "ats": "greenhouse",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "CockroachDB",
+    "slug": "cockroachlabs",
+    "ats": "greenhouse",
+    "category": "Database"
+  },
+  {
+    "name": "SingleStore",
+    "slug": "singlestore",
+    "ats": "greenhouse",
+    "category": "Database"
+  },
+  {
+    "name": "ClickHouse",
+    "slug": "clickhouse",
+    "ats": "greenhouse",
+    "category": "Database"
+  },
+  {
+    "name": "Fivetran",
+    "slug": "fivetran",
+    "ats": "greenhouse",
+    "category": "Data"
+  },
+  {
+    "name": "Airbyte",
+    "slug": "airbyte",
+    "ats": "ashby",
+    "category": "Data"
+  },
+  {
+    "name": "Hightouch",
+    "slug": "hightouch",
+    "ats": "greenhouse",
+    "category": "Data"
+  },
+  {
+    "name": "Amplitude",
+    "slug": "amplitude",
+    "ats": "greenhouse",
+    "category": "Analytics"
+  },
+  {
+    "name": "Mixpanel",
+    "slug": "mixpanel",
+    "ats": "greenhouse",
+    "category": "Analytics"
+  },
+  {
+    "name": "FullStory",
+    "slug": "fullstory",
+    "ats": "ashby",
+    "category": "Analytics"
+  },
+  {
+    "name": "PostHog",
+    "slug": "posthog",
+    "ats": "ashby",
+    "category": "Analytics"
+  },
+  {
+    "name": "Outreach",
+    "slug": "outreach",
+    "ats": "lever",
+    "category": "Sales"
+  },
+  {
+    "name": "Veracyte",
+    "slug": "veracyte",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Color Health",
+    "slug": "color",
+    "ats": "lever",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Ro",
+    "slug": "ro",
+    "ats": "lever",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Talkiatry",
+    "slug": "talkiatry",
+    "ats": "ashby",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Lyra Health",
+    "slug": "lyrahealth",
+    "ats": "lever",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Oura",
+    "slug": "oura",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "WHOOP",
+    "slug": "whoop",
+    "ats": "ashby",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Peloton",
+    "slug": "peloton",
+    "ats": "greenhouse",
+    "category": "Fitness"
+  },
+  {
+    "name": "Tonal",
+    "slug": "tonal",
+    "ats": "ashby",
+    "category": "Fitness"
+  },
+  {
+    "name": "Smartsheet",
+    "slug": "smartsheet",
+    "ats": "greenhouse",
+    "category": "Productivity"
+  },
+  {
+    "name": "ClickUp",
+    "slug": "clickup",
+    "ats": "ashby",
+    "category": "Productivity"
+  },
+  {
+    "name": "Pendo",
+    "slug": "pendo",
+    "ats": "greenhouse",
+    "category": "Product"
+  },
+  {
+    "name": "Faire",
+    "slug": "faire",
+    "ats": "greenhouse",
+    "category": "Marketplace"
+  },
+  {
+    "name": "StockX",
+    "slug": "stockx",
+    "ats": "greenhouse",
+    "category": "Marketplace"
+  },
+  {
+    "name": "Poshmark",
+    "slug": "poshmark",
+    "ats": "ashby",
+    "category": "Marketplace"
+  },
+  {
+    "name": "Whatnot",
+    "slug": "whatnot",
+    "ats": "ashby",
+    "category": "Marketplace"
+  },
+  {
+    "name": "OpenDoor",
+    "slug": "opendoor",
+    "ats": "greenhouse",
+    "category": "Real Estate"
+  },
+  {
+    "name": "Roblox",
+    "slug": "roblox",
+    "ats": "greenhouse",
+    "category": "Gaming"
+  },
+  {
+    "name": "Epic Games",
+    "slug": "epicgames",
+    "ats": "greenhouse",
+    "category": "Gaming"
+  },
+  {
+    "name": "Scopely",
+    "slug": "scopely",
+    "ats": "greenhouse",
+    "category": "Gaming"
+  },
+  {
+    "name": "Kabam",
+    "slug": "kabam",
+    "ats": "lever",
+    "category": "Gaming"
+  },
+  {
+    "name": "Supercell",
+    "slug": "supercell",
+    "ats": "ashby",
+    "category": "Gaming"
+  },
+  {
+    "name": "MindBody",
+    "slug": "mindbody",
+    "ats": "greenhouse",
+    "category": "Vertical SaaS"
+  },
+  {
+    "name": "Flexport",
+    "slug": "flexport",
+    "ats": "greenhouse",
+    "category": "Logistics"
+  },
+  {
+    "name": "Project44",
+    "slug": "project44",
+    "ats": "greenhouse",
+    "category": "Logistics"
+  },
+  {
+    "name": "Webflow",
+    "slug": "webflow",
+    "ats": "greenhouse",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "Bubble",
+    "slug": "bubble",
+    "ats": "ashby",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "Metabase",
+    "slug": "metabase",
+    "ats": "lever",
+    "category": "Analytics"
+  },
+  {
+    "name": "Dremio",
+    "slug": "dremio",
+    "ats": "greenhouse",
+    "category": "Data"
+  },
+  {
+    "name": "Starburst",
+    "slug": "starburst",
+    "ats": "greenhouse",
+    "category": "Data"
+  },
+  {
+    "name": "SendBird",
+    "slug": "sendbird",
+    "ats": "greenhouse",
+    "category": "Communication"
+  },
+  {
+    "name": "Stream",
+    "slug": "stream",
+    "ats": "ashby",
+    "category": "Communication"
+  },
+  {
+    "name": "LiveKit",
+    "slug": "livekit",
+    "ats": "ashby",
+    "category": "Communication"
+  },
+  {
+    "name": "Stytch",
+    "slug": "stytch",
+    "ats": "ashby",
+    "category": "Auth"
+  },
+  {
+    "name": "Clerk",
+    "slug": "clerk",
+    "ats": "ashby",
+    "category": "Auth"
+  },
+  {
+    "name": "New Relic",
+    "slug": "newrelic",
+    "ats": "greenhouse",
+    "category": "Observability"
+  },
+  {
+    "name": "Honeycomb",
+    "slug": "honeycomb",
+    "ats": "greenhouse",
+    "category": "Observability"
+  },
+  {
+    "name": "Cribl",
+    "slug": "cribl",
+    "ats": "greenhouse",
+    "category": "Observability"
+  },
+  {
+    "name": "Axiom",
+    "slug": "axiom",
+    "ats": "greenhouse",
+    "category": "Observability"
+  },
+  {
+    "name": "Vanta",
+    "slug": "vanta",
+    "ats": "ashby",
+    "category": "Security"
+  },
+  {
+    "name": "Drata",
+    "slug": "drata",
+    "ats": "ashby",
+    "category": "Security"
+  },
+  {
+    "name": "Secureframe",
+    "slug": "secureframe",
+    "ats": "lever",
+    "category": "Security"
+  },
+  {
+    "name": "Semgrep",
+    "slug": "semgrep",
+    "ats": "ashby",
+    "category": "Security"
+  },
+  {
+    "name": "Veracode",
+    "slug": "veracode",
+    "ats": "greenhouse",
+    "category": "Security"
+  },
+  {
+    "name": "Earnin",
+    "slug": "earnin",
+    "ats": "greenhouse",
+    "category": "Fintech"
+  },
+  {
+    "name": "DailyPay",
+    "slug": "dailypay",
+    "ats": "ashby",
+    "category": "Fintech"
+  },
+  {
+    "name": "Lemonade",
+    "slug": "lemonade",
+    "ats": "ashby",
+    "category": "Insurance"
+  },
+  {
+    "name": "Astranis",
+    "slug": "astranis",
+    "ats": "greenhouse",
+    "category": "Space"
+  },
+  {
+    "name": "Spire Global",
+    "slug": "spire",
+    "ats": "greenhouse",
+    "category": "Space"
+  },
+  {
+    "name": "Chainguard",
+    "slug": "chainguard",
+    "ats": "greenhouse",
+    "category": "Security"
+  },
+  {
+    "name": "TripAdvisor",
+    "slug": "tripadvisor",
+    "ats": "greenhouse",
+    "category": "Travel"
+  },
+  {
+    "name": "Thumbtack",
+    "slug": "thumbtack",
+    "ats": "greenhouse",
+    "category": "Marketplace"
+  },
+  {
+    "name": "TaskRabbit",
+    "slug": "taskrabbit",
+    "ats": "greenhouse",
+    "category": "Marketplace"
+  },
+  {
+    "name": "Upwork",
+    "slug": "upwork",
+    "ats": "greenhouse",
+    "category": "Marketplace"
+  },
+  {
+    "name": "Toptal",
+    "slug": "toptal",
+    "ats": "lever",
+    "category": "Marketplace"
+  },
+  {
+    "name": "Andela",
+    "slug": "andela",
+    "ats": "ashby",
+    "category": "HR Tech"
+  },
+  {
+    "name": "Turing",
+    "slug": "turing",
+    "ats": "greenhouse",
+    "category": "HR Tech"
+  },
+  {
+    "name": "Calendly",
+    "slug": "calendly",
+    "ats": "greenhouse",
+    "category": "Productivity"
+  },
+  {
+    "name": "Mural",
+    "slug": "mural",
+    "ats": "ashby",
+    "category": "Productivity"
+  },
+  {
+    "name": "Otter.ai",
+    "slug": "otter",
+    "ats": "greenhouse",
+    "category": "AI"
+  },
+  {
+    "name": "Iterable",
+    "slug": "iterable",
+    "ats": "greenhouse",
+    "category": "Marketing"
+  },
+  {
+    "name": "Braze",
+    "slug": "braze",
+    "ats": "greenhouse",
+    "category": "Marketing"
+  },
+  {
+    "name": "Klaviyo",
+    "slug": "klaviyo",
+    "ats": "greenhouse",
+    "category": "Marketing"
+  },
+  {
+    "name": "Attentive",
+    "slug": "attentive",
+    "ats": "greenhouse",
+    "category": "Marketing"
+  },
+  {
+    "name": "Appian",
+    "slug": "appian",
+    "ats": "greenhouse",
+    "category": "Enterprise"
+  },
+  {
+    "name": "UiPath",
+    "slug": "uipath",
+    "ats": "ashby",
+    "category": "Automation"
+  },
+  {
+    "name": "Celonis",
+    "slug": "celonis",
+    "ats": "greenhouse",
+    "category": "Automation"
+  },
+  {
+    "name": "NICE",
+    "slug": "nice",
+    "ats": "greenhouse",
+    "category": "Enterprise"
+  },
+  {
+    "name": "Relativity",
+    "slug": "relativity",
+    "ats": "greenhouse",
+    "category": "Legal Tech"
+  },
+  {
+    "name": "ConsenSys",
+    "slug": "consensys",
+    "ats": "greenhouse",
+    "category": "Crypto"
+  },
+  {
+    "name": "Alchemy",
+    "slug": "alchemy",
+    "ats": "greenhouse",
+    "category": "Crypto"
+  },
+  {
+    "name": "QuickNode",
+    "slug": "quicknode",
+    "ats": "ashby",
+    "category": "Crypto"
+  },
+  {
+    "name": "Uniswap",
+    "slug": "uniswap",
+    "ats": "ashby",
+    "category": "Crypto"
+  },
+  {
+    "name": "OpenSea",
+    "slug": "opensea",
+    "ats": "ashby",
+    "category": "Crypto"
+  },
+  {
+    "name": "StackBlitz",
+    "slug": "stackblitz",
+    "ats": "greenhouse",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "Deepnote",
+    "slug": "deepnote",
+    "ats": "ashby",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "Lambda",
+    "slug": "lambda",
+    "ats": "ashby",
+    "category": "AI Infrastructure"
+  },
+  {
+    "name": "Docebo",
+    "slug": "docebo",
+    "ats": "ashby",
+    "category": "Education"
+  },
+  {
+    "name": "SalesLoft",
+    "slug": "salesloft",
+    "ats": "greenhouse",
+    "category": "Sales"
+  },
+  {
+    "name": "ZoomInfo",
+    "slug": "zoominfo",
+    "ats": "greenhouse",
+    "category": "Sales"
+  },
+  {
+    "name": "6sense",
+    "slug": "6sense",
+    "ats": "greenhouse",
+    "category": "Sales"
+  },
+  {
+    "name": "Demandbase",
+    "slug": "demandbase",
+    "ats": "ashby",
+    "category": "Sales"
+  },
+  {
+    "name": "G2",
+    "slug": "g2",
+    "ats": "ashby",
+    "category": "Review Platform"
+  },
+  {
+    "name": "Algolia",
+    "slug": "algolia",
+    "ats": "greenhouse",
+    "category": "Dev Tools"
+  },
+  {
+    "name": "Mux",
+    "slug": "mux",
+    "ats": "ashby",
+    "category": "Video"
+  },
+  {
+    "name": "Cloudinary",
+    "slug": "cloudinary",
+    "ats": "lever",
+    "category": "Media"
+  },
+  {
+    "name": "Workato",
+    "slug": "workato",
+    "ats": "greenhouse",
+    "category": "Automation"
+  },
+  {
+    "name": "Zapier",
+    "slug": "zapier",
+    "ats": "ashby",
+    "category": "Automation"
+  },
+  {
+    "name": "n8n",
+    "slug": "n8n",
+    "ats": "ashby",
+    "category": "Automation"
+  },
+  {
+    "name": "Dragos",
+    "slug": "dragos",
+    "ats": "greenhouse",
+    "category": "Security"
+  },
+  {
+    "name": "Sysdig",
+    "slug": "sysdig",
+    "ats": "lever",
+    "category": "Security"
+  },
+  {
+    "name": "Sophos",
+    "slug": "sophos",
+    "ats": "lever",
+    "category": "Security"
+  },
+  {
+    "name": "Mollie",
+    "slug": "mollie",
+    "ats": "ashby",
+    "category": "Fintech"
+  },
+  {
+    "name": "Payoneer",
+    "slug": "payoneer",
+    "ats": "greenhouse",
+    "category": "Fintech"
+  },
+  {
+    "name": "Coupa",
+    "slug": "coupa",
+    "ats": "lever",
+    "category": "Fintech"
+  },
+  {
+    "name": "Navan (TripActions)",
+    "slug": "tripactions",
+    "ats": "greenhouse",
+    "category": "Travel"
+  },
+  {
+    "name": "Orchard",
+    "slug": "orchard",
+    "ats": "greenhouse",
+    "category": "Real Estate"
+  },
+  {
+    "name": "Roofstock",
+    "slug": "roofstock",
+    "ats": "greenhouse",
+    "category": "Real Estate"
+  },
+  {
+    "name": "Arcadia",
+    "slug": "arcadia",
+    "ats": "lever",
+    "category": "Climate"
+  },
+  {
+    "name": "Span",
+    "slug": "span",
+    "ats": "ashby",
+    "category": "Climate"
+  },
+  {
+    "name": "Benchling",
+    "slug": "benchling",
+    "ats": "ashby",
+    "category": "Biotech"
+  },
+  {
+    "name": "Freenome",
+    "slug": "freenome",
+    "ats": "greenhouse",
+    "category": "Healthcare"
+  },
+  {
+    "name": "Rocket Lab",
+    "slug": "rocketlab",
+    "ats": "greenhouse",
+    "category": "Space"
+  },
+  {
+    "name": "Vast",
+    "slug": "vast",
+    "ats": "greenhouse",
+    "category": "Space"
+  },
+  {
+    "name": "Coframe",
+    "slug": "coframe",
+    "ats": "ashby",
+    "category": "AI"
+  },
+  {
+    "name": "ActiveCampaign",
+    "slug": "activecampaign",
+    "ats": "lever",
+    "category": "Marketing"
+  },
+  {
+    "name": "Matillion",
+    "slug": "matillion",
+    "ats": "lever",
+    "category": "Data"
+  }
+]

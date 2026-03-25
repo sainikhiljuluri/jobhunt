@@ -1,7 +1,7 @@
 /**
- * AI Companies Scraper — 200+ US AI companies
- * Probes Greenhouse & Lever APIs, falls back to Playwright.
- * Runs alongside the general career-pages scraper.
+ * AI Companies Scraper — 113 verified companies with confirmed API endpoints.
+ * No runtime probing. Each company has a verified ATS type (ashby/greenhouse/lever)
+ * and confirmed slug that returns real job data.
  */
 
 import { readFileSync } from 'fs';
@@ -10,13 +10,12 @@ import { fileURLToPath } from 'url';
 import { makeJobId, isSeniorRole, classifyCategory, sleep } from '../utils/helpers.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const dataPath = join(__dirname, '../data/ai_companies.json');
-let aiCompanies = [];
+let companies = [];
 try {
-    aiCompanies = JSON.parse(readFileSync(dataPath, 'utf-8'));
-    console.log(`📂 AI Companies: loaded ${aiCompanies.length} companies from ${dataPath}`);
+    companies = JSON.parse(readFileSync(join(__dirname, '../data/verified_ai_companies.json'), 'utf-8'));
+    console.log(`📂 AI Companies: loaded ${companies.length} verified companies`);
 } catch (err) {
-    console.warn(`⚠️  ai_companies.json not found at ${dataPath}: ${err.message}`);
+    console.warn(`⚠️  verified_ai_companies.json not found: ${err.message}`);
 }
 
 const NEW_GRAD_KW = [
@@ -26,52 +25,46 @@ const NEW_GRAD_KW = [
 ];
 
 function isNewGrad(title) {
-    const t = title.toLowerCase();
-    return NEW_GRAD_KW.some(kw => t.includes(kw));
+    return NEW_GRAD_KW.some(kw => title.toLowerCase().includes(kw));
 }
 
-async function probeGreenhouse(slug) {
-    try {
-        const r = await fetch(`https://boards-api.greenhouse.io/v1/boards/${slug}/jobs`, {
-            headers: { 'User-Agent': 'JobHunterPro/1.0' },
-            signal: AbortSignal.timeout(3000),
-        });
-        if (!r.ok) return null;
-        const d = await r.json();
-        return d.jobs?.length ? d.jobs : null;
-    } catch { return null; }
+// ── ATS Fetchers ─────────────────────────────────────────────────────────────
+
+async function fetchAshby(slug) {
+    const r = await fetch(`https://api.ashbyhq.com/posting-api/job-board/${slug}`, {
+        headers: { 'User-Agent': 'JobHunterPro/1.0' },
+        signal: AbortSignal.timeout(8000),
+    });
+    if (!r.ok) return [];
+    const d = await r.json();
+    return d.jobs || [];
 }
 
-async function probeLever(slug) {
-    try {
-        const r = await fetch(`https://api.lever.co/v0/postings/${slug}?mode=json`, {
-            headers: { 'User-Agent': 'JobHunterPro/1.0' },
-            signal: AbortSignal.timeout(3000),
-        });
-        if (!r.ok) return null;
-        const d = await r.json();
-        return Array.isArray(d) && d.length ? d : null;
-    } catch { return null; }
+async function fetchGreenhouse(slug) {
+    const r = await fetch(`https://boards-api.greenhouse.io/v1/boards/${slug}/jobs?content=true`, {
+        headers: { 'User-Agent': 'JobHunterPro/1.0' },
+        signal: AbortSignal.timeout(8000),
+    });
+    if (!r.ok) return [];
+    const d = await r.json();
+    return d.jobs || [];
 }
 
-/**
- * Probe Ashby job board — used by OpenAI, Perplexity, Character.AI, Midjourney, etc.
- */
-async function probeAshby(slug) {
-    try {
-        const r = await fetch('https://api.ashbyhq.com/posting-api/job-board/' + slug, {
-            headers: { 'User-Agent': 'JobHunterPro/1.0' },
-            signal: AbortSignal.timeout(3000),
-        });
-        if (!r.ok) return null;
-        const d = await r.json();
-        return d.jobs?.length ? d.jobs : null;
-    } catch { return null; }
+async function fetchLever(slug) {
+    const r = await fetch(`https://api.lever.co/v0/postings/${slug}?mode=json`, {
+        headers: { 'User-Agent': 'JobHunterPro/1.0' },
+        signal: AbortSignal.timeout(8000),
+    });
+    if (!r.ok) return [];
+    const d = await r.json();
+    return Array.isArray(d) ? d : [];
 }
 
-function processAshby(ashbyJobs, company, filterSenior) {
+// ── ATS Parsers ──────────────────────────────────────────────────────────────
+
+function parseAshby(rawJobs, company, filterSenior) {
     const out = [];
-    for (const j of ashbyJobs) {
+    for (const j of rawJobs) {
         const title = j.title || '';
         if (!isNewGrad(title)) continue;
         if (filterSenior && isSeniorRole(title)) continue;
@@ -80,24 +73,16 @@ function processAshby(ashbyJobs, company, filterSenior) {
             id: makeJobId(url), title, company: company.name,
             location: j.location || 'US', url,
             source: 'ai-companies', category: classifyCategory(title, company.category),
-            salary: null, description: j.descriptionPlain || null,
+            salary: null, description: (j.descriptionPlain || '').slice(0, 500) || null,
             posted_at: j.publishedAt ? new Date(j.publishedAt).toISOString() : new Date().toISOString(),
         });
     }
     return out;
 }
 
-function slugVariants(name) {
-    const n = name.toLowerCase().replace(/\s*ai$/i, '').replace(/[()]/g, '').trim();
-    return [...new Set([
-        n.replace(/[^a-z0-9]/g, ''),
-        n.replace(/[^a-z0-9]+/g, '-').replace(/-+$/, ''),
-    ].filter(s => s.length > 2))].slice(0, 2);
-}
-
-function processGreenhouse(ghJobs, company, filterSenior) {
+function parseGreenhouse(rawJobs, company, filterSenior) {
     const out = [];
-    for (const j of ghJobs) {
+    for (const j of rawJobs) {
         const title = j.title || '';
         if (!isNewGrad(title)) continue;
         if (filterSenior && isSeniorRole(title)) continue;
@@ -106,16 +91,16 @@ function processGreenhouse(ghJobs, company, filterSenior) {
             id: makeJobId(url), title, company: company.name,
             location: j.location?.name || 'US', url,
             source: 'ai-companies', category: classifyCategory(title, company.category),
-            salary: null, description: j.content ? j.content.replace(/<[^>]*>/g, '') : null,
+            salary: null, description: j.content ? j.content.replace(/<[^>]*>/g, '').slice(0, 500) : null,
             posted_at: j.updated_at ? new Date(j.updated_at).toISOString() : new Date().toISOString(),
         });
     }
     return out;
 }
 
-function processLever(postings, company, filterSenior) {
+function parseLever(rawJobs, company, filterSenior) {
     const out = [];
-    for (const p of postings) {
+    for (const p of rawJobs) {
         const title = p.text || '';
         if (!isNewGrad(title)) continue;
         if (filterSenior && isSeniorRole(title)) continue;
@@ -124,63 +109,66 @@ function processLever(postings, company, filterSenior) {
             id: makeJobId(url), title, company: company.name,
             location: p.categories?.location || 'US', url,
             source: 'ai-companies', category: classifyCategory(title, company.category),
-            salary: null, description: p.descriptionPlain || null,
+            salary: null, description: (p.descriptionPlain || '').slice(0, 500) || null,
             posted_at: p.createdAt ? new Date(p.createdAt).toISOString() : new Date().toISOString(),
         });
     }
     return out;
 }
 
+// ── Orchestrator ─────────────────────────────────────────────────────────────
+
+const FETCHERS = {
+    ashby: fetchAshby,
+    greenhouse: fetchGreenhouse,
+    lever: fetchLever,
+};
+
+const PARSERS = {
+    ashby: parseAshby,
+    greenhouse: parseGreenhouse,
+    lever: parseLever,
+};
+
 export async function scrapeAICompanies(filterSenior = true) {
-    console.log(`\n🤖 AI Companies: probing ${aiCompanies.length} companies...`);
+    if (companies.length === 0) return [];
+
+    console.log(`\n🤖 AI Companies: scraping ${companies.length} verified companies...`);
 
     const allJobs = [];
     let hits = 0;
+    let errors = 0;
 
-    // Process in batches of 30 concurrent API probes
-    for (let i = 0; i < aiCompanies.length; i += 30) {
-        const batch = aiCompanies.slice(i, i + 30);
+    // Process in batches of 15 concurrent requests
+    const BATCH_SIZE = 15;
+    for (let i = 0; i < companies.length; i += BATCH_SIZE) {
+        const batch = companies.slice(i, i + BATCH_SIZE);
 
         const results = await Promise.allSettled(batch.map(async (co) => {
-            const slugs = slugVariants(co.name);
-            if (co.slug) slugs.unshift(co.slug);
+            const fetcher = FETCHERS[co.ats];
+            const parser = PARSERS[co.ats];
+            if (!fetcher || !parser) return { co, jobs: [] };
 
-            // Probe all APIs in parallel for speed
-            const slug = slugs[0];
-            const [gh, lv, ab] = await Promise.all([
-                probeGreenhouse(slug),
-                probeLever(slug),
-                probeAshby(slug),
-            ]);
-            if (gh) return { co, jobs: processGreenhouse(gh, co, filterSenior), via: 'greenhouse' };
-            if (lv) return { co, jobs: processLever(lv, co, filterSenior), via: 'lever' };
-            if (ab) return { co, jobs: processAshby(ab, co, filterSenior), via: 'ashby' };
-
-            // Try second slug if first didn't match
-            if (slugs[1]) {
-                const [gh2, lv2, ab2] = await Promise.all([
-                    probeGreenhouse(slugs[1]),
-                    probeLever(slugs[1]),
-                    probeAshby(slugs[1]),
-                ]);
-                if (gh2) return { co, jobs: processGreenhouse(gh2, co, filterSenior), via: 'greenhouse' };
-                if (lv2) return { co, jobs: processLever(lv2, co, filterSenior), via: 'lever' };
-                if (ab2) return { co, jobs: processAshby(ab2, co, filterSenior), via: 'ashby' };
-            }
-            return { co, jobs: [], via: 'none' };
+            const rawJobs = await fetcher(co.slug);
+            const jobs = parser(rawJobs, co, filterSenior);
+            return { co, jobs, total: rawJobs.length };
         }));
 
         for (const r of results) {
-            if (r.status === 'fulfilled' && r.value.jobs.length > 0) {
-                allJobs.push(...r.value.jobs);
-                hits++;
-                console.log(`   ✅ ${r.value.co.name}: ${r.value.jobs.length} jobs via ${r.value.via}`);
+            if (r.status === 'fulfilled') {
+                if (r.value.jobs.length > 0) {
+                    allJobs.push(...r.value.jobs);
+                    hits++;
+                    console.log(`   ✅ ${r.value.co.name}: ${r.value.jobs.length} new-grad jobs (${r.value.total} total via ${r.value.co.ats})`);
+                }
+            } else {
+                errors++;
             }
         }
 
         await sleep(200);
     }
 
-    console.log(`✅ AI Companies done: ${allJobs.length} new-grad jobs from ${hits}/${aiCompanies.length} companies`);
+    console.log(`✅ AI Companies done: ${allJobs.length} new-grad jobs from ${hits}/${companies.length} companies (${errors} errors)`);
     return allJobs;
 }

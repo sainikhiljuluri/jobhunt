@@ -15,6 +15,7 @@ import { scrapeSimplifyJobs } from './scrapers/simplifyjobs.js';
 import { scrapeAdzuna } from './scrapers/adzuna.js';
 import { scrapeCareerPages } from './scrapers/career-pages.js';
 import { scrapeWithScrapling } from './scrapers/scrapling.js';
+import { scrapeAICompanies } from './scrapers/ai-companies.js';
 import { insertJob, jobExistsByTitleCompany, startScrapeRun, finishScrapeRun, getAllSettings } from './db.js';
 import { notifyDreamCompanyJobs } from './notifier.js';
 
@@ -42,6 +43,7 @@ export async function runScraper() {
         { name: 'Direct Career Pages', fn: () => scrapeDirectCareerPages(filterSenior) },
         { name: 'SimplifyJobs', fn: () => scrapeSimplifyJobs(filterSenior) },
         { name: 'Adzuna', fn: () => scrapeAdzuna(filterSenior) },
+        { name: 'AI Companies (113)', fn: () => scrapeAICompanies(filterSenior) },
     ];
 
     const fastResults = await Promise.allSettled(fastScrapers.map(s => s.fn()));
